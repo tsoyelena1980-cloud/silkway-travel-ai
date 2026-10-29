@@ -176,7 +176,7 @@ function normalizeIntegerPlanCosts(plan: GeneratedTourPlan): GeneratedTourPlan {
 /**
  * Многоязычный интеллектуальный генератор маршрута по Узбекистану в UZS (RU / UZ / EN)
  */
-function buildSmartUzbekistanPlan(params: GenerateItineraryRequest): GeneratedTourPlan {
+export function buildSmartUzbekistanPlan(params: GenerateItineraryRequest): GeneratedTourPlan {
   const lang: AppLanguage = params.language || 'ru';
   const daysCount = Math.min(Math.max(1, Math.trunc(params.duration_days)), 10);
   const travelers = Math.max(1, Math.trunc(params.travelers_count));
@@ -753,7 +753,7 @@ export async function generateTourPlan(params: GenerateItineraryRequest): Promis
     try {
       const fallbackPlan = await callGeminiWithRetry(apiKey, fallbackModel, prompt, lang, 2);
       return {
-        plan,
+        plan: fallbackPlan,
         rawPrompt: prompt,
         modelUsed: fallbackModel,
         fallbackTriggered: true,
