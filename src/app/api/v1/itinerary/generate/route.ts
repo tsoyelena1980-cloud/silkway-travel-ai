@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateTourPlan } from '@/lib/gemini';
 import { assertIntegerUzs, itinerariesStore } from '@/lib/payment';
+import { saveItineraryToNeon } from '@/lib/db';
 import { GenerateItineraryRequest, GenerateItineraryResponse } from '@/lib/types';
 
 export async function POST(req: NextRequest) {
@@ -25,7 +26,7 @@ export async function POST(req: NextRequest) {
     const travelersCount = Number(body.travelers_count) || adults + children;
     const language = body.language === 'uz' || body.language === 'en' ? body.language : 'ru';
 
-    const { plan, modelUsed, fallbackTriggered } = await generateTourPlan({
+    const { plan, rawPrompt, modelUsed, fallbackTriggered } = await generateTourPlan({
       destination: body.destination,
       duration_days: durationDays,
       travelers_count: travelersCount,
@@ -65,6 +66,18 @@ export async function POST(req: NextRequest) {
     };
 
     itinerariesStore.set(itineraryId, responseData.data);
+
+    // Сохраняем в Neon PostgreSQL (если DATABASE_URL настроен)
+    await saveItineraryToNeon({
+      id: itineraryId,
+      title: plan.trip_title,
+      destination: body.destination,
+      duration_days: durationDays,
+      travelers_count: travelersCount,
+      raw_prompt: rawPrompt,
+      generated_plan: responseData.data,
+      estimated_total_uzs: plan.estimated_total_cost_uzs,
+    });
 
     // Поддержка Server-Sent Events (Accept: text/event-stream) согласно Разделу 3.1
     const acceptHeader = req.headers.get('accept') || '';

@@ -5,6 +5,7 @@ import {
   createBookingWithPayment,
   validatePaymentAmount,
 } from '@/lib/payment';
+import { saveBookingAndTransactionToNeon } from '@/lib/db';
 import { PaymentGateway } from '@/lib/types';
 
 export async function GET() {
@@ -56,6 +57,12 @@ export async function POST(req: NextRequest) {
       email,
       booking_amount_uzs: total_amount_uzs,
       incoming_webhook_amount_uzs: incoming_webhook_amount_uzs ?? total_amount_uzs,
+      provider: selectedProvider,
+    });
+
+    // Сохраняем в Neon PostgreSQL (если DATABASE_URL настроен)
+    await saveBookingAndTransactionToNeon({
+      booking,
       provider: selectedProvider,
     });
 
