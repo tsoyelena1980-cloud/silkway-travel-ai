@@ -1,0 +1,133 @@
+openapi: 3.0.3
+info:
+  title: SilkWay Travel AI API
+  version: 1.0.0
+  description: |
+    API шлюз для генерации туристических маршрутов по Узбекистану через Google Gemini API
+    и обработки бронирований/платежей в узбекских сумах (UZS, целочисленный BIGINT).
+  contact:
+    name: Директор Цой Елена
+    url: https://silkway-travel.uz
+paths:
+  /api/v1/itinerary/generate:
+    post:
+      summary: Генерация маршрута через Gemini API
+      description: Генерирует детализированный подневный план поездки с расчетом всех цен строго в сумах (UZS).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - destination
+                - duration_days
+                - travelers_count
+                - budget_uzs
+                - interests
+              properties:
+                destination:
+                  type: string
+                  example: "Самарканд - Бухара"
+                duration_days:
+                  type: integer
+                  minimum: 1
+                  maximum: 14
+                  example: 3
+                travelers_count:
+                  type: integer
+                  minimum: 1
+                  example: 2
+                adults:
+                  type: integer
+                  example: 2
+                children:
+                  type: integer
+                  example: 0
+                budget_uzs:
+                  type: integer
+                  format: int64
+                  description: Целочисленный бюджет в узбекских сумах (UZS)
+                  example: 8000000
+                interests:
+                  type: array
+                  items:
+                    type: string
+                  example: ["история", "национальная кухня", "фотосессии"]
+                special_requests:
+                  type: string
+                  example: "Передвижение на поезде Afrosiyob"
+      responses:
+        '200':
+          description: Маршрут успешно сгенерирован
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  data:
+                    type: object
+                    properties:
+                      itinerary_id:
+                        type: string
+                        format: uuid
+                      trip_title:
+                        type: string
+                      summary:
+                        type: string
+                      estimated_total_cost_uzs:
+                        type: integer
+                        format: int64
+                      daily_itinerary:
+                        type: array
+                        items:
+                          type: object
+                      local_tips:
+                        type: array
+                        items:
+                          type: string
+                      support:
+                        type: object
+                        properties:
+                          director:
+                            type: string
+                            example: "Цой Елена"
+                          phone:
+                            type: string
+                            example: "+998 777-77-77"
+  /api/v1/bookings:
+    post:
+      summary: Создание бронирования и инициация платежа в UZS
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - itinerary_id
+                - full_name
+                - phone
+                - total_amount_uzs
+                - provider
+              properties:
+                itinerary_id:
+                  type: string
+                full_name:
+                  type: string
+                phone:
+                  type: string
+                email:
+                  type: string
+                total_amount_uzs:
+                  type: integer
+                  format: int64
+                provider:
+                  type: string
+                  enum: [payme, click, uzum]
+      responses:
+        '200':
+          description: Бронирование создано и оплата провалидирована
