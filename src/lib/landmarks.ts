@@ -1,3 +1,4 @@
+import React from 'react';
 import { AppLanguage } from './types';
 
 export interface LandmarkItem {
@@ -19,7 +20,7 @@ export const UZBEKISTAN_LANDMARKS: LandmarkItem[] = [
   {
     id: 'registan',
     image: 'landmarks/samarkand.jpg',
-    rating: '4.98',
+    rating: '4.99',
     reviewsCount: 4820,
     priceFromUzs: 200000,
     unesco: true,
@@ -57,7 +58,7 @@ export const UZBEKISTAN_LANDMARKS: LandmarkItem[] = [
   {
     id: 'shahizinda',
     image: 'landmarks/shahizinda.jpg',
-    rating: '4.97',
+    rating: '4.98',
     reviewsCount: 3610,
     priceFromUzs: 180000,
     unesco: true,
@@ -95,7 +96,7 @@ export const UZBEKISTAN_LANDMARKS: LandmarkItem[] = [
   {
     id: 'poikalyan',
     image: 'landmarks/bukhara.jpg',
-    rating: '4.96',
+    rating: '4.97',
     reviewsCount: 3940,
     priceFromUzs: 210000,
     unesco: true,
@@ -116,7 +117,7 @@ export const UZBEKISTAN_LANDMARKS: LandmarkItem[] = [
     },
     subtitle: {
       ru: 'Величественный минарет 1127 года, который поразил самого Чингисхана, и действующее медресе Мири-Араб.',
-      en: 'Towering 1127 ADbrick minaret that spared Bukhara from Genghis Khan, facing Mir-i-Arab Madrasah.',
+      en: 'Towering 1127 AD brick minaret that spared Bukhara from Genghis Khan, facing Mir-i-Arab Madrasah.',
       uz: '1127-yilda qurilgan ulugʻvor minora va qarshisidagi goʻzal Mir Arab madrasasi.',
     },
     bestTime: {
@@ -131,9 +132,47 @@ export const UZBEKISTAN_LANDMARKS: LandmarkItem[] = [
     },
   },
   {
+    id: 'ark',
+    image: 'landmarks/ark.jpg',
+    rating: '4.95',
+    reviewsCount: 2740,
+    priceFromUzs: 190000,
+    unesco: true,
+    presetDestination: {
+      ru: 'Самарканд - Бухара',
+      en: 'Samarkand - Bukhara',
+      uz: 'Samarqand - Buxoro',
+    },
+    city: {
+      ru: 'Бухара',
+      en: 'Bukhara',
+      uz: 'Buxoro',
+    },
+    title: {
+      ru: 'Древняя цитадель Арк',
+      en: 'The Ark Fortress of Bukhara',
+      uz: 'Buxoro Ark qoʻrgʻoni',
+    },
+    subtitle: {
+      ru: 'Монументальная резиденция бухарских эмиров с тронным залом, мечетью Джами и панорамой Старого города.',
+      en: 'Monumental royal citadel of Bukharan Emirs featuring the coronation court and panoramic views of Old Bukhara.',
+      uz: 'Buxoro amirlarining ulugʻvor qarorgohi, taxt zali va Eski shahar panoramasi.',
+    },
+    bestTime: {
+      ru: 'После 16:00 в лучах мягкого предзакатного солнца',
+      en: 'Late afternoon (after 4:00 PM) in warm golden light',
+      uz: 'Soat 16:00 dan keyin quyosh botishi oldidan',
+    },
+    highlight: {
+      ru: 'Древнейший памятник Бухары (V–XX вв.)',
+      en: 'Oldest fortress stronghold in Bukhara (5th–20th c.)',
+      uz: 'Buxoroning eng qadimiy qalʼasi (V–XX asrlar)',
+    },
+  },
+  {
     id: 'itchankala',
     image: 'landmarks/khiva.jpg',
-    rating: '4.95',
+    rating: '4.96',
     reviewsCount: 2890,
     priceFromUzs: 230000,
     unesco: true,
@@ -171,7 +210,7 @@ export const UZBEKISTAN_LANDMARKS: LandmarkItem[] = [
   {
     id: 'gureamir',
     image: 'landmarks/gureamir.jpg',
-    rating: '4.94',
+    rating: '4.96',
     reviewsCount: 3150,
     priceFromUzs: 160000,
     unesco: true,
@@ -191,7 +230,7 @@ export const UZBEKISTAN_LANDMARKS: LandmarkItem[] = [
       uz: 'Goʻri Amir maqbarasi',
     },
     subtitle: {
-      ru: 'Усыпальница Амира Темура и Улугбека с ребристым бирюзовым куполом и золотым интерьером паrest-кундаль.',
+      ru: 'Усыпальница Амира Темура и Улугбека с ребристым бирюзовым куполом и роскошным золотым сводом.',
       en: 'Resting place of Amir Timur and Ulugh Beg crowned by an iconic ribbed azure dome and gilded interior.',
       uz: 'Amir Temur va Mirzo Ulugʻbek maqbarasi — moviy qovurgʻali gumbaz va zarhal naqshlar durdonasi.',
     },
@@ -207,9 +246,47 @@ export const UZBEKISTAN_LANDMARKS: LandmarkItem[] = [
     },
   },
   {
+    id: 'chorsu',
+    image: 'landmarks/chorsu.jpg',
+    rating: '4.93',
+    reviewsCount: 3420,
+    priceFromUzs: 150000,
+    unesco: false,
+    presetDestination: {
+      ru: 'Ташкент - Чимган - Амирсой',
+      en: 'Tashkent - Chimgan - Amirsoy',
+      uz: 'Toshkent - Chimyon - Amirsoy',
+    },
+    city: {
+      ru: 'Ташкент',
+      en: 'Tashkent',
+      uz: 'Toshkent',
+    },
+    title: {
+      ru: 'Восточный базар Чорсу',
+      en: 'Chorsu Oriental Bazaar',
+      uz: 'Chorsu sharq bozori',
+    },
+    subtitle: {
+      ru: 'Знаменитый голубой купол Старого Ташкента: горы пряностей, горячие лепешки из тандыра и ряды ремесленников.',
+      en: 'Iconic turquoise dome of Old Tashkent overflowing with spices, tandoor flatbreads, dried fruits, and crafts.',
+      uz: 'Eski Toshkentning mashhur moviy gumbazi: ziravorlar, issiq patir nonlar va hunarmandchilik rastalari.',
+    },
+    bestTime: {
+      ru: 'Утро (09:00–12:00) и гастрономические ряды',
+      en: 'Morning (9:00 AM–12:00 PM) & street food alleys',
+      uz: 'Ertalab (09:00–12:00) va milliy taomlar rastasi',
+    },
+    highlight: {
+      ru: 'Гастрономическая душа столицы Узбекистана',
+      en: 'Culinary heart of Uzbekistan’s capital',
+      uz: 'Oʻzbekiston poytaxtining gastronomik yuragi',
+    },
+  },
+  {
     id: 'chimgan',
     image: 'landmarks/chimgan.jpg',
-    rating: '4.92',
+    rating: '4.94',
     reviewsCount: 2410,
     priceFromUzs: 350000,
     unesco: false,
@@ -246,12 +323,35 @@ export const UZBEKISTAN_LANDMARKS: LandmarkItem[] = [
   },
 ];
 
+/**
+ * Формирует корректный URL картинки как во время SSR/SSG сборки (через NEXT_PUBLIC_BASE_PATH),
+ * так и в браузере на любом домене (Vercel, GitHub Pages, localhost).
+ */
 export function resolveAssetUrl(relativePath: string): string {
   const clean = relativePath.replace(/^\/+/, '');
+  const envBase = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  if (envBase) {
+    return `${envBase}/${clean}`;
+  }
   if (typeof window !== 'undefined' && window.location.pathname.startsWith('/silkway-travel-ai')) {
     return `/silkway-travel-ai/${clean}`;
   }
   return `/${clean}`;
+}
+
+/**
+ * Автоматический резервный обработчик на случай ошибок пути к картинке
+ */
+export function handleLandmarkImgError(
+  e: React.SyntheticEvent<HTMLImageElement, Event>,
+  relativePath: string
+) {
+  const clean = relativePath.replace(/^\/+/, '');
+  const target = e.currentTarget;
+  const fallbackUrl = `https://tsoyelena1980-cloud.github.io/silkway-travel-ai/${clean}`;
+  if (target.src !== fallbackUrl) {
+    target.src = fallbackUrl;
+  }
 }
 
 export function getLocationPhotoByText(locationText: string, dayNumber: number): string {

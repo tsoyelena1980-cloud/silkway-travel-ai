@@ -54,6 +54,7 @@ import {
 } from '@/lib/i18n';
 import {
   getLocationPhotoByText,
+  handleLandmarkImgError,
   LandmarkItem,
   resolveAssetUrl,
   UZBEKISTAN_LANDMARKS,
@@ -608,6 +609,7 @@ export default function SilkWayTravelPage() {
                 >
                   <img
                     src={resolveAssetUrl(item.image)}
+                    onError={(e) => handleLandmarkImgError(e, item.image)}
                     alt={item.title[lang]}
                     className="w-full h-full object-cover object-center"
                   />
@@ -757,24 +759,24 @@ export default function SilkWayTravelPage() {
                 </div>
               </div>
 
-              {/* Сетка карточек достопримечательностей */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Сетка карточек достопримечательностей (8 жемчужин Узбекистана) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 {filteredLandmarks.map((landmark) => (
                   <div
                     key={landmark.id}
-                    className="group bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-xs card-smooth flex flex-col justify-between"
+                    className="group bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-sm card-smooth flex flex-col justify-between"
                   >
                     <div>
                       {/* Фото-блок с плавным зумом при наведении */}
                       <div
                         onClick={() => setActiveModalLandmark(landmark)}
-                        className="relative h-56 overflow-hidden cursor-pointer bg-slate-900"
+                        className="relative h-52 overflow-hidden cursor-pointer bg-slate-900"
                       >
                         <img
                           src={resolveAssetUrl(landmark.image)}
+                          onError={(e) => handleLandmarkImgError(e, landmark.image)}
                           alt={landmark.title[lang]}
                           className="w-full h-full object-cover img-zoom"
-                          loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/15 to-transparent" />
 
@@ -1261,6 +1263,12 @@ export default function SilkWayTravelPage() {
                       src={resolveAssetUrl(
                         getLocationPhotoByText(currentPlan.trip_title, 1)
                       )}
+                      onError={(e) =>
+                        handleLandmarkImgError(
+                          e,
+                          getLocationPhotoByText(currentPlan.trip_title, 1)
+                        )
+                      }
                       alt={currentPlan.trip_title}
                       className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-luminosity pointer-events-none"
                     />
@@ -1343,9 +1351,9 @@ export default function SilkWayTravelPage() {
                             <div className="relative h-36 sm:h-44 overflow-hidden bg-slate-900">
                               <img
                                 src={resolveAssetUrl(dayPhoto)}
+                                onError={(e) => handleLandmarkImgError(e, dayPhoto)}
                                 alt={day.location}
                                 className="w-full h-full object-cover img-zoom"
-                                loading="lazy"
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
 
@@ -1678,6 +1686,7 @@ export default function SilkWayTravelPage() {
             <div className="relative h-72 sm:h-80 bg-slate-900">
               <img
                 src={resolveAssetUrl(activeModalLandmark.image)}
+                onError={(e) => handleLandmarkImgError(e, activeModalLandmark.image)}
                 alt={activeModalLandmark.title[lang]}
                 className="w-full h-full object-cover"
               />
