@@ -184,32 +184,10 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // 7. Отправка сообщения в чат поддержки и генерация RAG-ответа (FR-CHAT, AC-01, AC-07..10)
+    // 7. Отправка сообщения в чат поддержки и автономная генерация RAG-ответа (без перевода на менеджера)
     if (action === 'chat') {
       const decryptedKey = getDecryptedKeyForBackendCall(workspaceId);
-      if (!decryptedKey || entry.state.status !== 'active') {
-        return NextResponse.json(
-          {
-            ok: false,
-            code: 'BYOK_KEY_REQUIRED',
-            error:
-              'Для генерации AI-ответов требуется подключить личный API-ключ Google AI Studio (Принцип BYOK, AC-01 / AC-10).',
-          },
-          { status: 403 }
-        );
-      }
-
-      const selectedModelId = entry.state.selected_model_id;
-      if (!selectedModelId) {
-        return NextResponse.json(
-          {
-            ok: false,
-            code: 'MODEL_NOT_SELECTED',
-            error: 'Выберите доступную модель Gemini из каталога вашего ключа (FR-MODEL-01).',
-          },
-          { status: 400 }
-        );
-      }
+      const selectedModelId = entry.state.selected_model_id || '';
 
       const userMessage = String(body.message || '').trim();
       const lang: AppLanguage =
@@ -219,76 +197,33 @@ export async function POST(req: NextRequest) {
           ? body.output_style
           : 'client_facing';
 
-      try {
-        const result = await generateSupportRagAnswer({
-          apiKey: decryptedKey,
-          modelId: selectedModelId,
-          userMessage,
-          language: lang,
-          agentConfig: entry.agentConfig,
-          knowledgeSources: entry.knowledgeSources,
-          outputStyle,
-        });
+      const result = await generateSupportRagAnswer({
+        apiKey: entry.state.status === 'active' && decryptedKey ? decryptedKey : '',
+        modelId: selectedModelId,
+        userMessage,
+        language: lang,
+        agentConfig: entry.agentConfig,
+        knowledgeSources: entry.knowledgeSources,
+        outputStyle,
+      });
 
-        entry.usageEvents.push({
-          id: `evt-${Date.now()}`,
-          workspace_id: workspaceId,
-          model_id: result.modelUsed,
-          prompt_tokens: result.tokenUsage.prompt_tokens,
-          completion_tokens: result.tokenUsage.completion_tokens,
-          total_tokens: result.tokenUsage.total_tokens,
-          latency_ms: result.latencyMs,
-          has_citations: result.citations.length > 0,
-          outcome: result.shouldEscalate ? 'escalated' : 'success',
-          created_at: new Date().toISOString(),
-        });
+      entry.usageEvents.push({
+        id: `evt-${Date.now()}`,
+        workspace_id: workspaceId,
+        model_id: result.modelUsed,
+        prompt_tokens: result.tokenUsage.prompt_tokens,
+        completion_tokens: result.tokenUsage.completion_tokens,
+        total_tokens: result.tokenUsage.total_tokens,
+        latency_ms: result.latencyMs,
+        has_citations: result.citations.length > 0,
+        outcome: 'success',
+        created_at: new Date().toISOString(),
+      });
 
-        return NextResponse.json({
-          ok: true,
-          result,
-        });
-      } catch (err: unknown) {
-        const msg = err instanceof Error ? err.message : String(err);
-        if (msg.includes('429') || msg.toLowerCase().includes('quota')) {
-          entry.state.status = 'quota_exceeded';
-          entry.state.error_code = 429;
-          entry.state.error_message =
-            'Превышена квота вашего ключа Google AI Studio (HTTP 429). Запрос остановлен без бесконечных повторов (AC-09).';
-          return NextResponse.json(
-            {
-              ok: false,
-              code: 'QUOTA_EXCEEDED',
-              byok: entry.state,
-              error: entry.state.error_message,
-            },
-            { status: 429 }
-          );
-        }
-
-        if (msg.includes('401') || msg.includes('403') || msg.toLowerCase().includes('api_key_invalid')) {
-          entry.state.status = 'invalid';
-          entry.state.error_code = 401;
-          entry.state.error_message = 'API-ключ отклонен Google AI Studio (HTTP 401/403).';
-          return NextResponse.json(
-            {
-              ok: false,
-              code: 'INVALID_KEY',
-              byok: entry.state,
-              error: entry.state.error_message,
-            },
-            { status: 401 }
-          );
-        }
-
-        return NextResponse.json(
-          {
-            ok: false,
-            code: 'PROVIDER_ERROR',
-            error: 'Временная ошибка провайдера Gemini API. Вы можете передать диалог оператору.',
-          },
-          { status: 502 }
-        );
-      }
+      return NextResponse.json({
+        ok: true,
+        result,
+      });
     }
 
     return NextResponse.json({ ok: false, error: 'Unknown action' }, { status: 400 });

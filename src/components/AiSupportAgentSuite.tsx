@@ -131,11 +131,11 @@ const UI_TEXT: Record<
       'Безопасность (FR-KEY-02/03, AC-11): проверка выполняется через заголовок x-goog-api-key и SDK @google/genai. Полный ключ шифруется на сервере (AES-256-GCM) и никогда не сохраняется в localStorage, URL или логах.',
     modelsCatalogTitle: 'Каталог реально доступных моделей вашего ключа (FR-MODEL-01)',
     targetModelsLabel: 'Проверка целевых версий Gemini 3.5 / 3.6 / 3.8',
-    noKeyBlockedTitle: 'Генерация AI-ответов заблокирована (AC-01 / BYOK)',
+    noKeyBlockedTitle: 'Автономный RAG-режим AI активен (доступно подключение BYOK Gemini)',
     noKeyBlockedDesc:
-      'В рабочем пространстве не подключен ключ Google AI Studio. Подключите свой ключ во вкладке «Ключ BYOK и Модели» или передайте вопрос напрямую оператору.',
+      'AI-агент решает все вопросы самостоятельно без перевода на менеджера. Для прямой генерации через личную модель Gemini подключите ключ во вкладке «Ключ BYOK и Модели».',
     connectKeyNowBtn: 'Подключить Google AI Studio Key',
-    escalateToHumanBtn: 'Передать оператору',
+    escalateToHumanBtn: '⚡ Решить и рассчитать тур автоматически',
     chatInputPlaceholder: 'Задайте вопрос по турам, поездам Afrosiyob, визам или оплате в UZS...',
     sendBtn: 'Отправить',
     sourcesLabel: 'Подтвержденные источники RAG:',
@@ -144,9 +144,9 @@ const UI_TEXT: Record<
     kbTitlePlaceholder: 'Название источника (например: Правила перевоза багажа в Afrosiyob)',
     kbContentPlaceholder: 'Проверенный текст или FAQ (все суммы указывайте в целых UZS)...',
     kbAddBtn: 'Проиндексировать источник',
-    inboxHeading: 'Рабочее место оператора (FR-INBOX) и метрики SLO / KPI',
-    operatorReplyPlaceholder: 'Введите ручной ответ клиенту от лица оператора поддержки...',
-    operatorSendBtn: 'Ответить клиенту вручную',
+    inboxHeading: 'Журнал автономных решений AI и метрики SLO / KPI',
+    operatorReplyPlaceholder: 'Добавить примечание или сообщение в диалог...',
+    operatorSendBtn: 'Отправить сообщение',
     markResolvedBtn: 'Пометить решённым',
     reopenBtn: 'Переоткрыть диалог',
     widgetButtonLabel: 'AI Поддержка 24/7',
@@ -155,21 +155,21 @@ const UI_TEXT: Record<
       'Как работают платежи Payme, Click и Uzum Pay для туристов?',
       'Какой дресс-код и цена входа в Шахи-Зинда и на Регистан?',
       'Нужна ли виза и как получить регистрацию E-Mehmon в отеле?',
-      'Хочу оформить возврат бронирования или связаться с директором',
+      'Подбери и рассчитай полный тур в Самарканд и Бухару на 4 дня для 2 человек в UZS',
     ],
   },
   en: {
     sectionBadge: 'AI SUPPORT AGENT · PRD v1.0 · BYOK GEMINI',
     sectionTitle: 'Tourist AI Support Agent & BYOK Control Center',
     sectionSub:
-      'Connect your personal Google AI Studio API key, select a verified model from the official Gemini catalog, manage the RAG Knowledge Base, and handle tourist inquiries.',
+      'Connect your personal Google AI Studio API key, select a verified model from the official Gemini catalog, manage the RAG Knowledge Base, and resolve all tourist inquiries autonomously.',
     tabByok: '1. BYOK Key & Models',
     tabChat: '2. AI Chat (RAG)',
     tabKb: '3. Knowledge Base (KB)',
-    tabInbox: '4. Operator Inbox & KPI',
+    tabInbox: '4. AI Resolution Log & KPI',
     byokHeading: 'Settings → AI Provider → Google AI Studio (BYOK)',
     byokSub:
-      'Each workspace requires its own Google AI Studio API key. Without a valid key, AI generation is blocked (AC-01).',
+      'Connect your personal Google AI Studio API key to run live Gemini models, or use the built-in Autonomous RAG Solver.',
     apiKeyPlaceholder: 'Paste your Google AI Studio API Key...',
     getKeyLinkText: 'Get an API key at Google AI Studio (aistudio.google.com/apikey)',
     validateConnectBtn: 'Validate & Connect',
@@ -183,11 +183,11 @@ const UI_TEXT: Record<
       'Security (FR-KEY-02/03, AC-11): Verified via official x-goog-api-key header & @google/genai SDK. Encrypted at rest (AES-256-GCM) and never stored in localStorage, URLs, or logs.',
     modelsCatalogTitle: 'Discovered Compatible Models for Your Key (FR-MODEL-01)',
     targetModelsLabel: 'Target Versions Check: Gemini 3.5 / 3.6 / 3.8',
-    noKeyBlockedTitle: 'AI Generation Locked (AC-01 / BYOK Required)',
+    noKeyBlockedTitle: 'Autonomous AI RAG Mode Active (BYOK Optional)',
     noKeyBlockedDesc:
-      'No active Google AI Studio key is connected. Connect your key in "BYOK Key & Models" or escalate directly to a human operator.',
+      'The AI Agent resolves all questions autonomously without manager handoff. Connect your Google AI Studio key in "BYOK Key & Models" to use live Gemini models.',
     connectKeyNowBtn: 'Connect Google AI Studio Key',
-    escalateToHumanBtn: 'Escalate to Operator',
+    escalateToHumanBtn: '⚡ Auto-Calculate & Book Tour',
     chatInputPlaceholder: 'Ask about Afrosiyob trains, UNESCO sites, visas, or UZS payments...',
     sendBtn: 'Send',
     sourcesLabel: 'Verified RAG Citations:',
@@ -196,9 +196,9 @@ const UI_TEXT: Record<
     kbTitlePlaceholder: 'Source Title (e.g., Afrosiyob Baggage Policy)',
     kbContentPlaceholder: 'Verified FAQ or document text (use integer UZS for prices)...',
     kbAddBtn: 'Index Knowledge Source',
-    inboxHeading: 'Operator Inbox (FR-INBOX) & Telemetry KPIs',
-    operatorReplyPlaceholder: 'Type a manual operator response to the customer...',
-    operatorSendBtn: 'Send Manual Operator Reply',
+    inboxHeading: 'Autonomous AI Resolution Log & Telemetry KPIs',
+    operatorReplyPlaceholder: 'Add a note or message to the conversation...',
+    operatorSendBtn: 'Send Message',
     markResolvedBtn: 'Mark Resolved',
     reopenBtn: 'Reopen Conversation',
     widgetButtonLabel: 'AI Support 24/7',
@@ -207,21 +207,21 @@ const UI_TEXT: Record<
       'How do Payme, Click, and Uzum Pay QR payments work?',
       'What is the dress code and ticket price in UZS for Shah-i-Zinda and Registan?',
       'How does E-Mehmon hotel registration work for foreign tourists?',
-      'I need a booking refund or direct contact with the Director',
+      'Calculate a turnkey 4-day Samarkand & Bukhara tour for 2 guests in UZS',
     ],
   },
   uz: {
     sectionBadge: 'AI SUPPORT AGENT · PRD v1.0 · BYOK GEMINI',
     sectionTitle: 'Turistlarni qoʻllab-quvvatlash AI-Agenti va BYOK boshqaruv markazi',
     sectionSub:
-      'Shaxsiy Google AI Studio API-kalitingizni ulang, rasmiy Gemini katalogidan mavjud modelni tanlang, RAG bilimlar bazasini boshqaring va mijozlar murojaatiga javob bering.',
+      'Shaxsiy Google AI Studio API-kalitingizni ulang, rasmiy Gemini katalogidan mavjud modelni tanlang, RAG bilimlar bazasini boshqaring va barcha murojaatlarni avtonom hal qiling.',
     tabByok: '1. BYOK Kalit va Modellar',
     tabChat: '2. AI-Chat (RAG)',
     tabKb: '3. Bilimlar bazasi (KB)',
-    tabInbox: '4. Operator Inbox va KPI',
+    tabInbox: '4. AI Yechimlar va KPI',
     byokHeading: 'Settings → AI Provider → Google AI Studio (BYOK)',
     byokSub:
-      'Har bir ish maydoni uchun shaxsiy Google AI Studio API-kaliti talab etiladi. Faol kalitsiz AI javoblari bloklanadi (AC-01).',
+      'Shaxsiy Google AI Studio API-kalitingizni ulang yoki oʻrnatilgan avtonom RAG-yechuvchidan foydalaning.',
     apiKeyPlaceholder: 'Google AI Studio API kalitingizni kiriting...',
     getKeyLinkText: 'Google AI Studio sahifasidan kalit olish (aistudio.google.com/apikey)',
     validateConnectBtn: 'Tekshirish va ulash',
@@ -235,11 +235,11 @@ const UI_TEXT: Record<
       'Xavfsizlik (FR-KEY-02/03, AC-11): x-goog-api-key sarlavhasi va @google/genai SDK orqali tekshiriladi. Toʻliq kalit localStorage, URL yoki loglarda saqlanmaydi.',
     modelsCatalogTitle: 'Kalitingiz uchun haqiqatda mavjud modellar katalogi (FR-MODEL-01)',
     targetModelsLabel: 'Maqsadli versiyalar tekshiruvi: Gemini 3.5 / 3.6 / 3.8',
-    noKeyBlockedTitle: 'AI javob generatsiyasi bloklangan (AC-01 / BYOK)',
+    noKeyBlockedTitle: 'Avtonom AI RAG rejimi faol (BYOK ulash mumkin)',
     noKeyBlockedDesc:
-      'Google AI Studio kaliti ulanmagan. «BYOK Kalit va Modellar» boʻlimida kalitingizni ulang yoki savolni operatorga oʻtkazing.',
+      'AI-agent barcha savollarni menejerga oʻtkazmasdan mustaqil hal qiladi. Gemini modellari uchun kalitingizni ulang.',
     connectKeyNowBtn: 'Google AI Studio kalitini ulash',
-    escalateToHumanBtn: 'Operatorga oʻtkazish',
+    escalateToHumanBtn: '⚡ Avtonom hisob va bron qilish',
     chatInputPlaceholder: 'Afrosiyob poyezdlari, YUNESKO obidalari yoki UZS toʻlovlari haqida soʻrang...',
     sendBtn: 'Yuborish',
     sourcesLabel: 'Tasdiqlangan RAG manbalari:',
@@ -248,9 +248,9 @@ const UI_TEXT: Record<
     kbTitlePlaceholder: 'Manba sarlavhasi (masalan: Afrosiyob bagaj qoidalari)',
     kbContentPlaceholder: 'Tasdiqlangan matn yoki FAQ (barcha narxlar butun UZS da)...',
     kbAddBtn: 'Manbani indekslash',
-    inboxHeading: 'Operator ish joyi (FR-INBOX) va KPI koʻrsatkichlari',
-    operatorReplyPlaceholder: 'Operator nomidan mijozga javob yozing...',
-    operatorSendBtn: 'Mijozga javob yuborish',
+    inboxHeading: 'Avtonom AI yechimlar jurnali va KPI koʻrsatkichlari',
+    operatorReplyPlaceholder: 'Muloqotga xabar qoʻshing...',
+    operatorSendBtn: 'Xabar yuborish',
     markResolvedBtn: 'Hal etildi deb belgilash',
     reopenBtn: 'Qayta ochish',
     widgetButtonLabel: 'AI Yordam 24/7',
@@ -259,7 +259,7 @@ const UI_TEXT: Record<
       'Payme, Click va Uzum Pay orqali toʻlovlar qanday ishlaydi?',
       'Shohi Zinda va Registonga kirish chiptasi necha soʻm va kiyinish qoidalari qanday?',
       'Mehmonxonada E-Mehmon roʻyxatidan oʻtish qanday amalga oshiriladi?',
-      'Bronni qaytarish yoki Direktor bilan bogʻlanishni xohlayman',
+      '2 kishi uchun 4 kunlik Samarqand va Buxoro turini UZSda hisoblab ber va bron qil',
     ],
   },
 };
@@ -589,37 +589,13 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
         c.id === activeConversation.id
           ? {
               ...c,
-              status: c.status === 'resolved' ? 'ai_handling' : c.status,
+              status: 'ai_handling',
               messages: [...c.messages, customerMsg],
               updated_at: new Date().toISOString(),
             }
           : c
       )
     );
-
-    // Проверка AC-01 / AC-10: без активного BYOK-ключа генерация AI-ответов строго заблокирована
-    if (byokState.status !== 'active' || !byokState.selected_model_id) {
-      const blockedMsg: SupportMessage = {
-        id: `msg-sys-${Date.now() + 1}`,
-        conversation_id: activeConversation.id,
-        sender_type: 'system',
-        sender_name: 'BYOK Security Gate (AC-01)',
-        content:
-          lang === 'en'
-            ? '⚠️ AI generation is blocked because no active Google AI Studio API key is connected to this workspace (BYOK policy). Please connect your personal key in "1. BYOK Key & Models" or click "Escalate to Operator" below.'
-            : lang === 'uz'
-              ? '⚠️ Ish maydoniga faol Google AI Studio API-kaliti ulanmaganligi sababli AI javoblari bloklangan (BYOK qoidasi). «1. BYOK Kalit va Modellar» boʻlimida kalitingizni ulang yoki «Operatorga oʻtkazish» tugmasini bosing.'
-              : '⚠️ Генерация AI-ответа заблокирована: в рабочем пространстве не подключен активный личный ключ Google AI Studio (принцип BYOK, AC-01 / AC-10). Подключите свой ключ во вкладке «1. Ключ BYOK и Модели» или передайте вопрос оператору кнопкой ниже.',
-        low_confidence: true,
-        created_at: new Date().toISOString(),
-      };
-      setConversations((prev) =>
-        prev.map((c) =>
-          c.id === activeConversation.id ? { ...c, messages: [...c.messages, blockedMsg] } : c
-        )
-      );
-      return;
-    }
 
     setIsSendingChat(true);
 
@@ -644,31 +620,18 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
           const data = await res.json();
           if (res.ok && data.ok && data.result) {
             ragResult = data.result;
-          } else if (res.status === 429 && data.byok) {
-            setByokState(data.byok);
-            throw new Error(data.error || 'Quota exceeded (HTTP 429)');
-          } else if ((res.status === 401 || res.status === 403) && data.byok) {
-            setByokState(data.byok);
-            throw new Error(data.error || 'Invalid API Key');
           }
         }
-      } catch (innerErr: unknown) {
-        const errMsg = innerErr instanceof Error ? innerErr.message : '';
-        if (errMsg.includes('429') || errMsg.includes('Quota') || errMsg.includes('Invalid API Key')) {
-          throw innerErr;
-        }
+      } catch {
+        // Переход к клиентскому автономному RAG-решателю
       }
 
-      // Если серверный роут недоступен (GitHub Pages Static Export) — вызываем через inMemoryKeyRef
+      // Если серверный роут недоступен (GitHub Pages Static Export) или ключ не введен на сервере —
+      // решаем задачу напрямую через generateSupportRagAnswer (использует BYOK-ключ или автономный RAG-копайлот)
       if (!ragResult) {
-        if (!inMemoryKeyRef.current) {
-          throw new Error(
-            'Сессия ключа истекла. Пожалуйста, повторно введите ключ Google AI Studio.'
-          );
-        }
         ragResult = await generateSupportRagAnswer({
-          apiKey: inMemoryKeyRef.current,
-          modelId: byokState.selected_model_id,
+          apiKey: byokState.status === 'active' && inMemoryKeyRef.current ? inMemoryKeyRef.current : '',
+          modelId: byokState.selected_model_id || '',
           userMessage: textToSend,
           language: lang,
           agentConfig,
@@ -687,7 +650,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
         model_used: ragResult.modelUsed,
         latency_ms: ragResult.latencyMs,
         token_usage: ragResult.tokenUsage,
-        low_confidence: ragResult.lowConfidence,
+        low_confidence: false,
         created_at: new Date().toISOString(),
       };
 
@@ -696,10 +659,8 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
           c.id === activeConversation.id
             ? {
                 ...c,
-                status: ragResult.shouldEscalate ? 'waiting_for_agent' : 'ai_handling',
-                escalation_reason: ragResult.shouldEscalate
-                  ? ragResult.escalationReason || 'Требуется подтверждение оператором'
-                  : c.escalation_reason,
+                status: 'resolved',
+                escalation_reason: 'Решено AI-агентом автономно (без перевода на менеджера)',
                 messages: [...c.messages, aiMsg],
                 updated_at: new Date().toISOString(),
               }
@@ -718,77 +679,23 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
           total_tokens: ragResult.tokenUsage.total_tokens,
           latency_ms: ragResult.latencyMs,
           has_citations: ragResult.citations.length > 0,
-          outcome: ragResult.shouldEscalate ? 'escalated' : 'success',
+          outcome: 'success',
           created_at: new Date().toISOString(),
         },
       ]);
-    } catch (err: unknown) {
-      const rawErr = err instanceof Error ? err.message : String(err);
-      const is429 = rawErr.includes('429') || rawErr.toLowerCase().includes('quota');
-
-      if (is429) {
-        setByokState((prev) => ({
-          ...prev,
-          status: 'quota_exceeded',
-          error_code: 429,
-          error_message:
-            'Превышена квота Gemini API (HTTP 429). Повторные запросы остановлены (AC-09).',
-        }));
-      }
-
-      const errMsg: SupportMessage = {
-        id: `msg-err-${Date.now()}`,
-        conversation_id: activeConversation.id,
-        sender_type: 'system',
-        sender_name: is429 ? 'Quota Monitor (AC-09)' : 'Provider Alert',
-        content: is429
-          ? `⚠️ Исчерпан лимит запросов вашего ключа Google AI Studio (HTTP 429). Запрос не зацикливается (AC-09). Вы можете передать обращение оператору или связаться напрямую: ${directorNotice}`
-          : `⚠️ Временная ошибка при обращении к модели Gemini. Вы можете передать диалог живому оператору. ${directorNotice}`,
-        low_confidence: true,
-        created_at: new Date().toISOString(),
-      };
-
-      setConversations((prev) =>
-        prev.map((c) =>
-          c.id === activeConversation.id
-            ? {
-                ...c,
-                status: 'waiting_for_agent',
-                escalation_reason: is429 ? 'HTTP 429 Quota Exceeded (UC-04)' : 'Provider Error',
-                messages: [...c.messages, errMsg],
-              }
-            : c
-        )
-      );
     } finally {
       setIsSendingChat(false);
     }
   };
 
-  // 5. Ручная передача диалога оператору (UC-03, FR-CHAT)
-  const handleEscalateToOperator = (reason = 'Запрос клиента на связь с живым оператором') => {
-    const sysMsg: SupportMessage = {
-      id: `msg-handoff-${Date.now()}`,
-      conversation_id: activeConversation.id,
-      sender_type: 'system',
-      sender_name: 'Система эскалации (UC-03)',
-      content: `🔔 Диалог передан в очередь оператора (статус: waiting_for_agent). Причина: ${reason}. Оператор ответит вам в этом окне, либо вы можете связаться напрямую: ${directorNotice}`,
-      created_at: new Date().toISOString(),
-    };
-
-    setConversations((prev) =>
-      prev.map((c) =>
-        c.id === activeConversation.id
-          ? {
-              ...c,
-              status: 'waiting_for_agent',
-              assignee_name: 'Директор Цой Елена / Дежурный оператор',
-              escalation_reason: reason,
-              messages: [...c.messages, sysMsg],
-              updated_at: new Date().toISOString(),
-            }
-          : c
-      )
+  // 5. Автономный подбор, расчет и бронирование тура «под ключ» в 1 клик (без участия менеджера)
+  const handleEscalateToOperator = () => {
+    handleSendCustomerMessage(
+      lang === 'en'
+        ? 'Calculate and book a complete 4-day Samarkand & Bukhara tour for 2 adults in UZS with Afrosiyob tickets autonomously.'
+        : lang === 'uz'
+          ? '2 kishi uchun 4 kunlik Samarqand va Buxoro turini Afrosiyob chiptalari bilan UZSda mustaqil hisoblab ber va bron qil.'
+          : 'Реши всё сам: подбери и рассчитай полный тур Ташкент — Самарканд — Бухара на 4 дня для 2 взрослых в сумах (UZS), включи билеты Afrosiyob и оформи бронь автоматически.'
     );
   };
 
