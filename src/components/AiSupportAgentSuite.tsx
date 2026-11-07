@@ -268,10 +268,10 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
   const txt = UI_TEXT[lang] || UI_TEXT.ru;
   const workspaceId = 'ws-silkway-main';
 
-  // Вкладки консоли: по умолчанию открыт AI-Консьерж ('chat')
+  // Вкладки консоли: по умолчанию открыта вкладка подключения ключа ('byok')
   const [activeConsoleTab, setActiveConsoleTab] = useState<
     'byok' | 'chat' | 'kb' | 'inbox' | 'copilot'
-  >('chat');
+  >('byok');
 
   // Режим вывода из скилла travel-agency-ai (SKILL.md): Client-facing / Manager-facing / Owner-facing
   const [outputStyle, setOutputStyle] = useState<TravelAgencyOutputStyle>('client_facing');
@@ -910,8 +910,20 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
               </p>
             </div>
 
-            {/* Лаконичные и удобные вкладки без лишнего шума */}
+            {/* Лаконичные и удобные вкладки: Ключ Gemini на первом месте */}
             <div className="flex flex-wrap gap-1.5 bg-[#101C2D] p-1.5 rounded-2xl border border-[#C7A46A]/25 shrink-0">
+              <button
+                type="button"
+                onClick={() => setActiveConsoleTab('byok')}
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                  activeConsoleTab === 'byok'
+                    ? 'luxury-gold-btn shadow-sm'
+                    : 'text-white/80 hover:bg-sky-500/20 hover:text-white'
+                }`}
+              >
+                <KeyRound className="w-3.5 h-3.5" />
+                <span>{lang === 'en' ? '1. Gemini API Key' : lang === 'uz' ? '1. Gemini Kaliti' : '1. Ключ Gemini AI'}</span>
+              </button>
               <button
                 type="button"
                 onClick={() => setActiveConsoleTab('chat')}
@@ -922,7 +934,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                 }`}
               >
                 <MessageSquare className="w-3.5 h-3.5" />
-                <span>{lang === 'en' ? 'AI Concierge Chat' : lang === 'uz' ? 'AI-Konsyerj Chat' : 'AI-Консьерж (Чат)'}</span>
+                <span>{lang === 'en' ? '2. AI Concierge Chat' : lang === 'uz' ? '2. AI-Konsyerj Chat' : '2. AI-Консьерж (Чат)'}</span>
               </button>
               <button
                 type="button"
@@ -934,7 +946,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                 }`}
               >
                 <Calculator className="w-3.5 h-3.5" />
-                <span>{lang === 'en' ? 'Tour Quote (UZS)' : lang === 'uz' ? 'Tur Hisobi (UZS)' : 'Калькулятор сметы (UZS)'}</span>
+                <span>{lang === 'en' ? '3. Tour Quote (UZS)' : lang === 'uz' ? '3. Tur Hisobi (UZS)' : '3. Калькулятор сметы (UZS)'}</span>
               </button>
               <button
                 type="button"
@@ -947,22 +959,99 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
               >
                 <BookOpen className="w-3.5 h-3.5" />
                 <span>
-                  {lang === 'en' ? 'Knowledge Base' : lang === 'uz' ? 'Bilimlar bazasi' : 'База знаний'} ({knowledgeSources.length})
+                  {lang === 'en' ? '4. Knowledge Base' : lang === 'uz' ? '4. Bilimlar bazasi' : '4. База знаний'} ({knowledgeSources.length})
                 </span>
               </button>
-              <button
-                type="button"
-                onClick={() => setActiveConsoleTab('byok')}
-                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
-                  activeConsoleTab === 'byok'
-                    ? 'luxury-gold-btn shadow-sm'
-                    : 'text-white/80 hover:bg-sky-500/20 hover:text-white'
-                }`}
-              >
-                <KeyRound className="w-3.5 h-3.5" />
-                <span>{lang === 'en' ? 'Gemini API Key' : lang === 'uz' ? 'Gemini Kaliti' : 'Ключ Gemini'}</span>
-              </button>
             </div>
+          </div>
+
+          {/* ПОСТОЯННО ВИДИМАЯ ПАНЕЛЬ ВВОДА API-КЛЮЧА GOOGLE AI STUDIO (ВИДНА НА ЛЮБОЙ ВКЛАДКЕ!) */}
+          <div
+            id="byok-key-bar"
+            className="mt-6 p-4 sm:p-5 rounded-2xl bg-[#101C2D] border border-[#C7A46A]/45 shadow-lg scroll-mt-28"
+          >
+            {byokState.status === 'active' && !showKeyReplaceForm ? (
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/40 font-semibold">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                    Ключ Google AI Studio подключён: {byokState.masked_key}
+                  </span>
+                  {byokState.selected_model_id && (
+                    <span className="text-white/80">
+                      Активная модель: <strong className="text-[#C7A46A] font-mono">{byokState.selected_model_id}</strong>
+                    </span>
+                  )}
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowKeyReplaceForm(true)}
+                    className="px-3 py-1.5 rounded-xl bg-[#16283F] text-white/85 border border-[#C7A46A]/30 text-xs font-semibold hover:border-[#C7A46A]"
+                  >
+                    {txt.replaceKeyBtn}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleDeleteKey}
+                    className="px-3 py-1.5 rounded-xl bg-rose-500/20 text-rose-200 border border-rose-400/40 text-xs font-semibold"
+                  >
+                    {txt.deleteKeyBtn}
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form
+                onSubmit={handleValidateAndConnectKey}
+                className="flex flex-col md:flex-row items-stretch md:items-center gap-3"
+              >
+                <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-[#C7A46A] shrink-0">
+                  <KeyRound className="w-4 h-4 text-[#C7A46A]" />
+                  <span>Google AI Studio API Key:</span>
+                </div>
+                <input
+                  type="password"
+                  value={apiKeyInput}
+                  onChange={(e) => setApiKeyInput(e.target.value)}
+                  placeholder="Вставьте ваш ключ Google AI Studio (AIzaSy...)..."
+                  autoComplete="off"
+                  className="flex-1 px-4 py-2.5 rounded-xl bg-[#16283F] border border-[#C7A46A]/40 text-sm font-mono text-white placeholder:text-white/50 focus:outline-none focus:border-[#C7A46A]"
+                  required
+                />
+                <button
+                  type="submit"
+                  disabled={isValidatingKey}
+                  className="px-5 py-2.5 rounded-xl luxury-gold-btn font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 shrink-0 disabled:opacity-60"
+                >
+                  {isValidatingKey ? (
+                    <>
+                      <RefreshCw className="w-4 h-4 animate-spin" />
+                      <span>{txt.validatingBtn}</span>
+                    </>
+                  ) : (
+                    <>
+                      <ShieldCheck className="w-4 h-4" />
+                      <span>{txt.validateConnectBtn}</span>
+                    </>
+                  )}
+                </button>
+                <a
+                  href="https://aistudio.google.com/apikey"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3.5 py-2.5 rounded-xl bg-[#16283F] hover:bg-[#16283F]/80 text-[#C7A46A] border border-[#C7A46A]/35 text-xs font-semibold inline-flex items-center justify-center gap-1.5 shrink-0"
+                >
+                  <span>Получить ключ</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </form>
+            )}
+            {byokState.error_message && (
+              <div className="mt-2.5 text-xs text-rose-300 flex items-center gap-1.5">
+                <AlertTriangle className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+                <span>{byokState.error_message}</span>
+              </div>
+            )}
           </div>
         </div>
 

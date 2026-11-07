@@ -29,6 +29,7 @@ import {
   X,
   ChevronRight,
   Menu,
+  KeyRound,
 } from 'lucide-react';
 import AiSupportAgentSuite from '@/components/AiSupportAgentSuite';
 import {
@@ -702,6 +703,14 @@ export default function SilkWayTravelPage() {
             </div>
 
             <a
+              href="#byok-key-bar"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#16283F] hover:bg-[#16283F]/80 text-[#C7A46A] border border-[#C7A46A]/45 text-xs sm:text-sm font-semibold tracking-wide transition"
+            >
+              <KeyRound className="w-4 h-4 text-[#C7A46A]" />
+              <span>{lang === 'en' ? 'API Key' : lang === 'uz' ? 'API Kalit' : 'API-ключ'}</span>
+            </a>
+
+            <a
               href="#planner-section"
               className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl luxury-gold-btn text-xs sm:text-sm font-semibold tracking-wide"
             >
@@ -724,6 +733,14 @@ export default function SilkWayTravelPage() {
         {mobileMenuOpen && (
           <div className="lg:hidden bg-[#16283F] border-t border-[#C7A46A]/25 px-6 py-5 space-y-3 animate-fade-in-up">
             <div className="flex flex-col space-y-2.5 text-sm font-medium text-white">
+              <a
+                href="#byok-key-bar"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-1.5 text-[#C7A46A] font-semibold flex items-center gap-2"
+              >
+                <KeyRound className="w-4 h-4" />
+                <span>Ввести Google AI Studio API-ключ</span>
+              </a>
               <a
                 href="#destinations-section"
                 onClick={() => setMobileMenuOpen(false)}
@@ -767,7 +784,7 @@ export default function SilkWayTravelPage() {
       </header>
 
       {/* 3. HERO SECTION — ГЛАВНЫЙ ЭКРАН (РЕГИСТАН НА ЗАКАТЕ, БЕЗ ПЕРЕГРУЖЕННЫХ КАРТОЧЕК ПОВЕРХ ФОТО) */}
-      <section className="relative min-h-[580px] sm:min-h-[680px] lg:min-h-[740px] flex items-center overflow-hidden no-print bg-[#101C2D]">
+      <section className="relative min-h-[540px] sm:min-h-[620px] flex items-center overflow-hidden no-print bg-[#101C2D]">
         <img
           src={resolveAssetUrl('/landmarks/samarkand.jpg')}
           onError={(e) => handleLandmarkImgError(e, '/landmarks/samarkand.jpg')}
@@ -778,7 +795,7 @@ export default function SilkWayTravelPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-[#101C2D]/90 via-[#101C2D]/60 to-[#101C2D]/25" />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#101C2D] via-[#101C2D]/65 to-transparent" />
 
-        <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-8 py-16 sm:py-24">
+        <div className="relative z-10 max-w-7xl w-full mx-auto px-4 sm:px-8 py-14 sm:py-20">
           <div className="max-w-3xl space-y-6 animate-fade-in-up">
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#101C2D]/75 border border-[#C7A46A]/45 backdrop-blur-md">
               <span className="w-1.5 h-1.5 rounded-full bg-[#C7A46A]" />
@@ -805,8 +822,16 @@ export default function SilkWayTravelPage() {
               </a>
 
               <a
+                href="#byok-key-bar"
+                className="px-6 py-4 rounded-xl bg-[#16283F]/90 hover:bg-[#16283F] text-[#C7A46A] border border-[#C7A46A]/50 font-semibold text-sm sm:text-base inline-flex items-center gap-2 backdrop-blur-md transition"
+              >
+                <KeyRound className="w-4 h-4 text-[#C7A46A]" />
+                <span>{lang === 'en' ? 'Connect Gemini API Key' : lang === 'uz' ? 'Gemini API kalitini ulash' : 'Подключить ключ Gemini AI'}</span>
+              </a>
+
+              <a
                 href="#destinations-section"
-                className="px-7 py-4 rounded-xl bg-[#16283F]/80 hover:bg-[#16283F] text-white border border-[#C7A46A]/35 font-medium text-sm sm:text-base inline-flex items-center gap-2 backdrop-blur-md transition"
+                className="px-6 py-4 rounded-xl bg-[#101C2D]/75 hover:bg-[#16283F] text-white border border-white/20 font-medium text-sm sm:text-base inline-flex items-center gap-2 backdrop-blur-md transition"
               >
                 <span>{lx.heroSecondaryBtn}</span>
                 <ArrowRight className="w-4 h-4 text-[#C7A46A]" />
@@ -816,7 +841,12 @@ export default function SilkWayTravelPage() {
         </div>
       </section>
 
-      <div className="gold-divider max-w-7xl mx-auto w-full" />
+      {/* СРАЗУ ПОД HERO-ЭКРАНОМ: ПОЛЕ ВВОДА КЛЮЧА GOOGLE AI STUDIO И ПЕРСОНАЛЬНЫЙ AI-КОНСЬЕРЖ */}
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-8 pt-10 pb-4">
+        <AiSupportAgentSuite lang={lang} directorNotice={t.directorFixedNotice} />
+      </div>
+
+      <div className="gold-divider max-w-7xl mx-auto w-full mt-8" />
 
       {/* 6. НАПРАВЛЕНИЯ — ПРЕМИАЛЬНЫЕ ЖУРНАЛЬНЫЕ КАРТОЧКИ 4 СТОЛИЦ (САМАРКАНД, БУХАРА, ХИВА, ТАШКЕНТ) */}
       <section
@@ -1883,11 +1913,6 @@ export default function SilkWayTravelPage() {
             </div>
           </div>
         </section>
-
-        <div className="gold-divider" />
-
-        {/* «ВАШ ПЕРСОНАЛЬНЫЙ AI-КОНСЬЕРЖ» (МОДУЛЬ AI SUPPORT AGENT & TRAVEL AGENCY COPILOT) */}
-        <AiSupportAgentSuite lang={lang} directorNotice={t.directorFixedNotice} />
       </main>
 
       {/* Модальное окно полноэкранного просмотра достопримечательности */}
