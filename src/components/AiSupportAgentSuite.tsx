@@ -927,8 +927,8 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
         );
       case 'validating':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-400/20 text-amber-300 border border-amber-400/40">
-            <RefreshCw className="w-3.5 h-3.5 animate-spin text-amber-400" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-cyan-400/20 text-cyan-300 border border-cyan-400/40">
+            <RefreshCw className="w-3.5 h-3.5 animate-spin text-cyan-400" />
             VALIDATING...
           </span>
         );
@@ -941,22 +941,22 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
         );
       case 'quota_exceeded':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-orange-500/20 text-orange-300 border border-orange-400/40">
-            <AlertTriangle className="w-3.5 h-3.5 text-orange-400" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-400/40">
+            <AlertTriangle className="w-3.5 h-3.5 text-sky-400" />
             QUOTA EXCEEDED (429)
           </span>
         );
       case 'temporarily_unavailable':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-400/40">
-            <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-400/40">
+            <AlertTriangle className="w-3.5 h-3.5 text-cyan-400" />
             PROVIDER OUTAGE (5xx)
           </span>
         );
       default:
         return (
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-sky-500/20 text-sky-200 border border-sky-400/35">
-            <Lock className="w-3.5 h-3.5 text-amber-400" />
+            <Lock className="w-3.5 h-3.5 text-cyan-400" />
             NOT CONNECTED (BYOK)
           </span>
         );
@@ -975,8 +975,8 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div className="space-y-2 max-w-3xl">
               <div className="flex flex-wrap items-center gap-2.5">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-400/20 text-amber-300 border border-amber-400/45">
-                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-cyan-400/20 text-cyan-300 border border-cyan-400/45">
+                  <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
                   {txt.sectionBadge}
                 </span>
                 {renderStatusBadge(byokState.status)}
@@ -1077,7 +1077,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
-                        <KeyRound className="w-5 h-5 text-amber-400" />
+                        <KeyRound className="w-5 h-5 text-cyan-400" />
                         {txt.byokHeading}
                       </h3>
                       <p className="text-xs text-sky-200/80 mt-1 leading-relaxed">{txt.byokSub}</p>
@@ -1118,7 +1118,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
 
                       <div className="p-3 rounded-xl bg-[#051029] border border-sky-400/25 flex items-center justify-between">
                         <span className="text-xs text-sky-300">Маскированный ключ (AC-02):</span>
-                        <code className="text-sm font-mono font-bold text-amber-300">
+                        <code className="text-sm font-mono font-bold text-cyan-300">
                           {byokState.masked_key}
                         </code>
                       </div>
@@ -1162,7 +1162,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           onChange={(e) => setApiKeyInput(e.target.value)}
                           placeholder={txt.apiKeyPlaceholder}
                           autoComplete="off"
-                          className="w-full px-4 py-2.5 rounded-xl bg-[#051029] border border-sky-400/35 text-sm font-mono text-white placeholder:text-sky-300/40 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                          className="w-full px-4 py-2.5 rounded-xl bg-[#051029] border border-sky-400/35 text-sm font-mono text-white placeholder:text-sky-300/40 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                           required
                         />
                       </div>
@@ -1207,9 +1207,9 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   )}
 
                   {/* Предупреждение о тарификации и безопасности */}
-                  <div className="p-3.5 rounded-xl bg-[#06122e] border border-amber-400/30 space-y-1.5 text-[11px] text-sky-200/90">
-                    <div className="font-bold text-amber-300 flex items-center gap-1.5">
-                      <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
+                  <div className="p-3.5 rounded-xl bg-[#06122e] border border-cyan-400/30 space-y-1.5 text-[11px] text-sky-200/90">
+                    <div className="font-bold text-cyan-300 flex items-center gap-1.5">
+                      <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
                       {txt.billingWarning}
                     </div>
                     <p className="text-sky-200/75 leading-relaxed">{txt.securityNote}</p>
@@ -1286,7 +1286,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                         onChange={(e) =>
                           setAgentConfig((p) => ({ ...p, strict_rag_only: e.target.checked }))
                         }
-                        className="accent-amber-400 rounded"
+                        className="accent-cyan-400 rounded"
                       />
                       <span>Strict RAG Mode: отвечать строго по базе знаний (AC-07, AC-08)</span>
                     </label>
@@ -1310,7 +1310,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   <div className="space-y-4">
                     <div className="flex items-center justify-between gap-2">
                       <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
-                        <Cpu className="w-5 h-5 text-amber-400" />
+                        <Cpu className="w-5 h-5 text-cyan-400" />
                         {txt.modelsCatalogTitle}
                       </h3>
                       <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/35">
@@ -1319,8 +1319,8 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                     </div>
 
                     {/* Статус проверки целевых продуктовых версий Gemini 3.5 / 3.6 / 3.8 (Раздел 5 PRD, AC-05) */}
-                    <div className="p-4 rounded-2xl bg-[#06122e] border border-amber-400/35 space-y-2.5">
-                      <div className="text-xs font-bold text-amber-300 uppercase tracking-wider">
+                    <div className="p-4 rounded-2xl bg-[#06122e] border border-cyan-400/35 space-y-2.5">
+                      <div className="text-xs font-bold text-cyan-300 uppercase tracking-wider">
                         {txt.targetModelsLabel}
                       </div>
                       <div className="grid grid-cols-3 gap-2 text-xs">
@@ -1354,7 +1354,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                     {/* Список моделей из официального ответа Google AI Studio */}
                     {byokState.available_models.length === 0 ? (
                       <div className="p-8 rounded-2xl bg-[#06122e] border border-dashed border-sky-400/30 text-center space-y-2">
-                        <Lock className="w-8 h-8 text-amber-400 mx-auto" />
+                        <Lock className="w-8 h-8 text-cyan-400 mx-auto" />
                         <div className="text-sm font-bold text-white">
                           Каталог моделей загружается после проверки ключа
                         </div>
@@ -1372,7 +1372,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                               onClick={() => handleSelectModel(m.model_id)}
                               className={`p-3.5 rounded-xl border cursor-pointer transition-all flex items-start justify-between gap-3 ${
                                 isSelected
-                                  ? 'bg-amber-400/15 border-amber-400 ring-1 ring-amber-400/40'
+                                  ? 'bg-cyan-400/15 border-cyan-400 ring-1 ring-cyan-400/40'
                                   : 'bg-[#06122e] border-sky-400/20 hover:border-sky-400/50'
                               }`}
                             >
@@ -1381,7 +1381,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                                   <span className="text-sm font-bold text-white">
                                     {m.display_name}
                                   </span>
-                                  <code className="text-xs font-mono px-2 py-0.5 rounded bg-[#0c1f4a] text-amber-300 border border-amber-400/30">
+                                  <code className="text-xs font-mono px-2 py-0.5 rounded bg-[#0c1f4a] text-cyan-300 border border-cyan-400/30">
                                     {m.model_id}
                                   </code>
                                   {m.is_target_35_36_38 && (
@@ -1426,7 +1426,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
 
                   <div className="pt-3 border-t border-sky-400/20 flex items-center justify-between text-xs text-sky-200/80">
                     <span>Активная модель для новых сообщений (AC-12):</span>
-                    <code className="font-mono font-bold text-amber-300">
+                    <code className="font-mono font-bold text-cyan-300">
                       {byokState.selected_model_id || 'не выбрана'}
                     </code>
                   </div>
@@ -1449,9 +1449,9 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   </div>
 
                   {byokState.status !== 'active' ? (
-                    <div className="p-3.5 rounded-xl bg-amber-400/15 border border-amber-400/40 space-y-2.5">
-                      <div className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
-                        <Lock className="w-4 h-4 text-amber-400 shrink-0" />
+                    <div className="p-3.5 rounded-xl bg-cyan-400/15 border border-cyan-400/40 space-y-2.5">
+                      <div className="text-xs font-bold text-cyan-300 flex items-center gap-1.5">
+                        <Lock className="w-4 h-4 text-cyan-400 shrink-0" />
                         {txt.noKeyBlockedTitle}
                       </div>
                       <p className="text-xs text-sky-100/90 leading-relaxed">
@@ -1472,7 +1472,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                         ✓ BYOK активен ({byokState.masked_key})
                       </div>
                       <div className="text-sky-200">
-                        Модель: <code className="text-amber-300 font-mono">{byokState.selected_model_id}</code>
+                        Модель: <code className="text-cyan-300 font-mono">{byokState.selected_model_id}</code>
                       </div>
                     </div>
                   )}
@@ -1487,7 +1487,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                         type="button"
                         onClick={() => handleSendCustomerMessage(q)}
                         disabled={isSendingChat}
-                        className="w-full text-left p-2.5 rounded-xl bg-[#06122e] hover:bg-[#0c1f4a] border border-sky-400/20 hover:border-amber-400/50 text-xs text-sky-100 transition"
+                        className="w-full text-left p-2.5 rounded-xl bg-[#06122e] hover:bg-[#0c1f4a] border border-sky-400/20 hover:border-cyan-400/50 text-xs text-sky-100 transition"
                       >
                         «{q}»
                       </button>
@@ -1501,7 +1501,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                 {/* Верхняя панель чата */}
                 <div className="px-5 py-3.5 bg-[#06122e] border-b border-sky-400/20 flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-amber-400 to-cyan-400 flex items-center justify-center text-[#051029] font-extrabold">
+                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-cyan-400 flex items-center justify-center text-[#051029] font-extrabold">
                       <Bot className="w-5 h-5" />
                     </div>
                     <div>
@@ -1518,7 +1518,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   <button
                     type="button"
                     onClick={() => handleEscalateToOperator()}
-                    className="px-3 py-1.5 rounded-xl bg-amber-400/20 hover:bg-amber-400/30 text-amber-300 border border-amber-400/45 text-xs font-bold flex items-center gap-1.5 transition"
+                    className="px-3 py-1.5 rounded-xl bg-cyan-400/20 hover:bg-cyan-400/30 text-cyan-300 border border-cyan-400/45 text-xs font-bold flex items-center gap-1.5 transition"
                   >
                     <UserCheck className="w-3.5 h-3.5" />
                     <span>{txt.escalateToHumanBtn}</span>
@@ -1542,7 +1542,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                         <div
                           className={`max-w-xl rounded-2xl p-4 space-y-2.5 ${
                             isCustomer
-                              ? 'bg-gradient-to-r from-amber-400 to-amber-500 text-[#051029] font-medium'
+                              ? 'bg-gradient-to-r from-cyan-400 to-cyan-500 text-[#051029] font-medium'
                               : isSystem
                                 ? 'bg-rose-950/60 border border-rose-400/40 text-rose-100'
                                 : isHumanOp
@@ -1557,7 +1557,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                               ) : isHumanOp ? (
                                 <Headphones className="w-3 h-3 text-emerald-300" />
                               ) : (
-                                <Bot className="w-3 h-3 text-amber-300" />
+                                <Bot className="w-3 h-3 text-cyan-300" />
                               )}
                               {msg.sender_name}
                             </span>
@@ -1571,7 +1571,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           {/* Ссылки на источники RAG (FR-CHAT, AC-07) */}
                           {msg.citations && msg.citations.length > 0 && (
                             <div className="pt-2 border-t border-sky-400/25 space-y-1.5">
-                              <div className="text-[11px] font-bold text-amber-300 flex items-center gap-1">
+                              <div className="text-[11px] font-bold text-cyan-300 flex items-center gap-1">
                                 <FileText className="w-3 h-3" />
                                 {txt.sourcesLabel}
                               </div>
@@ -1642,7 +1642,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                     value={chatInput}
                     onChange={(e) => setChatInput(e.target.value)}
                     placeholder={txt.chatInputPlaceholder}
-                    className="flex-1 px-4 py-2.5 rounded-xl bg-[#081738] border border-sky-400/30 text-xs sm:text-sm text-white placeholder:text-sky-300/45 focus:outline-none focus:ring-2 focus:ring-amber-400"
+                    className="flex-1 px-4 py-2.5 rounded-xl bg-[#081738] border border-sky-400/30 text-xs sm:text-sm text-white placeholder:text-sky-300/45 focus:outline-none focus:ring-2 focus:ring-cyan-400"
                   />
                   <button
                     type="submit"
@@ -1667,7 +1667,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
               {/* Форма добавления нового источника */}
               <div className="lg:col-span-5 bg-[#081738] rounded-2xl p-6 border border-sky-400/25 space-y-4">
                 <h3 className="text-base font-bold text-white flex items-center gap-2">
-                  <Plus className="w-5 h-5 text-amber-400" />
+                  <Plus className="w-5 h-5 text-cyan-400" />
                   {txt.kbAddTitle}
                 </h3>
                 <form onSubmit={handleAddKnowledgeSource} className="space-y-3.5">
@@ -1727,7 +1727,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="px-2 py-0.5 rounded bg-amber-400/20 text-amber-300 font-mono text-xs font-bold border border-amber-400/35">
+                        <span className="px-2 py-0.5 rounded bg-cyan-400/20 text-cyan-300 font-mono text-xs font-bold border border-cyan-400/35">
                           {src.id}
                         </span>
                         <span className="text-xs font-mono uppercase px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300">
@@ -1766,7 +1766,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   <span className="text-xs text-sky-300/80 block">
                     Время первого AI-ответа (p95)
                   </span>
-                  <span className="text-xl font-extrabold text-amber-300 font-mono mt-1 block">
+                  <span className="text-xl font-extrabold text-cyan-300 font-mono mt-1 block">
                     {(p95Latency / 1000).toFixed(2)} сек
                   </span>
                   <span className="text-[11px] text-emerald-300">Цель MVP: ≤ 10 сек</span>
@@ -1794,7 +1794,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   <span className="text-base font-extrabold text-white font-mono mt-1 block uppercase">
                     {activeConversation.status}
                   </span>
-                  <span className="text-[11px] text-amber-300">
+                  <span className="text-[11px] text-cyan-300">
                     {activeConversation.escalation_reason || 'Очередь в норме'}
                   </span>
                 </div>
@@ -1805,12 +1805,12 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
                     <h3 className="text-base font-bold text-white flex items-center gap-2">
-                      <Headphones className="w-5 h-5 text-amber-400" />
+                      <Headphones className="w-5 h-5 text-cyan-400" />
                       {txt.inboxHeading}
                     </h3>
                     <p className="text-xs text-sky-200/80 mt-0.5">
                       Диалог #{activeConversation.id} · Ответственный:{' '}
-                      <strong className="text-amber-300">
+                      <strong className="text-cyan-300">
                         {activeConversation.assignee_name || 'AI-Агент / Дежурный оператор'}
                       </strong>
                     </p>
@@ -1830,7 +1830,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                       <button
                         type="button"
                         onClick={() => handleToggleResolveConversation('open')}
-                        className="px-3.5 py-2 rounded-xl bg-amber-400/20 hover:bg-amber-400/30 text-amber-300 border border-amber-400/40 text-xs font-bold flex items-center gap-1.5"
+                        className="px-3.5 py-2 rounded-xl bg-cyan-400/20 hover:bg-cyan-400/30 text-cyan-300 border border-cyan-400/40 text-xs font-bold flex items-center gap-1.5"
                       >
                         <RefreshCw className="w-3.5 h-3.5" />
                         {txt.reopenBtn}
@@ -1856,9 +1856,9 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   </button>
                 </form>
 
-                <div className="p-3.5 rounded-xl bg-[#06122e] border border-amber-400/35 flex items-center justify-between gap-2 text-xs text-amber-300 font-semibold">
+                <div className="p-3.5 rounded-xl bg-[#06122e] border border-cyan-400/35 flex items-center justify-between gap-2 text-xs text-cyan-300 font-semibold">
                   <span className="flex items-center gap-2">
-                    <PhoneCall className="w-4 h-4 text-amber-400" />
+                    <PhoneCall className="w-4 h-4 text-cyan-400" />
                     {directorNotice}
                   </span>
                   <span className="font-mono text-cyan-300">RBAC Verified</span>
@@ -1873,8 +1873,8 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
               {/* Верхняя полоса выбора стиля вывода из SKILL.md: Client-facing / Manager-facing / Owner-facing */}
               <div className="bg-[#081738] rounded-2xl p-5 border border-sky-400/25 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                 <div className="space-y-1">
-                  <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-amber-300">
-                    <Sparkles className="w-4 h-4 text-amber-400" />
+                  <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-cyan-300">
+                    <Sparkles className="w-4 h-4 text-cyan-400" />
                     <span>SKILL: travel-agency-ai · Operational Copilot (UZS Integer)</span>
                   </div>
                   <h3 className="text-base sm:text-lg font-bold text-white">
@@ -1929,7 +1929,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                 <div className="lg:col-span-5 bg-[#081738] rounded-2xl p-6 border border-sky-400/25 space-y-4">
                   <div className="flex items-center justify-between border-b border-sky-400/20 pb-3">
                     <h4 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-                      <Calculator className="w-5 h-5 text-amber-400" />
+                      <Calculator className="w-5 h-5 text-cyan-400" />
                       Калькулятор квоты и маржи (UZS)
                     </h4>
                     <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-400/35">
@@ -1963,14 +1963,14 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                         />
                       </div>
                       <div>
-                        <label className="block text-amber-300 font-semibold mb-1">
+                        <label className="block text-cyan-300 font-semibold mb-1">
                           Гражданство туристов (уточнять!)
                         </label>
                         <input
                           type="text"
                           value={quoteCitizenship}
                           onChange={(e) => setQuoteCitizenship(e.target.value)}
-                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-amber-400/40 text-amber-200"
+                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-cyan-400/40 text-cyan-200"
                         />
                       </div>
                     </div>
@@ -2012,7 +2012,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           max={100}
                           value={markupPercent}
                           onChange={(e) => setMarkupPercent(Math.max(0, Number(e.target.value)))}
-                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 font-mono font-bold text-amber-300"
+                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 font-mono font-bold text-cyan-300"
                         />
                       </div>
                     </div>
@@ -2051,14 +2051,14 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   {/* Операционный чек-лист (references/operations.md & guardrails.md) */}
                   <div className="pt-3 border-t border-sky-400/20 space-y-2.5">
                     <div className="text-xs font-bold text-cyan-300 flex items-center gap-1.5 uppercase tracking-wider">
-                      <ClipboardCheck className="w-4 h-4 text-amber-400" />
+                      <ClipboardCheck className="w-4 h-4 text-cyan-400" />
                       Чек-лист бронирования и Guardrails
                     </div>
                     <div className="space-y-2">
                       {opsChecklist.map((item) => (
                         <label
                           key={item.id}
-                          className="flex items-start gap-2.5 p-2 rounded-xl bg-[#06122e] border border-sky-400/20 text-xs text-sky-100 cursor-pointer hover:border-amber-400/40"
+                          className="flex items-start gap-2.5 p-2 rounded-xl bg-[#06122e] border border-sky-400/20 text-xs text-sky-100 cursor-pointer hover:border-cyan-400/40"
                         >
                           <input
                             type="checkbox"
@@ -2068,9 +2068,9 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                                 prev.map((c) => (c.id === item.id ? { ...c, done: !c.done } : c))
                               )
                             }
-                            className="mt-0.5 accent-amber-400 rounded"
+                            className="mt-0.5 accent-cyan-400 rounded"
                           />
-                          <span className={item.done ? 'text-sky-100' : 'text-amber-300 font-semibold'}>
+                          <span className={item.done ? 'text-sky-100' : 'text-cyan-300 font-semibold'}>
                             {item.label}
                           </span>
                         </label>
@@ -2084,7 +2084,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   <div className="space-y-4">
                     <div className="flex flex-wrap items-center justify-between gap-2 border-b border-sky-400/20 pb-3">
                       <div>
-                        <span className="text-xs font-mono uppercase text-amber-300 block">
+                        <span className="text-xs font-mono uppercase text-cyan-300 block">
                           АКТИВНЫЙ РЕЖИМ СКИЛЛА TRAVEL-AGENCY-AI:
                         </span>
                         <h4 className="text-lg font-extrabold text-white">
@@ -2095,7 +2095,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                               : 'Owner-facing: Финансовая сводка Директора, маржинальность и сверка'}
                         </h4>
                       </div>
-                      <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-400/20 text-amber-300 border border-amber-400/40">
+                      <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-400/20 text-cyan-300 border border-cyan-400/40">
                         ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ
                       </span>
                     </div>
@@ -2116,7 +2116,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                             <span className="text-[11px] text-sky-300 block">
                               Итоговая стоимость за группу:
                             </span>
-                            <span className="text-xl font-mono font-extrabold text-amber-300">
+                            <span className="text-xl font-mono font-extrabold text-cyan-300">
                               {quoteBreakdown.final_client_price_uzs.toLocaleString('ru-RU')} UZS
                             </span>
                             {quoteBreakdown.discount_uzs > 0 && (
@@ -2137,7 +2137,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           </div>
                           <div className="p-3 rounded-xl bg-[#081738] border border-sky-400/20">
                             <span className="text-sky-300 block">Гражданство (для визы и E-Mehmon):</span>
-                            <strong className="text-amber-300">{quoteCitizenship}</strong>
+                            <strong className="text-cyan-300">{quoteCitizenship}</strong>
                           </div>
                         </div>
 
@@ -2148,7 +2148,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           <p className="text-sky-100/90 leading-relaxed">
                             Проживание в проверенных отелях 4* с завтраками (BB), ж/д переезды на скоростном поезде Afrosiyob (Ташкент — Самарканд — Бухара), индивидуальные трансферы, лицензированные гиды ЮНЕСКО и регистрация E-Mehmon.
                           </p>
-                          <div className="font-bold text-amber-300 pt-1">
+                          <div className="font-bold text-cyan-300 pt-1">
                             ⚠️ Статус наличия и тарифа: ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ
                           </div>
                           <p className="text-sky-200/80">
@@ -2156,7 +2156,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           </p>
                         </div>
 
-                        <div className="p-3 rounded-xl bg-amber-400/15 border border-amber-400/40 text-xs text-amber-200 font-semibold flex items-center justify-between">
+                        <div className="p-3 rounded-xl bg-cyan-400/15 border border-cyan-400/40 text-xs text-cyan-200 font-semibold flex items-center justify-between">
                           <span>👉 Следующий шаг: Согласовать даты выезда и подтвердить бронь</span>
                           <span>{directorNotice}</span>
                         </div>
@@ -2178,7 +2178,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                             <tbody className="divide-y divide-sky-400/15 text-sky-100">
                               <tr>
                                 <td className="p-3 font-bold">Ж/д билеты Afrosiyob</td>
-                                <td className="p-3 font-mono text-amber-300">
+                                <td className="p-3 font-mono text-cyan-300">
                                   KB-01 · ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ
                                 </td>
                                 <td className="p-3">
@@ -2187,7 +2187,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                               </tr>
                               <tr>
                                 <td className="p-3 font-bold">Виза и E-Mehmon ({quoteCitizenship})</td>
-                                <td className="p-3 font-mono text-amber-300">
+                                <td className="p-3 font-mono text-cyan-300">
                                   KB-04 · ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ
                                 </td>
                                 <td className="p-3">
@@ -2207,8 +2207,8 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           </table>
                         </div>
 
-                        <div className="p-4 rounded-xl bg-[#06122e] border border-amber-400/35 space-y-1.5">
-                          <div className="font-bold text-amber-300">
+                        <div className="p-4 rounded-xl bg-[#06122e] border border-cyan-400/35 space-y-1.5">
+                          <div className="font-bold text-cyan-300">
                             Next Action для менеджера:
                           </div>
                           <p className="text-sky-100">
@@ -2244,11 +2244,11 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                               {quoteBreakdown.gross_profit_uzs.toLocaleString('ru-RU')} UZS
                             </span>
                           </div>
-                          <div className="p-3.5 rounded-xl bg-[#06122e] border border-amber-400/45">
-                            <span className="text-amber-300 block">
+                          <div className="p-3.5 rounded-xl bg-[#06122e] border border-cyan-400/45">
+                            <span className="text-cyan-300 block">
                               Чистая прибыль (Net Profit)
                             </span>
-                            <span className="text-base font-mono font-extrabold text-amber-300 mt-1 block">
+                            <span className="text-base font-mono font-extrabold text-cyan-300 mt-1 block">
                               {quoteBreakdown.net_profit_uzs.toLocaleString('ru-RU')} UZS
                             </span>
                           </div>
@@ -2257,7 +2257,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                         <div className="p-4 rounded-2xl bg-[#06122e] border border-sky-400/25 text-xs space-y-2">
                           <div className="font-bold text-white flex items-center justify-between">
                             <span>Сверка комиссии эквайринга и скидок (references/finance.md):</span>
-                            <span className="font-mono text-amber-300">UZS BIGINT VERIFIED</span>
+                            <span className="font-mono text-cyan-300">UZS BIGINT VERIFIED</span>
                           </div>
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-sky-200 font-mono">
                             <div>
@@ -2271,7 +2271,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                               {quoteBreakdown.payment_fee_uzs.toLocaleString('ru-RU')} UZS
                             </div>
                           </div>
-                          <div className="pt-2 border-t border-sky-400/20 text-amber-300">
+                          <div className="pt-2 border-t border-sky-400/20 text-cyan-300">
                             Флаги сверки для Директора: открытых пунктов чек-листа —{' '}
                             {opsChecklist.filter((c) => !c.done).length}. {directorNotice}
                           </div>
@@ -2284,7 +2284,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   <div className="pt-3 border-t border-sky-400/20 flex flex-wrap items-center justify-between gap-3">
                     <div className="text-xs text-sky-200">
                       Выбранный стиль вывода также применяется в{' '}
-                      <strong className="text-amber-300">AI-Чате (RAG)</strong>.
+                      <strong className="text-cyan-300">AI-Чате (RAG)</strong>.
                     </div>
                     <div className="flex flex-wrap gap-2.5">
                       <button
@@ -2330,13 +2330,13 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
           <button
             type="button"
             onClick={() => setIsWidgetOpen(true)}
-            className="luxury-gold-btn px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-2.5 font-extrabold text-xs sm:text-sm border border-amber-200 hover:scale-105 transition-transform"
+            className="luxury-gold-btn px-4 py-3 rounded-2xl shadow-2xl flex items-center gap-2.5 font-extrabold text-xs sm:text-sm border border-cyan-200 hover:scale-105 transition-transform"
           >
             <MessageSquare className="w-5 h-5" />
             <span>{txt.widgetButtonLabel}</span>
             <span
               className={`w-2.5 h-2.5 rounded-full ${
-                byokState.status === 'active' ? 'bg-emerald-600' : 'bg-amber-700'
+                byokState.status === 'active' ? 'bg-emerald-600' : 'bg-cyan-700'
               }`}
             />
           </button>
@@ -2364,7 +2364,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                     setActiveConsoleTab('byok');
                     setIsWidgetOpen(false);
                   }}
-                  className="p-1.5 rounded-lg hover:bg-white/10 text-amber-300"
+                  className="p-1.5 rounded-lg hover:bg-white/10 text-cyan-300"
                   title="Настройки BYOK ключа и моделей"
                 >
                   <KeyRound className="w-4 h-4" />
@@ -2383,8 +2383,8 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
             {/* Сообщения в виджете */}
             <div className="flex-1 p-3.5 overflow-y-auto space-y-3 bg-[#081738]">
               {byokState.status !== 'active' && (
-                <div className="p-3 rounded-xl bg-amber-400/15 border border-amber-400/40 text-xs space-y-2">
-                  <div className="font-bold text-amber-300">{txt.noKeyBlockedTitle}</div>
+                <div className="p-3 rounded-xl bg-cyan-400/15 border border-cyan-400/40 text-xs space-y-2">
+                  <div className="font-bold text-cyan-300">{txt.noKeyBlockedTitle}</div>
                   <p className="text-sky-100/90 text-[11px]">{txt.noKeyBlockedDesc}</p>
                   <a
                     href="#ai-support-agent-section"
@@ -2410,7 +2410,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   <div
                     className={`max-w-[88%] rounded-2xl p-3 text-xs space-y-1.5 ${
                       m.sender_type === 'customer'
-                        ? 'bg-amber-400 text-[#051029] font-semibold'
+                        ? 'bg-cyan-400 text-[#051029] font-semibold'
                         : m.sender_type === 'system'
                           ? 'bg-rose-950/70 border border-rose-400/40 text-rose-100'
                           : 'bg-[#0c1f4a] border border-sky-400/30 text-sky-50'
@@ -2451,11 +2451,11 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   <Send className="w-4 h-4" />
                 </button>
               </form>
-              <div className="flex items-center justify-between text-[10px] text-amber-300/90">
+              <div className="flex items-center justify-between text-[10px] text-cyan-300/90">
                 <button
                   type="button"
                   onClick={() => handleEscalateToOperator()}
-                  className="underline hover:text-amber-200"
+                  className="underline hover:text-cyan-200"
                 >
                   {txt.escalateToHumanBtn}
                 </button>
