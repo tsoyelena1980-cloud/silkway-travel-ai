@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 15, 20, 34;
-  --background-rgb: 250, 247, 242;
+  --foreground-rgb: 45, 10, 24;
+  --background-rgb: 255, 248, 246;
 }
 
 html {
@@ -13,33 +13,39 @@ html {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background-color: #faf7f2;
+  background-color: #fff8f6;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 .silk-pattern {
-  background-color: #faf7f2;
+  background-color: #fff8f6;
   background-image:
-    radial-gradient(rgba(212, 175, 55, 0.16) 1px, transparent 1px),
-    radial-gradient(rgba(17, 81, 94, 0.08) 1px, transparent 1px);
+    radial-gradient(rgba(225, 29, 72, 0.1) 1px, transparent 1px),
+    radial-gradient(rgba(234, 88, 12, 0.08) 1px, transparent 1px);
   background-size: 32px 32px;
   background-position: 0 0, 16px 16px;
 }
 
+.gold-shimmer-text {
+  background: linear-gradient(90deg, #fda4af 0%, #fb923c 50%, #f43f5e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .luxury-gold-btn {
-  background: linear-gradient(135deg, #d4af37 0%, #b88c21 50%, #997015 100%);
-  color: #09111e;
-  box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  background: linear-gradient(135deg, #e11d48 0%, #ea580c 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 25px -5px rgba(225, 29, 72, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 .luxury-gold-btn:hover {
-  background: linear-gradient(135deg, #e0bd47 0%, #c69a2a 50%, #a87c18 100%);
-  box-shadow: 0 14px 30px -5px rgba(212, 175, 55, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  background: linear-gradient(135deg, #be123c 0%, #c2410c 100%);
+  box-shadow: 0 14px 30px -5px rgba(225, 29, 72, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
 .luxury-dark-card {
-  background: linear-gradient(145deg, #0b132b 0%, #0d2233 55%, #07111e 100%);
-  border: 1px solid rgba(212, 175, 55, 0.28);
+  background: linear-gradient(145deg, #3b0a1e 0%, #4c0519 55%, #240511 100%);
+  border: 1px solid rgba(251, 113, 133, 0.32);
 }
 
 @keyframes fadeInUp {
@@ -75,10 +81,10 @@ body {
 }
 
 .card-smooth:hover {
-  border-color: rgba(212, 175, 55, 0.75);
-  box-shadow: 0 20px 38px -12px rgba(11, 19, 43, 0.18),
-    0 0 0 1px rgba(212, 175, 55, 0.35),
-    0 8px 20px -6px rgba(212, 175, 55, 0.22);
+  border-color: rgba(225, 29, 72, 0.65);
+  box-shadow: 0 20px 38px -12px rgba(76, 5, 25, 0.16),
+    0 0 0 1px rgba(234, 88, 12, 0.35),
+    0 8px 20px -6px rgba(225, 29, 72, 0.18);
 }
 
 .img-zoom {
