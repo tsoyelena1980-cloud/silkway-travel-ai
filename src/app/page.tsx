@@ -567,14 +567,13 @@ export default function SilkWayTravelPage() {
           <>
             {/* 1. ИНТЕРАКТИВНЫЙ HERO-БАННЕР С ПЛАВНОЙ СМЕНОЙ ФОТОГРАФИЙ УЗБЕКИСТАНА */}
             <section className="relative rounded-3xl overflow-hidden shadow-2xl border border-gold-500/35 min-h-[380px] sm:min-h-[430px] flex items-end no-print animate-fade-in-up bg-[#060c17]">
-              {/* Фоновые фотографии с плавным кроссфейдом */}
+              {/* Фоновые фотографии с плавным кроссфейдом без геометрического скейлинга (без ряби) */}
               {UZBEKISTAN_LANDMARKS.map((item, idx) => (
                 <div
                   key={item.id}
                   className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                    idx === heroSlideIdx ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
+                    idx === heroSlideIdx ? 'opacity-100' : 'opacity-0'
                   }`}
-                  style={{ transitionProperty: 'opacity, transform', transitionDuration: '1200ms' }}
                 >
                   <img
                     src={resolveAssetUrl(item.image)}

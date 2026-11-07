@@ -71,24 +71,24 @@ body {
 }
 
 .card-smooth {
-  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.35s ease;
+  transition: box-shadow 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
 }
 
 .card-smooth:hover {
-  transform: translateY(-6px);
-  border-color: rgba(212, 175, 55, 0.55);
-  box-shadow: 0 22px 42px -12px rgba(11, 19, 43, 0.16),
-    0 8px 20px -6px rgba(212, 175, 55, 0.18);
+  border-color: rgba(212, 175, 55, 0.75);
+  box-shadow: 0 20px 38px -12px rgba(11, 19, 43, 0.18),
+    0 0 0 1px rgba(212, 175, 55, 0.35),
+    0 8px 20px -6px rgba(212, 175, 55, 0.22);
 }
 
 .img-zoom {
-  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: filter 0.35s ease;
 }
 
 .group:hover .img-zoom {
-  transform: scale(1.08);
+  filter: brightness(1.06) contrast(1.02);
 }
 
 @media print {
