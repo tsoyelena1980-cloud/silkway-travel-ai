@@ -32,7 +32,9 @@ import {
   Award,
   X,
   ChevronRight,
+  KeyRound,
 } from 'lucide-react';
+import AiSupportAgentSuite from '@/components/AiSupportAgentSuite';
 import {
   AppLanguage,
   BookingRecord,
@@ -528,6 +530,13 @@ export default function SilkWayTravelPage() {
               >
                 <Sparkles className="w-4 h-4 text-amber-400" />
                 <span>{t.tabPlanner}</span>
+              </a>
+              <a
+                href="#ai-support-agent-section"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold bg-cyan-500/20 text-cyan-200 hover:bg-cyan-500/30 border border-cyan-400/35 transition-all duration-300"
+              >
+                <KeyRound className="w-4 h-4 text-amber-300" />
+                <span>AI Support · BYOK</span>
               </a>
             </nav>
 
@@ -1445,6 +1454,9 @@ export default function SilkWayTravelPage() {
                 </div>
               </div>
             </div>
+
+            {/* 4. AI SUPPORT AGENT (PRD v1.0: BYOK GOOGLE AI STUDIO, ДИНАМИЧЕСКИЙ КАТАЛОГ МОДЕЛЕЙ, БАЗА ЗНАНИЙ RAG И ВИДЖЕТ ПОДДЕРЖКИ) */}
+            <AiSupportAgentSuite lang={lang} directorNotice={t.directorFixedNotice} />
           </>
         )}
       </main>

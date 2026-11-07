@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI, Schema, SchemaType } from '@google/generative-ai';
+import { GoogleGenAI, Type, Schema } from '@google/genai';
 import {
   AppLanguage,
   DailyItineraryItem,
@@ -8,47 +8,47 @@ import {
 import { assertIntegerUzs } from './payment';
 
 export const itineraryResponseSchema: Schema = {
-  type: SchemaType.OBJECT,
+  type: Type.OBJECT,
   properties: {
-    trip_title: { type: SchemaType.STRING },
-    summary: { type: SchemaType.STRING },
-    estimated_total_cost_uzs: { type: SchemaType.INTEGER },
+    trip_title: { type: Type.STRING },
+    summary: { type: Type.STRING },
+    estimated_total_cost_uzs: { type: Type.INTEGER },
     daily_itinerary: {
-      type: SchemaType.ARRAY,
+      type: Type.ARRAY,
       items: {
-        type: SchemaType.OBJECT,
+        type: Type.OBJECT,
         properties: {
-          day_number: { type: SchemaType.INTEGER },
-          location: { type: SchemaType.STRING },
+          day_number: { type: Type.INTEGER },
+          location: { type: Type.STRING },
           morning: {
-            type: SchemaType.OBJECT,
+            type: Type.OBJECT,
             properties: {
-              activity: { type: SchemaType.STRING },
-              cost_uzs: { type: SchemaType.INTEGER },
+              activity: { type: Type.STRING },
+              cost_uzs: { type: Type.INTEGER },
             },
             required: ['activity', 'cost_uzs'],
           },
           afternoon: {
-            type: SchemaType.OBJECT,
+            type: Type.OBJECT,
             properties: {
-              activity: { type: SchemaType.STRING },
-              cost_uzs: { type: SchemaType.INTEGER },
+              activity: { type: Type.STRING },
+              cost_uzs: { type: Type.INTEGER },
             },
             required: ['activity', 'cost_uzs'],
           },
           evening: {
-            type: SchemaType.OBJECT,
+            type: Type.OBJECT,
             properties: {
-              activity: { type: SchemaType.STRING },
-              cost_uzs: { type: SchemaType.INTEGER },
+              activity: { type: Type.STRING },
+              cost_uzs: { type: Type.INTEGER },
             },
             required: ['activity', 'cost_uzs'],
           },
           accommodation: {
-            type: SchemaType.OBJECT,
+            type: Type.OBJECT,
             properties: {
-              name: { type: SchemaType.STRING },
-              cost_uzs: { type: SchemaType.INTEGER },
+              name: { type: Type.STRING },
+              cost_uzs: { type: Type.INTEGER },
             },
             required: ['name', 'cost_uzs'],
           },
@@ -57,8 +57,8 @@ export const itineraryResponseSchema: Schema = {
       },
     },
     local_tips: {
-      type: SchemaType.ARRAY,
-      items: { type: SchemaType.STRING },
+      type: Type.ARRAY,
+      items: { type: Type.STRING },
     },
   },
   required: [
@@ -96,7 +96,8 @@ const SYSTEM_INSTRUCTIONS_BY_LANG: Record<AppLanguage, string> = {
 };
 
 /**
- * Вызов модели с Exponential Backoff (1с, 2с, 4с) при HTTP 429 / 503
+ * Вызов модели через актуальный официальный Google Gen AI SDK (@google/genai)
+ * с Exponential Backoff (1с, 2с, 4с) при HTTP 429 / 503 (FR-KEY-02, FR-MODEL-02)
  */
 async function callGeminiWithRetry(
   apiKey: string,
@@ -105,23 +106,23 @@ async function callGeminiWithRetry(
   lang: AppLanguage = 'ru',
   maxRetries = 3
 ): Promise<GeneratedTourPlan> {
-  const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({
-    model: modelName,
-    generationConfig: {
-      responseMimeType: 'application/json',
-      responseSchema: itineraryResponseSchema,
-      temperature: 0.3,
-    },
-    systemInstruction: SYSTEM_INSTRUCTIONS_BY_LANG[lang] || SYSTEM_INSTRUCTIONS_BY_LANG.ru,
-  });
-
+  const ai = new GoogleGenAI({ apiKey });
   const backoffDelays = [1000, 2000, 4000];
 
   for (let attempt = 0; attempt < maxRetries; attempt++) {
     try {
-      const result = await model.generateContent(prompt);
-      const parsed = JSON.parse(result.response.text()) as GeneratedTourPlan;
+      const response = await ai.models.generateContent({
+        model: modelName,
+        contents: prompt,
+        config: {
+          responseMimeType: 'application/json',
+          responseSchema: itineraryResponseSchema,
+          temperature: 0.3,
+          systemInstruction: SYSTEM_INSTRUCTIONS_BY_LANG[lang] || SYSTEM_INSTRUCTIONS_BY_LANG.ru,
+        },
+      });
+      const text = response.text || '{}';
+      const parsed = JSON.parse(text) as GeneratedTourPlan;
       return normalizeIntegerPlanCosts(parsed);
     } catch (error: unknown) {
       const message = error instanceof Error ? error.message : String(error);
@@ -717,8 +718,8 @@ export async function generateTourPlan(params: GenerateItineraryRequest): Promis
 Пожелания: ${cleanSpecialRequests}`;
 
   const apiKey = process.env.GOOGLE_GENAI_API_KEY || '';
-  const primaryModel = process.env.GEMINI_PLANNING_MODEL || 'gemini-3.8';
-  const fallbackModel = process.env.GEMINI_ROUTING_MODEL || 'gemini-3.5-flash-lite';
+  const primaryModel = process.env.GEMINI_PLANNING_MODEL || 'gemini-2.5-flash';
+  const fallbackModel = process.env.GEMINI_ROUTING_MODEL || 'gemini-2.0-flash';
 
   const hasRealApiKey =
     Boolean(apiKey) &&
@@ -736,7 +737,7 @@ export async function generateTourPlan(params: GenerateItineraryRequest): Promis
     return {
       plan: simulatedPlan,
       rawPrompt: prompt,
-      modelUsed: `${primaryModel} (SilkWay Local Engine)`,
+      modelUsed: 'SilkWay Local Engine (BYOK ready)',
       fallbackTriggered: false,
     };
   }
