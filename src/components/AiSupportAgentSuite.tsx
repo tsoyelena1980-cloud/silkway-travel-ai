@@ -31,6 +31,8 @@ import {
   Bot,
   User,
   Headphones,
+  Calculator,
+  ClipboardCheck,
 } from 'lucide-react';
 import {
   ByokKeyStatus,
@@ -44,11 +46,13 @@ import {
   WorkspaceByokState,
 } from '@/lib/supportTypes';
 import {
+  calculateTravelAgencyQuoteUzs,
   DEFAULT_KNOWLEDGE_SOURCES,
   DEFAULT_SUPPORT_AGENT_CONFIG,
   generateSupportRagAnswer,
   maskGoogleApiKey,
   sanitizeKnowledgeText,
+  TravelAgencyOutputStyle,
   validateGoogleAiStudioKeyAndDiscoverModels,
 } from '@/lib/supportEngine';
 import { AppLanguage } from '@/lib/types';
@@ -264,8 +268,62 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
   const txt = UI_TEXT[lang] || UI_TEXT.ru;
   const workspaceId = 'ws-silkway-main';
 
-  // Вкладки консоли: 'byok' | 'chat' | 'kb' | 'inbox'
-  const [activeConsoleTab, setActiveConsoleTab] = useState<'byok' | 'chat' | 'kb' | 'inbox'>('byok');
+  // Вкладки консоли: 'byok' | 'chat' | 'kb' | 'inbox' | 'copilot'
+  const [activeConsoleTab, setActiveConsoleTab] = useState<
+    'byok' | 'chat' | 'kb' | 'inbox' | 'copilot'
+  >('copilot');
+
+  // Режим вывода из скилла travel-agency-ai (SKILL.md): Client-facing / Manager-facing / Owner-facing
+  const [outputStyle, setOutputStyle] = useState<TravelAgencyOutputStyle>('client_facing');
+
+  // Параметры калькулятора квот и маржи из скилла travel-agency-ai (scripts/quote_calculator.py)
+  const [quoteRouteTitle, setQuoteRouteTitle] = useState(
+    'Самарканд — Бухара — Хива (Золотое кольцо, 5 ночей / 6 дней)'
+  );
+  const [quoteDepartureCity, setQuoteDepartureCity] = useState('Ташкент');
+  const [quoteCitizenship, setQuoteCitizenship] = useState('Уточняется (ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ)');
+  const [quotePartyText, setQuotePartyText] = useState('2 взрослых + 1 ребёнок (8 лет)');
+  const [supplierCostUzs, setSupplierCostUzs] = useState(8500000);
+  const [markupPercent, setMarkupPercent] = useState(18);
+  const [discountUzs, setDiscountUzs] = useState(300000);
+  const [gatewayFeePercent, setGatewayFeePercent] = useState(1.5);
+  const [copiedOfferToast, setCopiedOfferToast] = useState(false);
+
+  // Операционный чек-лист из references/operations.md и references/guardrails.md
+  const [opsChecklist, setOpsChecklist] = useState([
+    {
+      id: 'chk-citizenship',
+      label: 'Гражданство туристов и срок действия паспорта уточнены явно (не по геолокации)',
+      done: true,
+    },
+    {
+      id: 'chk-afrosiyob',
+      label: 'Наличие билетов на поезд Afrosiyob проверено у поставщика (ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ до выписки)',
+      done: false,
+    },
+    {
+      id: 'chk-hotels',
+      label: 'Квота номеров, категория отеля и тип питания (BB/HB/FB) подтверждены',
+      done: true,
+    },
+    {
+      id: 'chk-privacy',
+      label: 'Guardrail: сканы паспортов и номера карт НЕ собирались в открытом чате',
+      done: true,
+    },
+    {
+      id: 'chk-approval',
+      label: 'Получено явное согласие клиента перед отправкой оферты / списанием средств',
+      done: false,
+    },
+  ]);
+
+  const quoteBreakdown = calculateTravelAgencyQuoteUzs({
+    supplierCostUzs,
+    markupPercent,
+    discountUzs,
+    gatewayFeePercent,
+  });
 
   // Плавающий виджет в правом нижнем углу
   const [isWidgetOpen, setIsWidgetOpen] = useState(false);
@@ -578,6 +636,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
             workspace_id: workspaceId,
             message: textToSend,
             language: lang,
+            output_style: outputStyle,
           }),
         });
         const contentType = res.headers.get('content-type') || '';
@@ -614,6 +673,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
           language: lang,
           agentConfig,
           knowledgeSources,
+          outputStyle,
         });
       }
 
@@ -935,8 +995,20 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
               </p>
             </div>
 
-            {/* Переключатель 4 разделов PRD */}
+            {/* Переключатель разделов PRD + Travel Agency AI Skill */}
             <div className="flex flex-wrap gap-1.5 bg-[#051029] p-1.5 rounded-2xl border border-sky-400/25 shrink-0">
+              <button
+                type="button"
+                onClick={() => setActiveConsoleTab('copilot')}
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                  activeConsoleTab === 'copilot'
+                    ? 'luxury-gold-btn shadow-sm'
+                    : 'text-sky-200 hover:bg-sky-500/20 hover:text-white'
+                }`}
+              >
+                <Calculator className="w-3.5 h-3.5" />
+                <span>Travel Agency Copilot (SKILL)</span>
+              </button>
               <button
                 type="button"
                 onClick={() => setActiveConsoleTab('byok')}
@@ -1790,6 +1862,461 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                     {directorNotice}
                   </span>
                   <span className="font-mono text-cyan-300">RBAC Verified</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ВКЛАДКА 5: ОПЕРАЦИОННЫЙ КОПАЙЛОТ ТУРАГЕНТСТВА (SKILL: travel-agency-ai) */}
+          {activeConsoleTab === 'copilot' && (
+            <div className="space-y-6">
+              {/* Верхняя полоса выбора стиля вывода из SKILL.md: Client-facing / Manager-facing / Owner-facing */}
+              <div className="bg-[#081738] rounded-2xl p-5 border border-sky-400/25 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                <div className="space-y-1">
+                  <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-amber-300">
+                    <Sparkles className="w-4 h-4 text-amber-400" />
+                    <span>SKILL: travel-agency-ai · Operational Copilot (UZS Integer)</span>
+                  </div>
+                  <h3 className="text-base sm:text-lg font-bold text-white">
+                    Режимы вывода (Output Styles), расчёт квот и маржи, операционный чек-лист
+                  </h3>
+                  <p className="text-xs text-sky-200/80">
+                    Разделяет подтверждённые данные и допущения (**ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ**), исключает раскрытие внутренней маржи клиенту и проверяет готовность бронирования.
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5 bg-[#051029] p-1.5 rounded-xl border border-sky-400/30 shrink-0">
+                  {(
+                    [
+                      {
+                        id: 'client_facing',
+                        label: 'Client-facing (Для клиента)',
+                        badge: 'Без маржи',
+                      },
+                      {
+                        id: 'manager_facing',
+                        label: 'Manager-facing (Для менеджера)',
+                        badge: 'Риски + Таблица',
+                      },
+                      {
+                        id: 'owner_facing',
+                        label: 'Owner-facing (Для директора)',
+                        badge: 'KPI + Маржа UZS',
+                      },
+                    ] as const
+                  ).map((st) => (
+                    <button
+                      key={st.id}
+                      type="button"
+                      onClick={() => setOutputStyle(st.id)}
+                      className={`px-3 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
+                        outputStyle === st.id
+                          ? 'luxury-gold-btn shadow-sm'
+                          : 'text-sky-200 hover:bg-sky-500/20 hover:text-white'
+                      }`}
+                    >
+                      <span>{st.label}</span>
+                      <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-black/25">
+                        {st.badge}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                {/* Левая колонка: Воспроизводимый калькулятор квот и маржи (scripts/quote_calculator.py) */}
+                <div className="lg:col-span-5 bg-[#081738] rounded-2xl p-6 border border-sky-400/25 space-y-4">
+                  <div className="flex items-center justify-between border-b border-sky-400/20 pb-3">
+                    <h4 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                      <Calculator className="w-5 h-5 text-amber-400" />
+                      Калькулятор квоты и маржи (UZS)
+                    </h4>
+                    <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-400/35">
+                      quote_calculator.py
+                    </span>
+                  </div>
+
+                  <div className="space-y-3 text-xs">
+                    <div>
+                      <label className="block text-sky-200 font-semibold mb-1">
+                        Маршрут и длительность тура
+                      </label>
+                      <input
+                        type="text"
+                        value={quoteRouteTitle}
+                        onChange={(e) => setQuoteRouteTitle(e.target.value)}
+                        className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 text-white"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-sky-200 font-semibold mb-1">
+                          Город отправления
+                        </label>
+                        <input
+                          type="text"
+                          value={quoteDepartureCity}
+                          onChange={(e) => setQuoteDepartureCity(e.target.value)}
+                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 text-white"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-amber-300 font-semibold mb-1">
+                          Гражданство туристов (уточнять!)
+                        </label>
+                        <input
+                          type="text"
+                          value={quoteCitizenship}
+                          onChange={(e) => setQuoteCitizenship(e.target.value)}
+                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-amber-400/40 text-amber-200"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sky-200 font-semibold mb-1">
+                        Состав группы (включая возраст детей)
+                      </label>
+                      <input
+                        type="text"
+                        value={quotePartyText}
+                        onChange={(e) => setQuotePartyText(e.target.value)}
+                        className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 text-white"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3 pt-1">
+                      <div>
+                        <label className="block text-sky-200 font-semibold mb-1">
+                          Себестоимость нетто (UZS)
+                        </label>
+                        <input
+                          type="number"
+                          step={50000}
+                          min={0}
+                          value={supplierCostUzs}
+                          onChange={(e) => setSupplierCostUzs(Math.max(0, Number(e.target.value)))}
+                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 font-mono font-bold text-white"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sky-200 font-semibold mb-1">
+                          Наценка агентства (%)
+                        </label>
+                        <input
+                          type="number"
+                          step={1}
+                          min={0}
+                          max={100}
+                          value={markupPercent}
+                          onChange={(e) => setMarkupPercent(Math.max(0, Number(e.target.value)))}
+                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 font-mono font-bold text-amber-300"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3">
+                      <div>
+                        <label className="block text-sky-200 font-semibold mb-1">
+                          Скидка клиенту (UZS)
+                        </label>
+                        <input
+                          type="number"
+                          step={50000}
+                          min={0}
+                          value={discountUzs}
+                          onChange={(e) => setDiscountUzs(Math.max(0, Number(e.target.value)))}
+                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 font-mono text-cyan-300"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sky-200 font-semibold mb-1">
+                          Комиссия Payme/Click/Uzum (%)
+                        </label>
+                        <input
+                          type="number"
+                          step={0.1}
+                          min={0}
+                          max={10}
+                          value={gatewayFeePercent}
+                          onChange={(e) => setGatewayFeePercent(Math.max(0, Number(e.target.value)))}
+                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 font-mono text-sky-200"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Операционный чек-лист (references/operations.md & guardrails.md) */}
+                  <div className="pt-3 border-t border-sky-400/20 space-y-2.5">
+                    <div className="text-xs font-bold text-cyan-300 flex items-center gap-1.5 uppercase tracking-wider">
+                      <ClipboardCheck className="w-4 h-4 text-amber-400" />
+                      Чек-лист бронирования и Guardrails
+                    </div>
+                    <div className="space-y-2">
+                      {opsChecklist.map((item) => (
+                        <label
+                          key={item.id}
+                          className="flex items-start gap-2.5 p-2 rounded-xl bg-[#06122e] border border-sky-400/20 text-xs text-sky-100 cursor-pointer hover:border-amber-400/40"
+                        >
+                          <input
+                            type="checkbox"
+                            checked={item.done}
+                            onChange={() =>
+                              setOpsChecklist((prev) =>
+                                prev.map((c) => (c.id === item.id ? { ...c, done: !c.done } : c))
+                              )
+                            }
+                            className="mt-0.5 accent-amber-400 rounded"
+                          />
+                          <span className={item.done ? 'text-sky-100' : 'text-amber-300 font-semibold'}>
+                            {item.label}
+                          </span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Правая колонка: Динамический вывод по выбранному стилю (Client-facing / Manager-facing / Owner-facing) */}
+                <div className="lg:col-span-7 bg-[#081738] rounded-2xl p-6 border border-sky-400/25 flex flex-col justify-between space-y-5">
+                  <div className="space-y-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-sky-400/20 pb-3">
+                      <div>
+                        <span className="text-xs font-mono uppercase text-amber-300 block">
+                          АКТИВНЫЙ РЕЖИМ СКИЛЛА TRAVEL-AGENCY-AI:
+                        </span>
+                        <h4 className="text-lg font-extrabold text-white">
+                          {outputStyle === 'client_facing'
+                            ? 'Client-facing: Коммерческое предложение для туриста (без внутренней маржи)'
+                            : outputStyle === 'manager_facing'
+                              ? 'Manager-facing: Рабочая таблица менеджера, источники и риски'
+                              : 'Owner-facing: Финансовая сводка Директора, маржинальность и сверка'}
+                        </h4>
+                      </div>
+                      <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-400/20 text-amber-300 border border-amber-400/40">
+                        ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ
+                      </span>
+                    </div>
+
+                    {/* Вариант 1: CLIENT-FACING (строго без раскрытия себестоимости и маржи!) */}
+                    {outputStyle === 'client_facing' && (
+                      <div className="p-5 rounded-2xl bg-[#06122e] border border-sky-400/30 space-y-4 text-xs sm:text-sm text-sky-50">
+                        <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-sky-400/20">
+                          <div>
+                            <div className="text-xs text-cyan-300 font-bold uppercase">
+                              Персональное предложение SilkWay Travel
+                            </div>
+                            <div className="text-base font-extrabold text-white mt-0.5">
+                              {quoteRouteTitle}
+                            </div>
+                          </div>
+                          <div className="text-right">
+                            <span className="text-[11px] text-sky-300 block">
+                              Итоговая стоимость за группу:
+                            </span>
+                            <span className="text-xl font-mono font-extrabold text-amber-300">
+                              {quoteBreakdown.final_client_price_uzs.toLocaleString('ru-RU')} UZS
+                            </span>
+                            {quoteBreakdown.discount_uzs > 0 && (
+                              <span className="block text-[11px] text-emerald-300">
+                                С учётом привилегированной скидки{' '}
+                                {quoteBreakdown.discount_uzs.toLocaleString('ru-RU')} UZS
+                              </span>
+                            )}
+                          </div>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                          <div className="p-3 rounded-xl bg-[#081738] border border-sky-400/20">
+                            <span className="text-sky-300 block">Отправление и состав группы:</span>
+                            <strong className="text-white">
+                              {quoteDepartureCity} · {quotePartyText}
+                            </strong>
+                          </div>
+                          <div className="p-3 rounded-xl bg-[#081738] border border-sky-400/20">
+                            <span className="text-sky-300 block">Гражданство (для визы и E-Mehmon):</span>
+                            <strong className="text-amber-300">{quoteCitizenship}</strong>
+                          </div>
+                        </div>
+
+                        <div className="space-y-1.5 text-xs">
+                          <div className="font-bold text-emerald-300">
+                            ✓ Что включено в предложение:
+                          </div>
+                          <p className="text-sky-100/90 leading-relaxed">
+                            Проживание в проверенных отелях 4* с завтраками (BB), ж/д переезды на скоростном поезде Afrosiyob (Ташкент — Самарканд — Бухара), индивидуальные трансферы, лицензированные гиды ЮНЕСКО и регистрация E-Mehmon.
+                          </p>
+                          <div className="font-bold text-amber-300 pt-1">
+                            ⚠️ Статус наличия и тарифа: ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ
+                          </div>
+                          <p className="text-sky-200/80">
+                            Бронирование считается подтверждённым после фиксации мест у поставщика. Пожалуйста, не отправляйте в чат сканы паспортов или реквизиты банковских карт до открытия защищённой сессии оплаты.
+                          </p>
+                        </div>
+
+                        <div className="p-3 rounded-xl bg-amber-400/15 border border-amber-400/40 text-xs text-amber-200 font-semibold flex items-center justify-between">
+                          <span>👉 Следующий шаг: Согласовать даты выезда и подтвердить бронь</span>
+                          <span>{directorNotice}</span>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Вариант 2: MANAGER-FACING (таблица сверки, источники, риски и Next Action) */}
+                    {outputStyle === 'manager_facing' && (
+                      <div className="space-y-4 text-xs">
+                        <div className="overflow-x-auto rounded-2xl border border-sky-400/30 bg-[#06122e]">
+                          <table className="w-full text-left border-collapse">
+                            <thead>
+                              <tr className="border-b border-sky-400/25 text-cyan-300 bg-[#051029]">
+                                <th className="p-3">Компонент операции</th>
+                                <th className="p-3">Источник / Статус</th>
+                                <th className="p-3">Операционный риск</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-sky-400/15 text-sky-100">
+                              <tr>
+                                <td className="p-3 font-bold">Ж/д билеты Afrosiyob</td>
+                                <td className="p-3 font-mono text-amber-300">
+                                  KB-01 · ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ
+                                </td>
+                                <td className="p-3">
+                                  Квота выкупается за 15–25 дней; проверить наличие по паспортам
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="p-3 font-bold">Виза и E-Mehmon ({quoteCitizenship})</td>
+                                <td className="p-3 font-mono text-amber-300">
+                                  KB-04 · ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ
+                                </td>
+                                <td className="p-3">
+                                  Не предполагать гражданство по локации; сверить безвизовый срок
+                                </td>
+                              </tr>
+                              <tr>
+                                <td className="p-3 font-bold">Стоимость к оплате клиентом</td>
+                                <td className="p-3 font-mono text-emerald-300 font-bold">
+                                  {quoteBreakdown.final_client_price_uzs.toLocaleString('ru-RU')} UZS
+                                </td>
+                                <td className="p-3">
+                                  Получить явное согласие клиента перед генерацией счёта Payme/Click
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <div className="p-4 rounded-xl bg-[#06122e] border border-amber-400/35 space-y-1.5">
+                          <div className="font-bold text-amber-300">
+                            Next Action для менеджера:
+                          </div>
+                          <p className="text-sky-100">
+                            1. Запросить подтверждение наличия мест на поезд Afrosiyob на даты группы ({quotePartyText}). 2. Проверить отметки в операционном чек-листе слева ({opsChecklist.filter((c) => c.done).length} из {opsChecklist.length} выполнено).
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Вариант 3: OWNER-FACING (полная финансовая раскладка в UZS, маржа и KPI) */}
+                    {outputStyle === 'owner_facing' && (
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+                          <div className="p-3.5 rounded-xl bg-[#06122e] border border-sky-400/25">
+                            <span className="text-sky-300 block">Себестоимость (Cost)</span>
+                            <span className="text-base font-mono font-extrabold text-white mt-1 block">
+                              {quoteBreakdown.supplier_cost_uzs.toLocaleString('ru-RU')} UZS
+                            </span>
+                          </div>
+                          <div className="p-3.5 rounded-xl bg-[#06122e] border border-sky-400/25">
+                            <span className="text-sky-300 block">
+                              Наценка ({quoteBreakdown.markup_percent}%)
+                            </span>
+                            <span className="text-base font-mono font-extrabold text-cyan-300 mt-1 block">
+                              +{quoteBreakdown.markup_uzs.toLocaleString('ru-RU')} UZS
+                            </span>
+                          </div>
+                          <div className="p-3.5 rounded-xl bg-[#06122e] border border-emerald-400/35">
+                            <span className="text-emerald-300 block">
+                              Валовая прибыль (Margin {quoteBreakdown.gross_margin_percent}%)
+                            </span>
+                            <span className="text-base font-mono font-extrabold text-emerald-300 mt-1 block">
+                              {quoteBreakdown.gross_profit_uzs.toLocaleString('ru-RU')} UZS
+                            </span>
+                          </div>
+                          <div className="p-3.5 rounded-xl bg-[#06122e] border border-amber-400/45">
+                            <span className="text-amber-300 block">
+                              Чистая прибыль (Net Profit)
+                            </span>
+                            <span className="text-base font-mono font-extrabold text-amber-300 mt-1 block">
+                              {quoteBreakdown.net_profit_uzs.toLocaleString('ru-RU')} UZS
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="p-4 rounded-2xl bg-[#06122e] border border-sky-400/25 text-xs space-y-2">
+                          <div className="font-bold text-white flex items-center justify-between">
+                            <span>Сверка комиссии эквайринга и скидок (references/finance.md):</span>
+                            <span className="font-mono text-amber-300">UZS BIGINT VERIFIED</span>
+                          </div>
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-sky-200 font-mono">
+                            <div>
+                              Gross Price: {quoteBreakdown.gross_selling_price_uzs.toLocaleString('ru-RU')} UZS
+                            </div>
+                            <div>
+                              Discount: -{quoteBreakdown.discount_uzs.toLocaleString('ru-RU')} UZS
+                            </div>
+                            <div>
+                              Gateway Fee ({quoteBreakdown.payment_gateway_fee_percent}%): -
+                              {quoteBreakdown.payment_fee_uzs.toLocaleString('ru-RU')} UZS
+                            </div>
+                          </div>
+                          <div className="pt-2 border-t border-sky-400/20 text-amber-300">
+                            Флаги сверки для Директора: открытых пунктов чек-листа —{' '}
+                            {opsChecklist.filter((c) => !c.done).length}. {directorNotice}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Кнопки действий с расчётом */}
+                  <div className="pt-3 border-t border-sky-400/20 flex flex-wrap items-center justify-between gap-3">
+                    <div className="text-xs text-sky-200">
+                      Выбранный стиль вывода также применяется в{' '}
+                      <strong className="text-amber-300">AI-Чате (RAG)</strong>.
+                    </div>
+                    <div className="flex flex-wrap gap-2.5">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const summaryToCopy =
+                            outputStyle === 'client_facing'
+                              ? `Предложение SilkWay Travel: ${quoteRouteTitle} (${quotePartyText}). Итоговая стоимость: ${quoteBreakdown.final_client_price_uzs.toLocaleString('ru-RU')} UZS (ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ). ${directorNotice}`
+                              : `Финансовая сводка (${outputStyle}): Маршрут ${quoteRouteTitle}. Себестоимость: ${quoteBreakdown.supplier_cost_uzs.toLocaleString('ru-RU')} UZS, Цена клиенту: ${quoteBreakdown.final_client_price_uzs.toLocaleString('ru-RU')} UZS, Маржа: ${quoteBreakdown.gross_margin_percent}%, Чистая прибыль: ${quoteBreakdown.net_profit_uzs.toLocaleString('ru-RU')} UZS.`;
+                          navigator.clipboard?.writeText(summaryToCopy);
+                          setCopiedOfferToast(true);
+                          setTimeout(() => setCopiedOfferToast(false), 2200);
+                        }}
+                        className="px-4 py-2 rounded-xl bg-[#0c1f4a] hover:bg-sky-500/25 text-sky-100 border border-sky-400/35 text-xs font-bold transition"
+                      >
+                        {copiedOfferToast ? '✓ Скопировано в буфер' : 'Скопировать сводку'}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setActiveConsoleTab('chat');
+                          handleSendCustomerMessage(
+                            `Подготовь ${outputStyle} сводку по маршруту "${quoteRouteTitle}" для группы (${quotePartyText}), отправление из г. ${quoteDepartureCity}, бюджет ${quoteBreakdown.final_client_price_uzs} UZS.`
+                          );
+                        }}
+                        className="px-4 py-2 rounded-xl luxury-gold-btn text-xs font-extrabold flex items-center gap-1.5"
+                      >
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>Отправить задачу в AI-Копайлот</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

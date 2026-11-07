@@ -214,6 +214,10 @@ export async function POST(req: NextRequest) {
       const userMessage = String(body.message || '').trim();
       const lang: AppLanguage =
         body.language === 'en' || body.language === 'uz' ? body.language : 'ru';
+      const outputStyle =
+        body.output_style === 'manager_facing' || body.output_style === 'owner_facing'
+          ? body.output_style
+          : 'client_facing';
 
       try {
         const result = await generateSupportRagAnswer({
@@ -223,6 +227,7 @@ export async function POST(req: NextRequest) {
           language: lang,
           agentConfig: entry.agentConfig,
           knowledgeSources: entry.knowledgeSources,
+          outputStyle,
         });
 
         entry.usageEvents.push({
