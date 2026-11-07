@@ -1,7 +1,0 @@
-:HL["/silkway-travel-ai/_next/static/chunks/1ap3da1huvph-.css","style"]
-:HL["/silkway-travel-ai/_next/static/media/276a8f4fe816cb6b-s.p.2v2sz4qlut9s1.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/silkway-travel-ai/_next/static/media/6f3ab718e3727c1a-s.p.3huc2loe0ie8a.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/silkway-travel-ai/_next/static/media/82450a180bcad83c-s.p.0p-wng2nn8o-p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/silkway-travel-ai/_next/static/media/fdbf446d127afa2d-s.p.1xjn85gt7t6qs.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-1:[["children",{"s":"__PAGE__","h":160}]]
-0:{"b":"h3QFhEoV7MUkMmhfNoYS0","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
