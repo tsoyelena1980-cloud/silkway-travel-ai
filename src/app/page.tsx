@@ -509,13 +509,10 @@ export default function SilkWayTravelPage() {
               <Compass className="w-6 h-6 stroke-[2.2]" />
             </div>
             <div>
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-2">
                 <h1 className="text-xl font-extrabold tracking-tight text-white">
                   SilkWay Travel <span className="gold-shimmer-text">AI</span>
                 </h1>
-                <span className="text-[11px] font-mono uppercase px-2 py-0.5 rounded-md bg-cyan-500/20 text-cyan-300 font-semibold border border-cyan-400/40">
-                  SAPPHIRE & GOLD
-                </span>
               </div>
               <p className="text-xs text-sky-200/80">{t.headerSubtitle}</p>
             </div>
@@ -525,18 +522,25 @@ export default function SilkWayTravelPage() {
             {/* Быстрая навигация для туриста */}
             <nav className="hidden md:flex items-center gap-1.5 bg-[#0b1f4d]/80 p-1.5 rounded-xl border border-sky-400/25">
               <a
+                href="#landmarks-gallery"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-sky-100 hover:bg-cyan-500/20 hover:text-cyan-200 transition-all duration-300"
+              >
+                <Camera className="w-4 h-4 text-cyan-400" />
+                <span>{lang === 'en' ? 'Landmarks' : lang === 'uz' ? 'Obidalar' : 'Города и фото'}</span>
+              </a>
+              <a
                 href="#planner-section"
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold bg-cyan-400/20 text-cyan-300 shadow-xs border border-cyan-400/40 transition-all duration-300"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold bg-cyan-400/20 text-cyan-300 shadow-xs border border-cyan-400/40 transition-all duration-300"
               >
                 <Sparkles className="w-4 h-4 text-cyan-400" />
                 <span>{t.tabPlanner}</span>
               </a>
               <a
                 href="#ai-support-agent-section"
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold bg-cyan-500/20 text-cyan-200 hover:bg-cyan-500/30 border border-cyan-400/35 transition-all duration-300"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold text-sky-100 hover:bg-cyan-500/20 hover:text-cyan-200 transition-all duration-300"
               >
-                <KeyRound className="w-4 h-4 text-cyan-300" />
-                <span>AI Support · BYOK</span>
+                <Compass className="w-4 h-4 text-cyan-300" />
+                <span>{lang === 'en' ? 'AI Concierge 24/7' : lang === 'uz' ? 'AI-Konsyerj 24/7' : 'AI-Консьерж 24/7'}</span>
               </a>
             </nav>
 
@@ -803,7 +807,7 @@ export default function SilkWayTravelPage() {
                       </div>
                     </div>
 
-                    {/* Футер карточки с ценой в UZS и кнопкой выбора */}
+                    {/* Футер карточки с ценой в UZS и одной аккуратной кнопкой выбора */}
                     <div className="px-5 py-3.5 bg-[#081738] border-t border-sky-400/20 flex items-center justify-between gap-2">
                       <div>
                         <span className="text-[11px] text-sky-300/80 block">{gt.fromPrice}</span>
@@ -812,23 +816,14 @@ export default function SilkWayTravelPage() {
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <button
-                          type="button"
-                          onClick={() => setActiveModalLandmark(landmark)}
-                          className="px-3 py-2 rounded-xl border border-sky-400/30 bg-[#0c1f4a] hover:bg-sky-500/25 text-xs font-semibold text-sky-100 transition"
-                        >
-                          {gt.viewPhotoBtn}
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => handleSelectLandmarkRoute(landmark)}
-                          className="px-3.5 py-2 rounded-xl luxury-gold-btn text-xs font-semibold shadow-xs flex items-center gap-1.5 transition-all duration-300"
-                        >
-                          <Sparkles className="w-3.5 h-3.5" />
-                          <span>{gt.selectRouteBtn}</span>
-                        </button>
-                      </div>
+                      <button
+                        type="button"
+                        onClick={() => handleSelectLandmarkRoute(landmark)}
+                        className="px-4 py-2 rounded-xl luxury-gold-btn text-xs font-bold shadow-xs flex items-center gap-1.5 transition-all duration-300 shrink-0"
+                      >
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>{gt.selectRouteBtn}</span>
+                      </button>
                     </div>
                   </div>
                 ))}
@@ -1094,9 +1089,9 @@ export default function SilkWayTravelPage() {
                       <div className="grid grid-cols-3 gap-2.5">
                         {(
                           [
-                            { id: 'payme', label: 'Payme', sub: 'Merchant API' },
-                            { id: 'click', label: 'Click', sub: 'Open API' },
-                            { id: 'uzum', label: 'Uzum Pay', sub: 'Uzum SDK' },
+                            { id: 'payme', label: 'Payme', sub: 'QR · Uzcard · Humo' },
+                            { id: 'click', label: 'Click', sub: 'QR · Быстрая оплата' },
+                            { id: 'uzum', label: 'Uzum Pay', sub: 'Мгновенно · 0%' },
                           ] as const
                         ).map((gw) => (
                           <button
@@ -1243,17 +1238,15 @@ export default function SilkWayTravelPage() {
                     <div className="relative z-10">
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                         <div className="flex items-center gap-2">
-                          <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-[#051029]/75 text-sky-100 border border-sky-400/30 backdrop-blur-md">
-                            ID: {currentPlan.itinerary_id.slice(0, 8)}...
+                          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-[#051029]/80 text-cyan-200 border border-cyan-400/35 backdrop-blur-md">
+                            ✓ Afrosiyob · 4* BB · ЮНЕСКО
                           </span>
-                          {itineraryResp.meta && (
-                            <span className="px-2.5 py-1 rounded-full text-xs font-mono bg-cyan-400/25 text-cyan-300 border border-cyan-400/45 backdrop-blur-md">
-                              {t.modelBadgePrefix} {itineraryResp.meta.model_used}
-                            </span>
-                          )}
+                          <span className="px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-400/35 backdrop-blur-md">
+                            ✓ {currentPlan.daily_itinerary.length} {t.daysUnit}
+                          </span>
                         </div>
-                        <span className="text-xs text-sky-100">
-                          {t.currencyBadgeLabel} <strong className="text-cyan-300">{t.currencyBadgeValue}</strong>
+                        <span className="text-xs font-semibold text-cyan-300 bg-[#051029]/75 px-3 py-1 rounded-full border border-sky-400/30">
+                          UZS · Узбекский сум
                         </span>
                       </div>
 

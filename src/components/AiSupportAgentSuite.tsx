@@ -268,10 +268,10 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
   const txt = UI_TEXT[lang] || UI_TEXT.ru;
   const workspaceId = 'ws-silkway-main';
 
-  // Вкладки консоли: 'byok' | 'chat' | 'kb' | 'inbox' | 'copilot'
+  // Вкладки консоли: по умолчанию открыт AI-Консьерж ('chat')
   const [activeConsoleTab, setActiveConsoleTab] = useState<
     'byok' | 'chat' | 'kb' | 'inbox' | 'copilot'
-  >('copilot');
+  >('chat');
 
   // Режим вывода из скилла travel-agency-ai (SKILL.md): Client-facing / Manager-facing / Owner-facing
   const [outputStyle, setOutputStyle] = useState<TravelAgencyOutputStyle>('client_facing');
@@ -862,9 +862,9 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
         );
       default:
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-sky-500/20 text-sky-200 border border-sky-400/35">
-            <Lock className="w-3.5 h-3.5 text-cyan-400" />
-            NOT CONNECTED (BYOK)
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/35">
+            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+            Автономный AI 24/7
           </span>
         );
     }
@@ -872,62 +872,46 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
 
   return (
     <>
-      {/* ОСНОВНАЯ СЕКЦИЯ AI SUPPORT AGENT (PRD v1.0) НА СТРАНИЦЕ */}
+      {/* ОСНОВНАЯ СЕКЦИЯ AI-КОНСЬЕРЖА НА СТРАНИЦЕ */}
       <section
         id="ai-support-agent-section"
         className="bg-[#0c1f4a] rounded-3xl border border-sky-400/30 shadow-2xl shadow-[#020817]/70 overflow-hidden no-print scroll-mt-24 animate-fade-in-up"
       >
-        {/* Шапка модуля AI Support Agent */}
+        {/* Шапка модуля AI-Консьержа */}
         <div className="bg-gradient-to-r from-[#061330] via-[#0a1d48] to-[#061330] p-6 sm:p-8 border-b border-sky-400/25">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div className="space-y-2 max-w-3xl">
               <div className="flex flex-wrap items-center gap-2.5">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-cyan-400/20 text-cyan-300 border border-cyan-400/45">
                   <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                  {txt.sectionBadge}
+                  SILKWAY AI CONCIERGE · 24/7
                 </span>
                 {renderStatusBadge(byokState.status)}
                 {byokState.selected_model_id && (
                   <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/20 text-cyan-200 border border-cyan-400/40">
                     <Cpu className="w-3.5 h-3.5 text-cyan-300" />
-                    Model: {byokState.selected_model_id}
+                    {byokState.selected_model_id}
                   </span>
                 )}
               </div>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                {txt.sectionTitle}
+                {lang === 'en'
+                  ? 'Autonomous AI Travel Concierge & Tour Calculator'
+                  : lang === 'uz'
+                    ? 'Avtonom AI Sayohat Konsyerji va Tur Kalkulyatori'
+                    : 'Автономный AI-Консьерж и расчёт туров 24/7'}
               </h2>
               <p className="text-xs sm:text-sm text-sky-100/85 leading-relaxed">
-                {txt.sectionSub}
+                {lang === 'en'
+                  ? 'Instant answers on Afrosiyob trains, UNESCO landmarks, visas, and turnkey UZS tour quotes — resolved directly by AI without waiting for a manager.'
+                  : lang === 'uz'
+                    ? 'Afrosiyob poyezdlari, YUNESKO obidalari, vizalar va UZSda tayyor tur hisob-kitobi — menejerni kutmasdan darhol hal qilinadi.'
+                    : 'Мгновенный подбор туров, расчёт стоимости в сумах (UZS), расписание поездов Afrosiyob и визовые правила — AI решает все вопросы сразу без ожидания менеджера.'}
               </p>
             </div>
 
-            {/* Переключатель разделов PRD + Travel Agency AI Skill */}
+            {/* Лаконичные и удобные вкладки без лишнего шума */}
             <div className="flex flex-wrap gap-1.5 bg-[#051029] p-1.5 rounded-2xl border border-sky-400/25 shrink-0">
-              <button
-                type="button"
-                onClick={() => setActiveConsoleTab('copilot')}
-                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
-                  activeConsoleTab === 'copilot'
-                    ? 'luxury-gold-btn shadow-sm'
-                    : 'text-sky-200 hover:bg-sky-500/20 hover:text-white'
-                }`}
-              >
-                <Calculator className="w-3.5 h-3.5" />
-                <span>Travel Agency Copilot (SKILL)</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setActiveConsoleTab('byok')}
-                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
-                  activeConsoleTab === 'byok'
-                    ? 'luxury-gold-btn shadow-sm'
-                    : 'text-sky-200 hover:bg-sky-500/20 hover:text-white'
-                }`}
-              >
-                <KeyRound className="w-3.5 h-3.5" />
-                <span>{txt.tabByok}</span>
-              </button>
               <button
                 type="button"
                 onClick={() => setActiveConsoleTab('chat')}
@@ -938,7 +922,19 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                 }`}
               >
                 <MessageSquare className="w-3.5 h-3.5" />
-                <span>{txt.tabChat}</span>
+                <span>{lang === 'en' ? 'AI Concierge Chat' : lang === 'uz' ? 'AI-Konsyerj Chat' : 'AI-Консьерж (Чат)'}</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveConsoleTab('copilot')}
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                  activeConsoleTab === 'copilot'
+                    ? 'luxury-gold-btn shadow-sm'
+                    : 'text-sky-200 hover:bg-sky-500/20 hover:text-white'
+                }`}
+              >
+                <Calculator className="w-3.5 h-3.5" />
+                <span>{lang === 'en' ? 'Tour Quote (UZS)' : lang === 'uz' ? 'Tur Hisobi (UZS)' : 'Калькулятор сметы (UZS)'}</span>
               </button>
               <button
                 type="button"
@@ -951,23 +947,20 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
               >
                 <BookOpen className="w-3.5 h-3.5" />
                 <span>
-                  {txt.tabKb} ({knowledgeSources.length})
+                  {lang === 'en' ? 'Knowledge Base' : lang === 'uz' ? 'Bilimlar bazasi' : 'База знаний'} ({knowledgeSources.length})
                 </span>
               </button>
               <button
                 type="button"
-                onClick={() => setActiveConsoleTab('inbox')}
+                onClick={() => setActiveConsoleTab('byok')}
                 className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
-                  activeConsoleTab === 'inbox'
+                  activeConsoleTab === 'byok'
                     ? 'luxury-gold-btn shadow-sm'
                     : 'text-sky-200 hover:bg-sky-500/20 hover:text-white'
                 }`}
               >
-                <Inbox className="w-3.5 h-3.5" />
-                <span>{txt.tabInbox}</span>
-                {activeConversation.status === 'waiting_for_agent' && (
-                  <span className="w-2 h-2 rounded-full bg-rose-400 animate-ping" />
-                )}
+                <KeyRound className="w-3.5 h-3.5" />
+                <span>{lang === 'en' ? 'Gemini API Key' : lang === 'uz' ? 'Gemini Kaliti' : 'Ключ Gemini'}</span>
               </button>
             </div>
           </div>
@@ -1345,56 +1338,27 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
           {/* ВКЛАДКА 2: WEB-ЧАТ ПОДДЕРЖКИ С RAG-ЦИТАТАМИ И ЭСКАЛАЦИЕЙ (FR-CHAT, AC-01, AC-07..09) */}
           {activeConsoleTab === 'chat' && (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-              {/* Левая колонка: Быстрые сценарии проверки и статус BYOK */}
+              {/* Левая колонка: Быстрые вопросы в 1 клик */}
               <div className="lg:col-span-4 space-y-4">
                 <div className="bg-[#081738] rounded-2xl p-5 border border-sky-400/25 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-bold uppercase tracking-wider text-cyan-300">
-                      Статус AI-Генерации
+                      Быстрые вопросы (1 клик)
                     </span>
-                    {renderStatusBadge(byokState.status)}
+                    <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-300">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                      Онлайн
+                    </span>
                   </div>
 
-                  {byokState.status !== 'active' ? (
-                    <div className="p-3.5 rounded-xl bg-cyan-400/15 border border-cyan-400/40 space-y-2.5">
-                      <div className="text-xs font-bold text-cyan-300 flex items-center gap-1.5">
-                        <Lock className="w-4 h-4 text-cyan-400 shrink-0" />
-                        {txt.noKeyBlockedTitle}
-                      </div>
-                      <p className="text-xs text-sky-100/90 leading-relaxed">
-                        {txt.noKeyBlockedDesc}
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => setActiveConsoleTab('byok')}
-                        className="w-full py-2 px-3 rounded-xl luxury-gold-btn text-xs font-extrabold flex items-center justify-center gap-1.5"
-                      >
-                        <KeyRound className="w-3.5 h-3.5" />
-                        {txt.connectKeyNowBtn}
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="p-3 rounded-xl bg-[#06122e] border border-emerald-400/35 text-xs space-y-1">
-                      <div className="text-emerald-300 font-bold">
-                        ✓ BYOK активен ({byokState.masked_key})
-                      </div>
-                      <div className="text-sky-200">
-                        Модель: <code className="text-cyan-300 font-mono">{byokState.selected_model_id}</code>
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="pt-2 space-y-2">
-                    <div className="text-xs font-bold text-white">
-                      Примеры вопросов по базе знаний (RAG):
-                    </div>
+                  <div className="space-y-2">
                     {txt.sampleQuestions.map((q, i) => (
                       <button
                         key={i}
                         type="button"
                         onClick={() => handleSendCustomerMessage(q)}
                         disabled={isSendingChat}
-                        className="w-full text-left p-2.5 rounded-xl bg-[#06122e] hover:bg-[#0c1f4a] border border-sky-400/20 hover:border-cyan-400/50 text-xs text-sky-100 transition"
+                        className="w-full text-left p-3 rounded-xl bg-[#06122e] hover:bg-[#0c1f4a] border border-sky-400/20 hover:border-cyan-400/50 text-xs text-sky-100 transition leading-relaxed"
                       >
                         «{q}»
                       </button>
@@ -1404,18 +1368,18 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
               </div>
 
               {/* Правая колонка: Окно диалога с цитированием источников */}
-              <div className="lg:col-span-8 bg-[#081738] rounded-2xl border border-sky-400/25 flex flex-col h-[540px] overflow-hidden">
+              <div className="lg:col-span-8 bg-[#081738] rounded-2xl border border-sky-400/25 flex flex-col h-[520px] overflow-hidden">
                 {/* Верхняя панель чата */}
                 <div className="px-5 py-3.5 bg-[#06122e] border-b border-sky-400/20 flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-cyan-400 flex items-center justify-center text-[#051029] font-extrabold">
+                    <div className="w-9 h-9 rounded-xl luxury-gold-btn flex items-center justify-center font-extrabold">
                       <Bot className="w-5 h-5" />
                     </div>
                     <div>
                       <div className="text-sm font-bold text-white flex items-center gap-2">
                         <span>{agentConfig.name}</span>
-                        <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/35">
-                          Status: {activeConversation.status}
+                        <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/35">
+                          ● Автономный режим
                         </span>
                       </div>
                       <div className="text-[11px] text-sky-300/80">{agentConfig.working_hours}</div>
@@ -1425,9 +1389,9 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   <button
                     type="button"
                     onClick={() => handleEscalateToOperator()}
-                    className="px-3 py-1.5 rounded-xl bg-cyan-400/20 hover:bg-cyan-400/30 text-cyan-300 border border-cyan-400/45 text-xs font-bold flex items-center gap-1.5 transition"
+                    className="px-3.5 py-1.5 rounded-xl luxury-gold-btn text-xs font-bold flex items-center gap-1.5 transition"
                   >
-                    <UserCheck className="w-3.5 h-3.5" />
+                    <Sparkles className="w-3.5 h-3.5" />
                     <span>{txt.escalateToHumanBtn}</span>
                   </button>
                 </div>
@@ -2241,11 +2205,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
           >
             <MessageSquare className="w-5 h-5" />
             <span>{txt.widgetButtonLabel}</span>
-            <span
-              className={`w-2.5 h-2.5 rounded-full ${
-                byokState.status === 'active' ? 'bg-emerald-600' : 'bg-cyan-700'
-              }`}
-            />
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
           </button>
         ) : (
           <div className="w-[350px] sm:w-[400px] h-[510px] bg-[#071536] rounded-3xl border border-sky-400/40 shadow-2xl flex flex-col overflow-hidden animate-fade-in-up">
@@ -2257,25 +2217,14 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                 </div>
                 <div>
                   <div className="text-xs font-extrabold">{agentConfig.name}</div>
-                  <div className="text-[10px] text-cyan-300 font-mono">
+                  <div className="text-[10px] text-emerald-300 font-semibold">
                     {byokState.status === 'active'
-                      ? `BYOK: ${byokState.selected_model_id}`
-                      : 'BYOK Key Required (AC-01)'}
+                      ? `● Gemini: ${byokState.selected_model_id}`
+                      : '● Онлайн · Автономный AI 24/7'}
                   </div>
                 </div>
               </div>
               <div className="flex items-center gap-1">
-                <a
-                  href="#ai-support-agent-section"
-                  onClick={() => {
-                    setActiveConsoleTab('byok');
-                    setIsWidgetOpen(false);
-                  }}
-                  className="p-1.5 rounded-lg hover:bg-white/10 text-cyan-300"
-                  title="Настройки BYOK ключа и моделей"
-                >
-                  <KeyRound className="w-4 h-4" />
-                </a>
                 <button
                   type="button"
                   onClick={() => setIsWidgetOpen(false)}
@@ -2289,23 +2238,6 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
 
             {/* Сообщения в виджете */}
             <div className="flex-1 p-3.5 overflow-y-auto space-y-3 bg-[#081738]">
-              {byokState.status !== 'active' && (
-                <div className="p-3 rounded-xl bg-cyan-400/15 border border-cyan-400/40 text-xs space-y-2">
-                  <div className="font-bold text-cyan-300">{txt.noKeyBlockedTitle}</div>
-                  <p className="text-sky-100/90 text-[11px]">{txt.noKeyBlockedDesc}</p>
-                  <a
-                    href="#ai-support-agent-section"
-                    onClick={() => {
-                      setActiveConsoleTab('byok');
-                      setIsWidgetOpen(false);
-                    }}
-                    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg luxury-gold-btn text-[11px] font-extrabold"
-                  >
-                    <KeyRound className="w-3 h-3" />
-                    {txt.connectKeyNowBtn}
-                  </a>
-                </div>
-              )}
 
               {activeConversation.messages.map((m) => (
                 <div
