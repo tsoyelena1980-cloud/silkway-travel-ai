@@ -523,14 +523,6 @@ export default function SilkWayTravelPage() {
             {/* Быстрая навигация для туриста */}
             <nav className="hidden md:flex items-center gap-1.5 bg-white/5 p-1.5 rounded-xl border border-gold-400/25">
               <a
-                href="#landmarks-gallery"
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-[#e4d5b7] hover:bg-white/10 hover:text-white transition-all duration-300"
-              >
-                <Camera className="w-4 h-4 text-gold-400" />
-                <span>{gt.galleryBtn}</span>
-              </a>
-
-              <a
                 href="#planner-section"
                 className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold bg-gold-500/20 text-gold-300 shadow-xs border border-gold-400/40 transition-all duration-300"
               >
@@ -637,13 +629,6 @@ export default function SilkWayTravelPage() {
                     >
                       <Sparkles className="w-4 h-4" />
                       <span>{gt.exploreBtn}</span>
-                    </a>
-                    <a
-                      href="#landmarks-gallery"
-                      className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-md text-[#faf7f2] font-semibold text-sm border border-gold-400/35 flex items-center gap-2 transition-all duration-300"
-                    >
-                      <Camera className="w-4 h-4 text-gold-400" />
-                      <span>{gt.galleryBtn}</span>
                     </a>
                   </div>
                 </div>
