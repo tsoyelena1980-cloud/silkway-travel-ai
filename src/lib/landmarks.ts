@@ -329,14 +329,15 @@ export const UZBEKISTAN_LANDMARKS: LandmarkItem[] = [
  */
 export function resolveAssetUrl(relativePath: string): string {
   const clean = relativePath.replace(/^\/+/, '');
+  const versioned = clean.includes('?') ? clean : `${clean}?v=3`;
   const envBase = process.env.NEXT_PUBLIC_BASE_PATH || '';
   if (envBase) {
-    return `${envBase}/${clean}`;
+    return `${envBase}/${versioned}`;
   }
   if (typeof window !== 'undefined' && window.location.pathname.startsWith('/silkway-travel-ai')) {
-    return `/silkway-travel-ai/${clean}`;
+    return `/silkway-travel-ai/${versioned}`;
   }
-  return `/${clean}`;
+  return `/${versioned}`;
 }
 
 /**
@@ -348,7 +349,7 @@ export function handleLandmarkImgError(
 ) {
   const clean = relativePath.replace(/^\/+/, '');
   const target = e.currentTarget;
-  const fallbackUrl = `https://tsoyelena1980-cloud.github.io/silkway-travel-ai/${clean}`;
+  const fallbackUrl = `https://tsoyelena1980-cloud.github.io/silkway-travel-ai/${clean}?v=3`;
   if (target.src !== fallbackUrl) {
     target.src = fallbackUrl;
   }
