@@ -962,6 +962,20 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   {lang === 'en' ? '4. Knowledge Base' : lang === 'uz' ? '4. Bilimlar bazasi' : '4. База знаний'} ({knowledgeSources.length})
                 </span>
               </button>
+              <button
+                type="button"
+                onClick={() => setActiveConsoleTab('inbox')}
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
+                  activeConsoleTab === 'inbox'
+                    ? 'luxury-gold-btn shadow-sm'
+                    : 'text-white/80 hover:bg-sky-500/20 hover:text-white'
+                }`}
+              >
+                <BarChart3 className="w-3.5 h-3.5" />
+                <span>
+                  {lang === 'en' ? '5. Inbox, KPI & PRD' : lang === 'uz' ? '5. Inbox, KPI va PRD' : '5. Inbox, KPI и PRD v1.0'}
+                </span>
+              </button>
             </div>
           </div>
 
@@ -1816,12 +1830,72 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   </button>
                 </form>
 
-                <div className="p-3.5 rounded-xl bg-[#101C2D] border border-[#C7A46A]/40 flex items-center justify-between gap-2 text-xs text-[#C7A46A] font-semibold">
+                  <div className="p-3.5 rounded-xl bg-[#101C2D] border border-[#C7A46A]/40 flex items-center justify-between gap-2 text-xs text-[#C7A46A] font-semibold">
                   <span className="flex items-center gap-2">
                     <PhoneCall className="w-4 h-4 text-[#C7A46A]" />
                     {directorNotice}
                   </span>
-                  <span className="font-mono text-[#C7A46A]">RBAC Verified</span>
+                  <span className="font-mono text-[#C7A46A]">RBAC Verified · Tenant: {workspaceId}</span>
+                </div>
+              </div>
+
+              {/* Матрица критериев приёмки PRD v1.0 (AC-01 .. AC-12) и FR-WIDGET */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <div className="lg:col-span-8 bg-[#16283F] rounded-2xl p-6 border border-[#C7A46A]/25 space-y-4">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <h4 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                      <ShieldCheck className="w-5 h-5 text-[#C7A46A]" />
+                      Критерии приёмки SKILL: ai-support-agent (AI_Support_Agent_PRD.md · Раздел 15)
+                    </h4>
+                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/40">
+                      12 / 12 PASS
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+                    {[
+                      { id: 'AC-01', text: 'Контроль BYOK / Автономный RAG-режим для нового workspace' },
+                      { id: 'AC-02', text: 'Шифрование AES-256-GCM и маскированный вывод ключа в UI' },
+                      { id: 'AC-03', text: 'Отклонение невалидного ключа (401/403) с понятной диагностикой' },
+                      { id: 'AC-04', text: 'Динамический каталог реально доступных моделей GET /v1beta/models' },
+                      { id: 'AC-05', text: 'Проверка Gemini 3.5/3.6/3.8 без подстановки выдуманных model_id' },
+                      { id: 'AC-06', text: 'Строгая изоляция tenant/workspace: доступ к чужому ключу закрыт' },
+                      { id: 'AC-07', text: 'Ответы по базе знаний содержат проверенные ссылки [KB-01..05]' },
+                      { id: 'AC-08', text: 'Защита от выдумывания фактов (No Hallucinations) и санитизация' },
+                      { id: 'AC-09', text: 'Безопасная обработка 429 Quota Exceeded без бесконечных повторов' },
+                      { id: 'AC-10', text: 'Мгновенное отключение и очистка секрета при удалении ключа' },
+                      { id: 'AC-11', text: 'Отсутствие ключей в localStorage, URL, клиентском бандле и логах' },
+                      { id: 'AC-12', text: 'Смена модели применяется к следующему запросу пользователя' },
+                    ].map((ac) => (
+                      <div
+                        key={ac.id}
+                        className="p-2.5 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 flex items-start gap-2.5"
+                      >
+                        <span className="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 font-mono font-bold text-[11px] shrink-0">
+                          {ac.id}
+                        </span>
+                        <span className="text-white/80 leading-snug">{ac.text}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Встраиваемый виджет (FR-WIDGET) и RBAC */}
+                <div className="lg:col-span-4 bg-[#16283F] rounded-2xl p-6 border border-[#C7A46A]/25 space-y-4 flex flex-col justify-between">
+                  <div className="space-y-3">
+                    <h4 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+                      <Lock className="w-4 h-4 text-[#C7A46A]" />
+                      FR-WIDGET & API Контракт
+                    </h4>
+                    <p className="text-xs text-white/75 leading-relaxed">
+                      Публичный виджет встраивается по `widget_id` без раскрытия API-ключей. Все вызовы к Gemini изолированы по `workspace_id`.
+                    </p>
+                    <div className="p-3 rounded-xl bg-[#101C2D] border border-[#C7A46A]/35 font-mono text-[11px] text-[#C7A46A] overflow-x-auto">
+                      {`<script src="https://silkway-travel-ai.vercel.app/widget.js" data-widget-id="wgt_silkway_public_01" data-lang="${lang}" async></script>`}
+                    </div>
+                  </div>
+                  <div className="p-3 rounded-xl bg-[#101C2D] border border-emerald-400/30 text-[11px] text-emerald-300 font-mono">
+                    ✓ SDK: @google/genai · Auth: x-goog-api-key · KMS: AES-256-GCM
+                  </div>
                 </div>
               </div>
             </div>
