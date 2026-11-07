@@ -520,46 +520,23 @@ export default function SilkWayTravelPage() {
           </div>
 
           <div className="flex flex-wrap items-center gap-3 ml-auto">
-            {/* Навигация по вкладкам */}
-            <nav className="flex items-center gap-1.5 bg-slate-100 p-1.5 rounded-xl border border-slate-200">
-              <button
-                type="button"
-                onClick={() => setActiveTab('planner')}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${
-                  activeTab === 'planner'
-                    ? 'bg-white text-silk-800 shadow-sm border border-slate-200/80 scale-[1.02]'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
+            {/* Быстрая навигация для туриста */}
+            <nav className="hidden md:flex items-center gap-1.5 bg-slate-100 p-1.5 rounded-xl border border-slate-200">
+              <a
+                href="#landmarks-gallery"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-slate-700 hover:bg-white hover:text-silk-800 hover:shadow-xs transition-all duration-300"
+              >
+                <Camera className="w-4 h-4 text-silk-600" />
+                <span>{gt.galleryBtn}</span>
+              </a>
+
+              <a
+                href="#planner-section"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium bg-white text-silk-800 shadow-xs border border-slate-200/80 transition-all duration-300"
               >
                 <Sparkles className="w-4 h-4 text-silk-600" />
                 <span>{t.tabPlanner}</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setActiveTab('gateway')}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${
-                  activeTab === 'gateway'
-                    ? 'bg-white text-silk-800 shadow-sm border border-slate-200/80 scale-[1.02]'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <CreditCard className="w-4 h-4 text-silk-600" />
-                <span>{t.tabGateway}</span>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => setActiveTab('spec')}
-                className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-all duration-300 ${
-                  activeTab === 'spec'
-                    ? 'bg-white text-silk-800 shadow-sm border border-slate-200/80 scale-[1.02]'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                <Code2 className="w-4 h-4 text-silk-600" />
-                <span>{t.tabSpec}</span>
-              </button>
+              </a>
             </nav>
 
             {/* Переключатель языков справа наверху: Русский / English / Oʻzbekcha */}
@@ -878,9 +855,6 @@ export default function SilkWayTravelPage() {
                       <Sparkles className="w-5 h-5 text-silk-600" />
                       <h2 className="text-lg font-bold text-slate-900">{t.formTitle}</h2>
                     </div>
-                    <span className="text-xs font-mono text-slate-500 bg-slate-100 px-2 py-1 rounded">
-                      POST /api/v1/itinerary/generate
-                    </span>
                   </div>
 
                   <form onSubmit={handleGenerateItinerary} className="space-y-4">
@@ -1487,189 +1461,6 @@ export default function SilkWayTravelPage() {
               </div>
             </div>
           </>
-        )}
-
-        {/* Вкладка 2: Валидатор платежного шлюза UZS (BIGINT) */}
-        {activeTab === 'gateway' && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 animate-fade-in-up">
-            <div className="lg:col-span-6 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-5">
-              <div>
-                <span className="text-xs font-semibold uppercase tracking-wider text-silk-700 bg-silk-50 px-2.5 py-1 rounded-md border border-silk-200">
-                  {t.gatewaySectionBadge}
-                </span>
-                <h2 className="text-xl font-bold text-slate-900 mt-2">{t.gatewayTitle}</h2>
-                <p className="text-sm text-slate-600 mt-1">{t.gatewayDesc}</p>
-              </div>
-
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-xs font-semibold uppercase text-slate-600 mb-1">
-                    {t.gatewayBookingAmountLabel}
-                  </label>
-                  <input
-                    type="text"
-                    value={sandboxBookingAmount}
-                    onChange={(e) => setSandboxBookingAmount(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-mono text-sm"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold uppercase text-slate-600 mb-1">
-                    {t.gatewayWebhookAmountLabel}
-                  </label>
-                  <input
-                    type="text"
-                    value={sandboxWebhookAmount}
-                    onChange={(e) => setSandboxWebhookAmount(e.target.value)}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 font-mono text-sm"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold uppercase text-slate-600 mb-1.5">
-                    {t.gatewayProviderLabel}
-                  </label>
-                  <div className="flex gap-2">
-                    {(['payme', 'click', 'uzum'] as const).map((p) => (
-                      <button
-                        key={p}
-                        type="button"
-                        onClick={() => setSandboxProvider(p)}
-                        className={`px-4 py-2 rounded-xl text-xs font-bold uppercase border transition ${
-                          sandboxProvider === p
-                            ? 'bg-silk-600 text-white border-silk-600'
-                            : 'bg-slate-50 text-slate-700 border-slate-200'
-                        }`}
-                      >
-                        {p}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Быстрые сценарии проверки */}
-                <div className="pt-2 space-y-2">
-                  <div className="text-xs font-semibold text-slate-500">
-                    {t.gatewayQuickScenarios}
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    <button
-                      type="button"
-                      onClick={() => handleRunWebhookSandbox(sandboxBookingAmount)}
-                      className="text-xs px-3 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-medium flex items-center gap-1.5 transition"
-                    >
-                      <CheckCircle2 className="w-3.5 h-3.5" />
-                      {t.scenarioExact} ({sandboxBookingAmount} UZS)
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() =>
-                        handleRunWebhookSandbox(String(Number(sandboxBookingAmount) - 1))
-                      }
-                      className="text-xs px-3 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 font-medium flex items-center gap-1.5 transition"
-                    >
-                      <AlertTriangle className="w-3.5 h-3.5" />
-                      {t.scenarioOffByOne} ({Number(sandboxBookingAmount) - 1} UZS)
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => handleRunWebhookSandbox(`${sandboxBookingAmount}.50`)}
-                      className="text-xs px-3 py-2 rounded-xl bg-red-50 hover:bg-red-100 text-red-800 border border-red-200 font-medium flex items-center gap-1.5 transition"
-                    >
-                      <AlertTriangle className="w-3.5 h-3.5" />
-                      {t.scenarioFloat} ({sandboxBookingAmount}.50)
-                    </button>
-                  </div>
-                </div>
-
-                {sandboxResult && (
-                  <div
-                    className={`p-4 rounded-xl border text-sm animate-fade-in-up ${
-                      sandboxResult.ok
-                        ? 'bg-emerald-50 border-emerald-200 text-emerald-900'
-                        : 'bg-red-50 border-red-200 text-red-900'
-                    }`}
-                  >
-                    <div className="font-bold mb-1">
-                      {sandboxResult.ok ? t.validationPassed : t.validationFailed}
-                    </div>
-                    <p className="text-xs leading-relaxed">{sandboxResult.message}</p>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            <div className="lg:col-span-6 space-y-6">
-              <div className="bg-slate-900 text-slate-100 rounded-2xl p-6 border border-slate-800">
-                <h3 className="text-sm font-bold text-gold-400 uppercase tracking-wider mb-3">
-                  {t.referenceFnTitle}
-                </h3>
-                <pre className="text-xs font-mono bg-slate-950 p-4 rounded-xl overflow-x-auto text-emerald-300 border border-slate-800">
-                  {`function validatePaymentAmount(
-  bookingAmount: bigint,
-  incomingAmount: bigint
-): boolean {
-  return bookingAmount === incomingAmount;
-}
-
-// Float values rejected:
-// 7650000n === 7650000n -> true (Status: 'paid')
-// 7650000n === 7649999n -> false (HTTP 422 Unprocessable Entity)`}
-                </pre>
-
-                <div className="mt-5 p-4 rounded-xl bg-white/5 border border-white/10 text-xs space-y-2">
-                  <div className="font-semibold text-white">{t.securityNoticeHeading}</div>
-                  <div className="text-gold-400 font-medium">{t.directorFixedNotice}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Вкладка 3: Спецификация, Архитектура и JSON-ответ */}
-        {activeTab === 'spec' && (
-          <div className="space-y-6 animate-fade-in-up">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs card-smooth">
-                <div className="flex items-center gap-2 text-silk-700 font-bold text-sm mb-2">
-                  <Layers className="w-4 h-4" />
-                  {t.specCard1Title}
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">{t.specCard1Desc}</p>
-              </div>
-
-              <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs card-smooth">
-                <div className="flex items-center gap-2 text-silk-700 font-bold text-sm mb-2">
-                  <Database className="w-4 h-4" />
-                  {t.specCard2Title}
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">{t.specCard2Desc}</p>
-              </div>
-
-              <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-xs card-smooth">
-                <div className="flex items-center gap-2 text-silk-700 font-bold text-sm mb-2">
-                  <ShieldCheck className="w-4 h-4" />
-                  {t.specCard3Title}
-                </div>
-                <p className="text-xs text-slate-600 leading-relaxed">{t.specCard3Desc}</p>
-              </div>
-            </div>
-
-            <div className="bg-slate-900 text-slate-100 rounded-2xl p-6 border border-slate-800">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-mono uppercase tracking-wider text-gold-400">
-                  {t.specJsonTitle}
-                </span>
-                <span className="text-xs text-slate-400">OpenAPI 3.0 · Neon PostgreSQL</span>
-              </div>
-              <pre className="text-xs font-mono bg-slate-950 p-4 rounded-xl overflow-x-auto text-silk-200 border border-slate-800 max-h-[500px]">
-                {JSON.stringify(itineraryResp, null, 2)}
-              </pre>
-            </div>
-          </div>
         )}
       </main>
 
