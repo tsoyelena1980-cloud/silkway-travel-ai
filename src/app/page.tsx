@@ -483,16 +483,16 @@ export default function SilkWayTravelPage() {
 
   return (
     <div className="min-h-screen flex flex-col silk-pattern">
-      {/* Верхняя информационная полоса с контактами директора */}
-      <div className="bg-silk-950 text-silk-100 text-xs sm:text-sm py-2.5 px-4 border-b border-silk-800 no-print">
+      {/* Верхняя информационная полоса с контактами директора (Premium Royal Lapis & 24K Gold) */}
+      <div className="bg-[#060c17] text-[#f3ece0] text-xs sm:text-sm py-2.5 px-4 border-b border-gold-500/30 no-print">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-silk-800 text-gold-400 border border-silk-700">
+          <div className="flex items-center gap-2.5">
+            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-gold-500/15 text-gold-400 border border-gold-400/40 tracking-wide">
               {t.topBannerTag}
             </span>
-            <span className="text-silk-200">{t.topBannerText}</span>
+            <span className="text-[#e4d5b7]">{t.topBannerText}</span>
           </div>
-          <div className="flex items-center gap-2 font-medium text-white">
+          <div className="flex items-center gap-2 font-semibold text-gold-300">
             <PhoneCall className="w-3.5 h-3.5 text-gold-400" />
             <span>{t.directorFixedNotice}</span>
           </div>
@@ -500,51 +500,51 @@ export default function SilkWayTravelPage() {
       </div>
 
       {/* Шапка сайта с переключателем 3 языков справа наверху */}
-      <header className="bg-white/90 backdrop-blur-md sticky top-0 z-30 border-b border-slate-200 no-print transition-all">
+      <header className="bg-[#0b132b]/95 backdrop-blur-xl sticky top-0 z-30 border-b border-gold-500/25 no-print transition-all shadow-lg shadow-black/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-silk-600 to-lapis-800 flex items-center justify-center text-white shadow-md shadow-silk-600/20">
+          <div className="flex items-center gap-3.5">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-gold-300 via-gold-500 to-gold-700 flex items-center justify-center text-[#0b132b] shadow-lg shadow-gold-500/25 border border-gold-300/60">
               <Compass className="w-6 h-6" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <h1 className="text-xl font-bold tracking-tight text-slate-900">
-                  SilkWay Travel <span className="text-silk-600">AI</span>
+              <div className="flex items-center gap-2.5">
+                <h1 className="text-xl font-extrabold tracking-tight text-[#faf7f2]">
+                  SilkWay Travel <span className="gold-shimmer-text">AI</span>
                 </h1>
-                <span className="text-xs px-2 py-0.5 rounded-md bg-silk-50 text-silk-700 font-semibold border border-silk-200">
-                  v2.0 Visual
+                <span className="text-[11px] font-mono uppercase px-2 py-0.5 rounded-md bg-gold-500/15 text-gold-400 font-semibold border border-gold-400/30">
+                  LUXURY EDITION
                 </span>
               </div>
-              <p className="text-xs text-slate-500">{t.headerSubtitle}</p>
+              <p className="text-xs text-[#cbbba0]">{t.headerSubtitle}</p>
             </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-3 ml-auto">
             {/* Быстрая навигация для туриста */}
-            <nav className="hidden md:flex items-center gap-1.5 bg-slate-100 p-1.5 rounded-xl border border-slate-200">
+            <nav className="hidden md:flex items-center gap-1.5 bg-white/5 p-1.5 rounded-xl border border-gold-400/25">
               <a
                 href="#landmarks-gallery"
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-slate-700 hover:bg-white hover:text-silk-800 hover:shadow-xs transition-all duration-300"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium text-[#e4d5b7] hover:bg-white/10 hover:text-white transition-all duration-300"
               >
-                <Camera className="w-4 h-4 text-silk-600" />
+                <Camera className="w-4 h-4 text-gold-400" />
                 <span>{gt.galleryBtn}</span>
               </a>
 
               <a
                 href="#planner-section"
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium bg-white text-silk-800 shadow-xs border border-slate-200/80 transition-all duration-300"
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-semibold bg-gold-500/20 text-gold-300 shadow-xs border border-gold-400/40 transition-all duration-300"
               >
-                <Sparkles className="w-4 h-4 text-silk-600" />
+                <Sparkles className="w-4 h-4 text-gold-400" />
                 <span>{t.tabPlanner}</span>
               </a>
             </nav>
 
             {/* Переключатель языков справа наверху: Русский / English / Oʻzbekcha */}
             <div
-              className="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200 shadow-xs"
+              className="flex items-center gap-1 bg-[#060c17]/90 p-1 rounded-xl border border-gold-400/30 shadow-inner"
               aria-label="Language switcher"
             >
-              <Globe className="w-4 h-4 text-silk-600 ml-2 mr-1 hidden sm:inline" />
+              <Globe className="w-4 h-4 text-gold-400 ml-2 mr-1 hidden sm:inline" />
               {(['ru', 'en', 'uz'] as const).map((code) => {
                 const info = LANGUAGE_LABELS[code];
                 const isSelected = lang === code;
@@ -553,10 +553,10 @@ export default function SilkWayTravelPage() {
                     key={code}
                     type="button"
                     onClick={() => handleLanguageChange(code)}
-                    className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold transition-all duration-300 ${
+                    className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all duration-300 ${
                       isSelected
-                        ? 'bg-silk-600 text-white shadow-xs scale-[1.03]'
-                        : 'text-slate-600 hover:text-slate-900 hover:bg-white/60'
+                        ? 'luxury-gold-btn shadow-sm scale-[1.03]'
+                        : 'text-[#e4d5b7] hover:text-white hover:bg-white/10'
                     }`}
                   >
                     <span>{info.flag}</span>
@@ -574,7 +574,7 @@ export default function SilkWayTravelPage() {
         {activeTab === 'planner' && (
           <>
             {/* 1. ИНТЕРАКТИВНЫЙ HERO-БАННЕР С ПЛАВНОЙ СМЕНОЙ ФОТОГРАФИЙ УЗБЕКИСТАНА */}
-            <section className="relative rounded-3xl overflow-hidden shadow-xl border border-silk-900/20 min-h-[380px] sm:min-h-[430px] flex items-end no-print animate-fade-in-up">
+            <section className="relative rounded-3xl overflow-hidden shadow-2xl border border-gold-500/35 min-h-[380px] sm:min-h-[430px] flex items-end no-print animate-fade-in-up bg-[#060c17]">
               {/* Фоновые фотографии с плавным кроссфейдом */}
               {UZBEKISTAN_LANDMARKS.map((item, idx) => (
                 <div
@@ -594,37 +594,37 @@ export default function SilkWayTravelPage() {
               ))}
 
               {/* Многослойный градиент для читаемости текста */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/55 to-slate-900/20" />
-              <div className="absolute inset-0 bg-gradient-to-r from-silk-950/85 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#060c17]/95 via-[#0b132b]/55 to-[#060c17]/20" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#060c17]/90 via-transparent to-transparent" />
 
               {/* Контент поверх баннера */}
               <div className="relative z-10 w-full p-6 sm:p-10 flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6 text-white">
                 <div className="max-w-2xl space-y-3">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 border border-gold-400/40 text-gold-400 text-xs font-bold tracking-wider uppercase backdrop-blur-md">
-                    <Sparkles className="w-3.5 h-3.5" />
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gold-500/20 border border-gold-400/45 text-gold-300 text-xs font-bold tracking-wider uppercase backdrop-blur-md">
+                    <Sparkles className="w-3.5 h-3.5 text-gold-400" />
                     <span>{gt.heroBadge}</span>
                   </div>
 
-                  <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                  <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight text-[#faf7f2]">
                     {gt.heroTitle}
                   </h2>
 
-                  <p className="text-sm sm:text-base text-slate-200 leading-relaxed max-w-xl">
+                  <p className="text-sm sm:text-base text-[#e4d5b7] leading-relaxed max-w-xl">
                     {gt.heroSub}
                   </p>
 
                   {/* Преимущества для туриста */}
-                  <div className="pt-2 flex flex-wrap gap-2.5 text-xs font-medium text-silk-100">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15">
+                  <div className="pt-2 flex flex-wrap gap-2.5 text-xs font-medium text-[#f3ece0]">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-gold-400/25">
                       <Award className="w-4 h-4 text-gold-400" />
                       {gt.stat1}
                     </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15">
-                      <Train className="w-4 h-4 text-silk-300" />
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-gold-400/25">
+                      <Train className="w-4 h-4 text-gold-300" />
                       {gt.stat2}
                     </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/15">
-                      <Wallet className="w-4 h-4 text-emerald-400" />
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 backdrop-blur-md border border-gold-400/25">
+                      <Wallet className="w-4 h-4 text-gold-400" />
                       {gt.stat3}
                     </span>
                   </div>
@@ -633,14 +633,14 @@ export default function SilkWayTravelPage() {
                   <div className="pt-3 flex flex-wrap gap-3">
                     <a
                       href="#planner-section"
-                      className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-silk-500 to-silk-600 hover:from-silk-600 hover:to-silk-700 text-white font-bold text-sm shadow-lg shadow-silk-600/30 flex items-center gap-2 transition-all duration-300 hover:scale-[1.03]"
+                      className="px-5 py-2.5 rounded-xl luxury-gold-btn font-bold text-sm flex items-center gap-2 transition-all duration-300 hover:scale-[1.03]"
                     >
                       <Sparkles className="w-4 h-4" />
                       <span>{gt.exploreBtn}</span>
                     </a>
                     <a
                       href="#landmarks-gallery"
-                      className="px-5 py-2.5 rounded-xl bg-white/15 hover:bg-white/25 backdrop-blur-md text-white font-semibold text-sm border border-white/25 flex items-center gap-2 transition-all duration-300"
+                      className="px-5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-md text-[#faf7f2] font-semibold text-sm border border-gold-400/35 flex items-center gap-2 transition-all duration-300"
                     >
                       <Camera className="w-4 h-4 text-gold-400" />
                       <span>{gt.galleryBtn}</span>
@@ -649,24 +649,24 @@ export default function SilkWayTravelPage() {
                 </div>
 
                 {/* Карточка текущей достопримечательности на слайде */}
-                <div className="bg-slate-900/75 backdrop-blur-md border border-white/20 rounded-2xl p-4 w-full sm:w-80 shrink-0 transition-all duration-500">
+                <div className="bg-[#060c17]/80 backdrop-blur-md border border-gold-400/35 rounded-2xl p-4 w-full sm:w-80 shrink-0 transition-all duration-500 shadow-xl">
                   <div className="flex items-center justify-between text-xs text-gold-400 font-semibold mb-1">
                     <span className="flex items-center gap-1">
                       <MapPin className="w-3.5 h-3.5" />
                       {currentHeroLandmark.city[lang]}
                     </span>
-                    <span className="flex items-center gap-1 text-amber-300">
-                      <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    <span className="flex items-center gap-1 text-gold-300">
+                      <Star className="w-3.5 h-3.5 fill-gold-400 text-gold-400" />
                       {currentHeroLandmark.rating}
                     </span>
                   </div>
-                  <div className="text-base font-bold text-white">
+                  <div className="text-base font-bold text-[#faf7f2]">
                     {currentHeroLandmark.title[lang]}
                   </div>
-                  <p className="text-xs text-slate-300 mt-1 line-clamp-2">
+                  <p className="text-xs text-[#e4d5b7] mt-1 line-clamp-2">
                     {currentHeroLandmark.subtitle[lang]}
                   </p>
-                  <div className="mt-3 pt-2.5 border-t border-white/15 flex items-center justify-between">
+                  <div className="mt-3 pt-2.5 border-t border-gold-400/20 flex items-center justify-between">
                     <div className="flex gap-1.5">
                       {UZBEKISTAN_LANDMARKS.map((slide, i) => (
                         <button
@@ -683,7 +683,7 @@ export default function SilkWayTravelPage() {
                     <button
                       type="button"
                       onClick={() => handleSelectLandmarkRoute(currentHeroLandmark)}
-                      className="text-xs font-semibold text-silk-300 hover:text-white flex items-center gap-1 transition"
+                      className="text-xs font-semibold text-gold-300 hover:text-gold-200 flex items-center gap-1 transition"
                     >
                       <span>{gt.selectRouteBtn}</span>
                       <ChevronRight className="w-3.5 h-3.5" />
@@ -697,24 +697,24 @@ export default function SilkWayTravelPage() {
             <section id="landmarks-gallery" className="space-y-6 no-print animate-fade-in-up delay-75">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
                 <div>
-                  <span className="text-xs font-bold uppercase tracking-wider text-silk-700 bg-silk-100/80 px-3 py-1 rounded-full border border-silk-200">
+                  <span className="text-xs font-bold uppercase tracking-wider text-[#0b132b] bg-[#f3ece0] px-3 py-1 rounded-full border border-gold-400/50">
                     {gt.gallerySectionTag}
                   </span>
-                  <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">
+                  <h2 className="text-2xl sm:text-3xl font-extrabold text-[#0b132b] mt-2">
                     {gt.galleryTitle}
                   </h2>
                   <p className="text-sm text-slate-600 mt-1 max-w-2xl">{gt.galleryDesc}</p>
                 </div>
 
                 {/* Фильтр по городам */}
-                <div className="flex flex-wrap gap-1.5 bg-white p-1.5 rounded-2xl border border-slate-200 shadow-xs">
+                <div className="flex flex-wrap gap-1.5 bg-[#fcfbf8] p-1.5 rounded-2xl border border-[#e5d7c1] shadow-xs">
                   <button
                     type="button"
                     onClick={() => setCityFilter('all')}
-                    className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-300 ${
+                    className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 ${
                       cityFilter === 'all'
-                        ? 'bg-silk-600 text-white shadow-xs'
-                        : 'text-slate-600 hover:bg-slate-100'
+                        ? 'luxury-gold-btn shadow-xs'
+                        : 'text-slate-700 hover:bg-[#f3ece0]/70'
                     }`}
                   >
                     {gt.filterAll}
@@ -724,10 +724,10 @@ export default function SilkWayTravelPage() {
                       key={city}
                       type="button"
                       onClick={() => setCityFilter(city)}
-                      className={`px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-300 ${
+                      className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 ${
                         cityFilter === city
-                          ? 'bg-silk-600 text-white shadow-xs'
-                          : 'text-slate-600 hover:bg-slate-100'
+                          ? 'luxury-gold-btn shadow-xs'
+                          : 'text-slate-700 hover:bg-[#f3ece0]/70'
                       }`}
                     >
                       {city}
@@ -741,13 +741,13 @@ export default function SilkWayTravelPage() {
                 {filteredLandmarks.map((landmark) => (
                   <div
                     key={landmark.id}
-                    className="group bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-sm card-smooth flex flex-col justify-between"
+                    className="group bg-[#fcfbf8] rounded-2xl border border-[#e5d7c1] overflow-hidden shadow-sm card-smooth flex flex-col justify-between"
                   >
                     <div>
                       {/* Фото-блок с плавным зумом при наведении */}
                       <div
                         onClick={() => setActiveModalLandmark(landmark)}
-                        className="relative h-52 overflow-hidden cursor-pointer bg-slate-900"
+                        className="relative h-52 overflow-hidden cursor-pointer bg-[#0b132b]"
                       >
                         <img
                           src={resolveAssetUrl(landmark.image)}
@@ -755,17 +755,17 @@ export default function SilkWayTravelPage() {
                           alt={landmark.title[lang]}
                           className="w-full h-full object-cover img-zoom"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/15 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#060c17]/85 via-[#060c17]/20 to-transparent" />
 
                         {/* Верхние бейджи */}
                         <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-2">
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-slate-900/75 text-white backdrop-blur-md border border-white/15">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold bg-[#060c17]/80 text-gold-300 backdrop-blur-md border border-gold-400/35">
                             <MapPin className="w-3 h-3 text-gold-400" />
                             {landmark.city[lang]}
                           </span>
                           {landmark.unesco && (
-                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-silk-600/90 text-white backdrop-blur-md shadow-xs">
-                              <Award className="w-3 h-3 text-gold-400" />
+                            <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-gold-500/95 text-[#0b132b] backdrop-blur-md shadow-xs">
+                              <Award className="w-3 h-3 text-[#0b132b]" />
                               {gt.unescoBadge}
                             </span>
                           )}
@@ -774,12 +774,12 @@ export default function SilkWayTravelPage() {
                         {/* Нижняя подпись на фото */}
                         <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between text-white">
                           <div>
-                            <h3 className="text-lg font-bold leading-snug group-hover:text-gold-400 transition-colors">
+                            <h3 className="text-lg font-bold leading-snug group-hover:text-gold-300 transition-colors">
                               {landmark.title[lang]}
                             </h3>
                           </div>
-                          <div className="flex items-center gap-1 bg-amber-400/20 border border-amber-300/40 backdrop-blur-md px-2 py-0.5 rounded-lg text-xs font-bold text-amber-300 shrink-0">
-                            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                          <div className="flex items-center gap-1 bg-gold-500/20 border border-gold-400/45 backdrop-blur-md px-2 py-0.5 rounded-lg text-xs font-bold text-gold-300 shrink-0">
+                            <Star className="w-3.5 h-3.5 fill-gold-400 text-gold-400" />
                             <span>{landmark.rating}</span>
                           </div>
                         </div>
@@ -793,16 +793,16 @@ export default function SilkWayTravelPage() {
 
                         <div className="space-y-1.5 pt-1 text-xs text-slate-600">
                           <div className="flex items-start gap-2">
-                            <Clock className="w-3.5 h-3.5 text-silk-600 shrink-0 mt-0.5" />
+                            <Clock className="w-3.5 h-3.5 text-gold-600 shrink-0 mt-0.5" />
                             <span>
-                              <strong className="text-slate-800">{gt.bestTimeLabel}</strong>{' '}
+                              <strong className="text-[#0b132b]">{gt.bestTimeLabel}</strong>{' '}
                               {landmark.bestTime[lang]}
                             </span>
                           </div>
                           <div className="flex items-start gap-2">
-                            <Camera className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />
+                            <Camera className="w-3.5 h-3.5 text-gold-600 shrink-0 mt-0.5" />
                             <span>
-                              <strong className="text-slate-800">{gt.highlightLabel}</strong>{' '}
+                              <strong className="text-[#0b132b]">{gt.highlightLabel}</strong>{' '}
                               {landmark.highlight[lang]}
                             </span>
                           </div>
@@ -811,10 +811,10 @@ export default function SilkWayTravelPage() {
                     </div>
 
                     {/* Футер карточки с ценой в UZS и кнопкой выбора */}
-                    <div className="px-5 py-3.5 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between gap-2">
+                    <div className="px-5 py-3.5 bg-[#f5efe4]/80 border-t border-[#e5d7c1] flex items-center justify-between gap-2">
                       <div>
                         <span className="text-[11px] text-slate-500 block">{gt.fromPrice}</span>
-                        <span className="text-sm font-extrabold text-silk-800">
+                        <span className="text-sm font-extrabold text-[#0b132b]">
                           {formatUzs(landmark.priceFromUzs, lang)}
                         </span>
                       </div>
@@ -823,16 +823,16 @@ export default function SilkWayTravelPage() {
                         <button
                           type="button"
                           onClick={() => setActiveModalLandmark(landmark)}
-                          className="px-3 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-100 text-xs font-semibold text-slate-700 transition"
+                          className="px-3 py-2 rounded-xl border border-[#dccbb1] bg-white hover:bg-[#f3ece0] text-xs font-semibold text-[#0b132b] transition"
                         >
                           {gt.viewPhotoBtn}
                         </button>
                         <button
                           type="button"
                           onClick={() => handleSelectLandmarkRoute(landmark)}
-                          className="px-3.5 py-2 rounded-xl bg-silk-600 hover:bg-silk-700 text-white text-xs font-semibold shadow-xs flex items-center gap-1.5 transition-all duration-300 hover:scale-[1.03]"
+                          className="px-3.5 py-2 rounded-xl bg-[#0b132b] hover:bg-[#132042] text-gold-300 border border-gold-400/35 text-xs font-semibold shadow-xs flex items-center gap-1.5 transition-all duration-300 hover:scale-[1.03]"
                         >
-                          <Sparkles className="w-3.5 h-3.5" />
+                          <Sparkles className="w-3.5 h-3.5 text-gold-400" />
                           <span>{gt.selectRouteBtn}</span>
                         </button>
                       </div>
@@ -849,28 +849,28 @@ export default function SilkWayTravelPage() {
             >
               {/* Левая колонка: форма конструктора маршрута */}
               <div className="lg:col-span-5 space-y-6 no-print">
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 card-smooth">
+                <div className="bg-[#fcfbf8] rounded-2xl shadow-sm border border-[#e5d7c1] p-6 card-smooth">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
-                      <Sparkles className="w-5 h-5 text-silk-600" />
-                      <h2 className="text-lg font-bold text-slate-900">{t.formTitle}</h2>
+                      <Sparkles className="w-5 h-5 text-gold-600" />
+                      <h2 className="text-lg font-bold text-[#0b132b]">{t.formTitle}</h2>
                     </div>
                   </div>
 
                   <form onSubmit={handleGenerateItinerary} className="space-y-4">
                     {/* Направление */}
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
                         {t.destinationLabel}
                       </label>
                       <div className="relative">
-                        <MapPin className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
+                        <MapPin className="w-4 h-4 text-gold-600 absolute left-3.5 top-3" />
                         <input
                           type="text"
                           value={destination}
                           onChange={(e) => setDestination(e.target.value)}
                           placeholder={t.destinationPlaceholder}
-                          className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-silk-500 focus:border-silk-500 transition"
+                          className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white border border-[#dccbb1] text-sm text-[#0b132b] focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-gold-500 transition"
                           required
                         />
                       </div>
@@ -882,8 +882,8 @@ export default function SilkWayTravelPage() {
                             onClick={() => setDestination(preset)}
                             className={`text-xs px-2.5 py-1 rounded-lg border transition-all duration-200 ${
                               destination === preset
-                                ? 'bg-silk-50 border-silk-500 text-silk-800 font-medium scale-[1.02]'
-                                : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
+                                ? 'bg-[#0b132b] border-gold-400 text-gold-300 font-semibold scale-[1.02]'
+                                : 'bg-white border-[#e5d7c1] text-slate-700 hover:bg-[#f3ece0]/70'
                             }`}
                           >
                             {preset}
@@ -895,41 +895,41 @@ export default function SilkWayTravelPage() {
                     {/* Длительность и количество путешественников */}
                     <div className="grid grid-cols-3 gap-3">
                       <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
+                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1">
                           {t.daysLabel}
                         </label>
                         <div className="relative">
-                          <Calendar className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                          <Calendar className="w-4 h-4 text-gold-600 absolute left-3 top-2.5" />
                           <input
                             type="number"
                             min={1}
                             max={10}
                             value={durationDays}
                             onChange={(e) => setDurationDays(Number(e.target.value))}
-                            className="w-full pl-9 pr-2 py-2 rounded-xl border border-slate-300 text-sm font-semibold"
+                            className="w-full pl-9 pr-2 py-2 rounded-xl bg-white border border-[#dccbb1] text-sm font-semibold text-[#0b132b]"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
+                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1">
                           {t.adultsLabel}
                         </label>
                         <div className="relative">
-                          <Users className="w-4 h-4 text-slate-400 absolute left-3 top-2.5" />
+                          <Users className="w-4 h-4 text-gold-600 absolute left-3 top-2.5" />
                           <input
                             type="number"
                             min={1}
                             max={20}
                             value={adults}
                             onChange={(e) => setAdults(Math.max(1, Number(e.target.value)))}
-                            className="w-full pl-9 pr-2 py-2 rounded-xl border border-slate-300 text-sm font-semibold"
+                            className="w-full pl-9 pr-2 py-2 rounded-xl bg-white border border-[#dccbb1] text-sm font-semibold text-[#0b132b]"
                           />
                         </div>
                       </div>
 
                       <div>
-                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1">
+                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1">
                           {t.childrenLabel}
                         </label>
                         <input
@@ -938,19 +938,19 @@ export default function SilkWayTravelPage() {
                           max={10}
                           value={children}
                           onChange={(e) => setChildren(Math.max(0, Number(e.target.value)))}
-                          className="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm font-semibold"
+                          className="w-full px-3 py-2 rounded-xl bg-white border border-[#dccbb1] text-sm font-semibold text-[#0b132b]"
                         />
                       </div>
                     </div>
 
                     {/* Бюджет в сумах (UZS BIGINT) */}
-                    <div className="p-3.5 rounded-xl bg-silk-50/70 border border-silk-200">
+                    <div className="p-3.5 rounded-xl bg-[#f5efe4] border border-[#dfcfb6]">
                       <div className="flex items-center justify-between mb-1.5">
-                        <label className="text-xs font-semibold uppercase tracking-wider text-silk-900 flex items-center gap-1.5">
-                          <Wallet className="w-4 h-4 text-silk-600" />
+                        <label className="text-xs font-semibold uppercase tracking-wider text-[#0b132b] flex items-center gap-1.5">
+                          <Wallet className="w-4 h-4 text-gold-600" />
                           {t.budgetLabel}
                         </label>
-                        <span className="text-sm font-bold text-silk-800">
+                        <span className="text-sm font-extrabold text-[#0b132b]">
                           {formatUzs(budgetUzs, lang)}
                         </span>
                       </div>
@@ -961,9 +961,9 @@ export default function SilkWayTravelPage() {
                         step={250000}
                         value={budgetUzs}
                         onChange={(e) => setBudgetUzs(Number(e.target.value))}
-                        className="w-full accent-silk-600 cursor-pointer"
+                        className="w-full accent-[#b8860b] cursor-pointer"
                       />
-                      <div className="flex justify-between text-[11px] text-slate-500 mt-1">
+                      <div className="flex justify-between text-[11px] text-slate-600 mt-1">
                         <span>{formatUzs(1500000, lang)}</span>
                         <span>{formatUzs(8000000, lang)}</span>
                         <span>{formatUzs(30000000, lang)}</span>
@@ -972,7 +972,7 @@ export default function SilkWayTravelPage() {
 
                     {/* Интересы */}
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
                         {t.interestsLabel}
                       </label>
                       <div className="flex flex-wrap gap-1.5">
@@ -985,8 +985,8 @@ export default function SilkWayTravelPage() {
                               onClick={() => toggleInterest(interest)}
                               className={`text-xs px-3 py-1.5 rounded-full border transition-all duration-200 ${
                                 active
-                                  ? 'bg-silk-600 text-white border-silk-600 font-medium shadow-xs scale-[1.03]'
-                                  : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50'
+                                  ? 'bg-[#0b132b] text-gold-300 border-gold-400 font-semibold shadow-xs scale-[1.03]'
+                                  : 'bg-white text-slate-700 border-[#dccbb1] hover:bg-[#f3ece0]/70'
                               }`}
                             >
                               {active ? '✓ ' : '+ '}
@@ -999,17 +999,17 @@ export default function SilkWayTravelPage() {
 
                     {/* Особые пожелания */}
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1.5">
                         {t.specialRequestsLabel}
                       </label>
                       <div className="relative">
-                        <Train className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
+                        <Train className="w-4 h-4 text-gold-600 absolute left-3.5 top-3" />
                         <input
                           type="text"
                           value={specialRequests}
                           onChange={(e) => setSpecialRequests(e.target.value)}
                           placeholder={t.specialRequestsPlaceholder}
-                          className="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-silk-500"
+                          className="w-full pl-10 pr-4 py-2 rounded-xl bg-white border border-[#dccbb1] text-sm focus:outline-none focus:ring-2 focus:ring-gold-500"
                         />
                       </div>
                     </div>
@@ -1024,7 +1024,7 @@ export default function SilkWayTravelPage() {
                     <button
                       type="submit"
                       disabled={isGenerating}
-                      className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-silk-600 to-lapis-700 hover:from-silk-700 hover:to-lapis-800 text-white font-semibold text-sm shadow-md shadow-silk-600/20 flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.01] disabled:opacity-60"
+                      className="w-full py-3.5 px-4 rounded-xl luxury-gold-btn text-sm flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.01] disabled:opacity-60"
                     >
                       {isGenerating ? (
                         <>
@@ -1042,20 +1042,20 @@ export default function SilkWayTravelPage() {
                 </div>
 
                 {/* Блок оформления бронирования в UZS */}
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 card-smooth">
+                <div className="bg-[#fcfbf8] rounded-2xl shadow-sm border border-[#e5d7c1] p-6 card-smooth">
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                      <CreditCard className="w-5 h-5 text-silk-600" />
+                    <h3 className="text-base font-bold text-[#0b132b] flex items-center gap-2">
+                      <CreditCard className="w-5 h-5 text-gold-600" />
                       {t.bookingTitle}
                     </h3>
-                    <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                    <span className="text-xs font-semibold text-[#0b132b] bg-[#f3ece0] px-2.5 py-0.5 rounded-full border border-gold-400/50">
                       {t.accuracyBadge}
                     </span>
                   </div>
 
                   <form onSubmit={handleCreateBooking} className="space-y-3.5">
                     <div>
-                      <label className="block text-xs font-medium text-slate-600 mb-1">
+                      <label className="block text-xs font-medium text-slate-700 mb-1">
                         {t.travelerNameLabel}
                       </label>
                       <input
@@ -1063,13 +1063,13 @@ export default function SilkWayTravelPage() {
                         value={travelerName}
                         onChange={(e) => setTravelerName(e.target.value)}
                         required
-                        className="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm"
+                        className="w-full px-3.5 py-2 rounded-xl bg-white border border-[#dccbb1] text-sm"
                       />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-medium text-slate-600 mb-1">
+                        <label className="block text-xs font-medium text-slate-700 mb-1">
                           {t.travelerPhoneLabel}
                         </label>
                         <input
@@ -1077,25 +1077,25 @@ export default function SilkWayTravelPage() {
                           value={travelerPhone}
                           onChange={(e) => setTravelerPhone(e.target.value)}
                           required
-                          className="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm"
+                          className="w-full px-3.5 py-2 rounded-xl bg-white border border-[#dccbb1] text-sm"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-medium text-slate-600 mb-1">
+                        <label className="block text-xs font-medium text-slate-700 mb-1">
                           {t.travelerEmailLabel}
                         </label>
                         <input
                           type="email"
                           value={travelerEmail}
                           onChange={(e) => setTravelerEmail(e.target.value)}
-                          className="w-full px-3.5 py-2 rounded-xl border border-slate-300 text-sm"
+                          className="w-full px-3.5 py-2 rounded-xl bg-white border border-[#dccbb1] text-sm"
                         />
                       </div>
                     </div>
 
                     {/* Выбор платежного шлюза UZS */}
                     <div>
-                      <label className="block text-xs font-medium text-slate-600 mb-1.5">
+                      <label className="block text-xs font-medium text-slate-700 mb-1.5">
                         {t.paymentProviderLabel}
                       </label>
                       <div className="grid grid-cols-3 gap-2.5">
@@ -1112,20 +1112,20 @@ export default function SilkWayTravelPage() {
                             onClick={() => setSelectedProvider(gw.id)}
                             className={`p-2.5 rounded-xl border text-left transition-all duration-200 ${
                               selectedProvider === gw.id
-                                ? 'border-silk-600 bg-silk-50/80 ring-2 ring-silk-500/20 scale-[1.02]'
-                                : 'border-slate-200 hover:bg-slate-50'
+                                ? 'border-gold-500 bg-[#f5efe4] ring-2 ring-gold-500/25 scale-[1.02]'
+                                : 'bg-white border-[#e5d7c1] hover:bg-[#f5efe4]/60'
                             }`}
                           >
-                            <div className="text-sm font-bold text-slate-900">{gw.label}</div>
+                            <div className="text-sm font-bold text-[#0b132b]">{gw.label}</div>
                             <div className="text-[10px] text-slate-500">{gw.sub}</div>
                           </button>
                         ))}
                       </div>
                     </div>
 
-                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
-                      <span className="text-xs text-slate-600">{t.totalToPayLabel}</span>
-                      <span className="text-base font-extrabold text-slate-900">
+                    <div className="p-3 rounded-xl bg-[#f5efe4] border border-[#dfcfb6] flex items-center justify-between">
+                      <span className="text-xs text-slate-700 font-medium">{t.totalToPayLabel}</span>
+                      <span className="text-base font-extrabold text-[#0b132b]">
                         {formatUzs(currentPlan.estimated_total_cost_uzs, lang)}
                       </span>
                     </div>
@@ -1139,7 +1139,7 @@ export default function SilkWayTravelPage() {
                     <button
                       type="submit"
                       disabled={isBookingLoading}
-                      className="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.01]"
+                      className="w-full py-3 px-4 rounded-xl bg-[#0b132b] hover:bg-[#132042] text-gold-300 border border-gold-400/40 font-bold text-sm flex items-center justify-center gap-2 transition-all duration-300 hover:scale-[1.01] shadow-md"
                     >
                       <ShieldCheck className="w-4 h-4 text-gold-400" />
                       <span>
@@ -1151,9 +1151,9 @@ export default function SilkWayTravelPage() {
                   </form>
 
                   {/* Обязательная контактная плашка (Раздел 6) */}
-                  <div className="mt-4 pt-3 border-t border-slate-200 text-xs text-slate-600 flex items-center gap-2">
-                    <PhoneCall className="w-4 h-4 text-silk-600 shrink-0" />
-                    <span className="font-medium">{t.directorFixedNotice}</span>
+                  <div className="mt-4 pt-3 border-t border-[#e5d7c1] text-xs text-slate-700 flex items-center gap-2">
+                    <PhoneCall className="w-4 h-4 text-gold-600 shrink-0" />
+                    <span className="font-semibold">{t.directorFixedNotice}</span>
                   </div>
                 </div>
               </div>
@@ -1161,16 +1161,16 @@ export default function SilkWayTravelPage() {
               {/* Правая колонка: Сгенерированный маршрут с фото-шапками и Ваучер */}
               <div className="lg:col-span-7 space-y-6">
                 {confirmedBooking && (
-                  <div className="bg-gradient-to-br from-emerald-950 via-silk-900 to-slate-900 text-white rounded-2xl p-6 shadow-lg border border-silk-700 animate-fade-in-up">
-                    <div className="flex flex-wrap items-start justify-between gap-4 border-b border-white/15 pb-4">
+                  <div className="bg-gradient-to-br from-[#060c17] via-[#0b132b] to-[#0d2b36] text-white rounded-2xl p-6 shadow-xl border border-gold-400/40 animate-fade-in-up">
+                    <div className="flex flex-wrap items-start justify-between gap-4 border-b border-gold-400/20 pb-4">
                       <div>
-                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold mb-2 border border-emerald-400/30">
-                          <CheckCircle2 className="w-4 h-4" />
+                        <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gold-500/20 text-gold-300 text-xs font-semibold mb-2 border border-gold-400/40">
+                          <CheckCircle2 className="w-4 h-4 text-gold-400" />
                           {t.voucherPaidBadge} (
                           {confirmedBooking.transaction?.provider.toUpperCase()})
                         </div>
-                        <h3 className="text-xl font-bold">{t.voucherTitle}</h3>
-                        <p className="text-xs text-silk-200 mt-0.5">
+                        <h3 className="text-xl font-bold text-[#faf7f2]">{t.voucherTitle}</h3>
+                        <p className="text-xs text-[#e4d5b7] mt-0.5">
                           ID: <span className="font-mono">{confirmedBooking.id}</span> · Tx:{' '}
                           <span className="font-mono">
                             {confirmedBooking.transaction?.provider_tx_id}
@@ -1180,7 +1180,7 @@ export default function SilkWayTravelPage() {
                       <button
                         type="button"
                         onClick={() => window.print()}
-                        className="no-print inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-medium border border-white/15 transition"
+                        className="no-print inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-gold-300 text-xs font-semibold border border-gold-400/30 transition"
                       >
                         <Printer className="w-4 h-4" />
                         {t.printVoucherBtn}
@@ -1188,23 +1188,23 @@ export default function SilkWayTravelPage() {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4 text-sm">
-                      <div className="bg-white/5 rounded-xl p-3 border border-white/10">
-                        <div className="text-xs text-silk-200">{t.voucherTraveler}</div>
-                        <div className="font-semibold mt-0.5">
+                      <div className="bg-white/5 rounded-xl p-3 border border-gold-400/20">
+                        <div className="text-xs text-[#cbbba0]">{t.voucherTraveler}</div>
+                        <div className="font-semibold mt-0.5 text-[#faf7f2]">
                           {confirmedBooking.user_full_name}
                         </div>
-                        <div className="text-xs text-silk-300">{confirmedBooking.user_phone}</div>
+                        <div className="text-xs text-gold-300">{confirmedBooking.user_phone}</div>
                       </div>
-                      <div className="bg-white/5 rounded-xl p-3 border border-white/10">
-                        <div className="text-xs text-silk-200">{t.voucherRoute}</div>
-                        <div className="font-semibold mt-0.5">{currentPlan.trip_title}</div>
-                        <div className="text-xs text-silk-300">
+                      <div className="bg-white/5 rounded-xl p-3 border border-gold-400/20">
+                        <div className="text-xs text-[#cbbba0]">{t.voucherRoute}</div>
+                        <div className="font-semibold mt-0.5 text-[#faf7f2]">{currentPlan.trip_title}</div>
+                        <div className="text-xs text-gold-300">
                           {currentPlan.daily_itinerary.length} {t.daysUnit} · ID{' '}
                           {currentPlan.itinerary_id.slice(0, 8)}
                         </div>
                       </div>
-                      <div className="bg-white/5 rounded-xl p-3 border border-white/10">
-                        <div className="text-xs text-silk-200">{t.voucherPaidAmount}</div>
+                      <div className="bg-white/5 rounded-xl p-3 border border-gold-400/20">
+                        <div className="text-xs text-[#cbbba0]">{t.voucherPaidAmount}</div>
                         <div className="text-lg font-extrabold text-gold-400 mt-0.5">
                           {formatUzs(confirmedBooking.total_amount_uzs, lang)}
                         </div>
@@ -1215,14 +1215,14 @@ export default function SilkWayTravelPage() {
                     </div>
 
                     {/* Фиксированный обязательный контактный блок (Раздел 6) */}
-                    <div className="mt-4 p-3.5 rounded-xl bg-amber-400/15 border border-amber-300/40 flex items-center justify-between gap-3">
+                    <div className="mt-4 p-3.5 rounded-xl bg-gold-500/15 border border-gold-400/40 flex items-center justify-between gap-3">
                       <div className="flex items-center gap-2.5">
                         <PhoneCall className="w-5 h-5 text-gold-400 shrink-0" />
-                        <span className="text-sm font-semibold text-amber-100">
+                        <span className="text-sm font-semibold text-gold-200">
                           {t.directorFixedNotice}
                         </span>
                       </div>
-                      <span className="text-xs font-mono text-amber-200/90 hidden sm:inline">
+                      <span className="text-xs font-mono text-gold-300 hidden sm:inline">
                         VERIFIED VOUCHER
                       </span>
                     </div>
@@ -1230,9 +1230,9 @@ export default function SilkWayTravelPage() {
                 )}
 
                 {/* Основная карточка сгенерированного маршрута */}
-                <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                <div className="bg-[#fcfbf8] rounded-2xl shadow-sm border border-[#e5d7c1] overflow-hidden">
                   {/* Заголовок маршрута с фоновым фото */}
-                  <div className="relative bg-gradient-to-r from-silk-950 via-silk-900 to-lapis-900 text-white p-6 overflow-hidden">
+                  <div className="relative bg-gradient-to-r from-[#060c17] via-[#0b132b] to-[#0d2b36] text-white p-6 overflow-hidden border-b border-gold-500/30">
                     <img
                       src={resolveAssetUrl(
                         getLocationPhotoByText(currentPlan.trip_title, 1)
@@ -1249,31 +1249,31 @@ export default function SilkWayTravelPage() {
                     <div className="relative z-10">
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                         <div className="flex items-center gap-2">
-                          <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-white/15 backdrop-blur-xs">
+                          <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-white/10 text-[#f3ece0] border border-white/15 backdrop-blur-xs">
                             ID: {currentPlan.itinerary_id.slice(0, 8)}...
                           </span>
                           {itineraryResp.meta && (
-                            <span className="px-2.5 py-1 rounded-full text-xs font-mono bg-gold-500/20 text-gold-400 border border-gold-400/30">
+                            <span className="px-2.5 py-1 rounded-full text-xs font-mono bg-gold-500/20 text-gold-300 border border-gold-400/40">
                               {t.modelBadgePrefix} {itineraryResp.meta.model_used}
                             </span>
                           )}
                         </div>
-                        <span className="text-xs text-silk-200">
-                          {t.currencyBadgeLabel} <strong>{t.currencyBadgeValue}</strong>
+                        <span className="text-xs text-[#e4d5b7]">
+                          {t.currencyBadgeLabel} <strong className="text-gold-300">{t.currencyBadgeValue}</strong>
                         </span>
                       </div>
 
-                      <h2 className="text-2xl font-bold tracking-tight">
+                      <h2 className="text-2xl font-bold tracking-tight text-[#faf7f2]">
                         {currentPlan.trip_title}
                       </h2>
-                      <p className="text-sm text-silk-100 mt-2 leading-relaxed">
+                      <p className="text-sm text-[#e4d5b7] mt-2 leading-relaxed">
                         {currentPlan.summary}
                       </p>
 
                       {/* Индикатор стоимости и бюджета */}
-                      <div className="mt-5 pt-4 border-t border-white/15 grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
+                      <div className="mt-5 pt-4 border-t border-gold-400/20 grid grid-cols-1 sm:grid-cols-2 gap-4 items-center">
                         <div>
-                          <div className="text-xs uppercase tracking-wider text-silk-200">
+                          <div className="text-xs uppercase tracking-wider text-[#cbbba0]">
                             {t.estimatedTotalTitle}
                           </div>
                           <div className="text-2xl sm:text-3xl font-extrabold text-gold-400 mt-0.5">
@@ -1281,18 +1281,18 @@ export default function SilkWayTravelPage() {
                           </div>
                         </div>
 
-                        <div className="bg-white/10 backdrop-blur-xs rounded-xl p-3">
+                        <div className="bg-white/10 backdrop-blur-xs rounded-xl p-3 border border-gold-400/20">
                           <div className="flex justify-between text-xs mb-1">
-                            <span className="text-silk-100">{t.budgetUsageLabel}</span>
-                            <span className="font-bold text-white">{budgetUsagePercent}%</span>
+                            <span className="text-[#e4d5b7]">{t.budgetUsageLabel}</span>
+                            <span className="font-bold text-gold-300">{budgetUsagePercent}%</span>
                           </div>
                           <div className="w-full h-2 rounded-full bg-white/20 overflow-hidden">
                             <div
-                              className="h-full bg-gold-400 rounded-full transition-all duration-700"
+                              className="h-full bg-gradient-to-r from-gold-300 to-gold-500 rounded-full transition-all duration-700"
                               style={{ width: `${budgetUsagePercent}%` }}
                             />
                           </div>
-                          <div className="text-[11px] text-silk-200 mt-1">
+                          <div className="text-[11px] text-[#cbbba0] mt-1">
                             {t.yourLimitLabel} {formatUzs(budgetUzs, lang)}
                           </div>
                         </div>
@@ -1302,8 +1302,8 @@ export default function SilkWayTravelPage() {
 
                   {/* Список дней (daily_itinerary) с фотографиями городов */}
                   <div className="p-6 space-y-6">
-                    <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
-                      <Calendar className="w-5 h-5 text-silk-600" />
+                    <h3 className="text-base font-bold text-[#0b132b] flex items-center gap-2">
+                      <Calendar className="w-5 h-5 text-gold-600" />
                       {t.dailyPlanHeading} ({currentPlan.daily_itinerary.length} {t.daysUnit})
                     </h3>
 
@@ -1319,32 +1319,32 @@ export default function SilkWayTravelPage() {
                         return (
                           <div
                             key={day.day_number}
-                            className="group rounded-2xl border border-slate-200 bg-slate-50/60 overflow-hidden card-smooth"
+                            className="group rounded-2xl border border-[#e5d7c1] bg-[#f7f3eb] overflow-hidden card-smooth"
                           >
                             {/* Панорамный фото-баннер дня */}
-                            <div className="relative h-36 sm:h-44 overflow-hidden bg-slate-900">
+                            <div className="relative h-36 sm:h-44 overflow-hidden bg-[#0b132b]">
                               <img
                                 src={resolveAssetUrl(dayPhoto)}
                                 onError={(e) => handleLandmarkImgError(e, dayPhoto)}
                                 alt={day.location}
                                 className="w-full h-full object-cover img-zoom"
                               />
-                              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
+                              <div className="absolute inset-0 bg-gradient-to-t from-[#060c17]/95 via-[#060c17]/40 to-transparent" />
 
                               <div className="absolute bottom-3.5 left-4 right-4 flex flex-wrap items-end justify-between gap-2 text-white">
                                 <div className="flex items-center gap-3">
-                                  <span className="w-10 h-10 rounded-xl bg-silk-600/95 backdrop-blur-md text-white font-extrabold text-base flex items-center justify-center shadow-md border border-white/20">
+                                  <span className="w-10 h-10 rounded-xl luxury-gold-btn font-extrabold text-base flex items-center justify-center shadow-md">
                                     {day.day_number}
                                   </span>
                                   <div>
-                                    <div className="text-base sm:text-lg font-bold tracking-tight">
+                                    <div className="text-base sm:text-lg font-bold tracking-tight text-[#faf7f2]">
                                       {t.dayWord} {day.day_number}: {day.location}
                                     </div>
-                                    <div className="text-xs text-silk-200">{t.daySubtext}</div>
+                                    <div className="text-xs text-[#e4d5b7]">{t.daySubtext}</div>
                                   </div>
                                 </div>
-                                <div className="bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/15 text-right">
-                                  <span className="text-[10px] text-silk-200 block">
+                                <div className="bg-[#060c17]/85 backdrop-blur-md px-3 py-1.5 rounded-xl border border-gold-400/35 text-right">
+                                  <span className="text-[10px] text-[#cbbba0] block">
                                     {t.dayTotalLabel}
                                   </span>
                                   <span className="text-sm font-extrabold text-gold-400">
@@ -1356,14 +1356,14 @@ export default function SilkWayTravelPage() {
 
                             <div className="p-4 grid grid-cols-1 md:grid-cols-2 gap-3.5">
                               {/* Утро */}
-                              <div className="bg-white p-3.5 rounded-xl border border-slate-200/80 flex flex-col justify-between hover:border-amber-300 transition">
+                              <div className="bg-white p-3.5 rounded-xl border border-[#e5d7c1] flex flex-col justify-between hover:border-gold-500 transition">
                                 <div>
-                                  <div className="flex items-center justify-between text-xs font-semibold text-amber-700 mb-1.5">
+                                  <div className="flex items-center justify-between text-xs font-semibold text-amber-800 mb-1.5">
                                     <span className="flex items-center gap-1.5">
-                                      <Sun className="w-4 h-4 text-amber-500" />
+                                      <Sun className="w-4 h-4 text-gold-600" />
                                       {t.morningLabel}
                                     </span>
-                                    <span className="font-bold text-slate-900">
+                                    <span className="font-bold text-[#0b132b]">
                                       {formatUzs(day.morning.cost_uzs, lang)}
                                     </span>
                                   </div>
@@ -1374,14 +1374,14 @@ export default function SilkWayTravelPage() {
                               </div>
 
                               {/* День */}
-                              <div className="bg-white p-3.5 rounded-xl border border-slate-200/80 flex flex-col justify-between hover:border-orange-300 transition">
+                              <div className="bg-white p-3.5 rounded-xl border border-[#e5d7c1] flex flex-col justify-between hover:border-gold-500 transition">
                                 <div>
-                                  <div className="flex items-center justify-between text-xs font-semibold text-orange-700 mb-1.5">
+                                  <div className="flex items-center justify-between text-xs font-semibold text-orange-800 mb-1.5">
                                     <span className="flex items-center gap-1.5">
-                                      <Sunset className="w-4 h-4 text-orange-500" />
+                                      <Sunset className="w-4 h-4 text-orange-600" />
                                       {t.afternoonLabel}
                                     </span>
-                                    <span className="font-bold text-slate-900">
+                                    <span className="font-bold text-[#0b132b]">
                                       {formatUzs(day.afternoon.cost_uzs, lang)}
                                     </span>
                                   </div>
@@ -1392,14 +1392,14 @@ export default function SilkWayTravelPage() {
                               </div>
 
                               {/* Вечер */}
-                              <div className="bg-white p-3.5 rounded-xl border border-slate-200/80 flex flex-col justify-between hover:border-indigo-300 transition">
+                              <div className="bg-white p-3.5 rounded-xl border border-[#e5d7c1] flex flex-col justify-between hover:border-gold-500 transition">
                                 <div>
-                                  <div className="flex items-center justify-between text-xs font-semibold text-indigo-700 mb-1.5">
+                                  <div className="flex items-center justify-between text-xs font-semibold text-[#0b132b] mb-1.5">
                                     <span className="flex items-center gap-1.5">
-                                      <Moon className="w-4 h-4 text-indigo-500" />
+                                      <Moon className="w-4 h-4 text-lapis-700" />
                                       {t.eveningLabel}
                                     </span>
-                                    <span className="font-bold text-slate-900">
+                                    <span className="font-bold text-[#0b132b]">
                                       {formatUzs(day.evening.cost_uzs, lang)}
                                     </span>
                                   </div>
@@ -1410,18 +1410,18 @@ export default function SilkWayTravelPage() {
                               </div>
 
                               {/* Проживание */}
-                              <div className="bg-silk-50/70 p-3.5 rounded-xl border border-silk-200 flex flex-col justify-between hover:border-silk-400 transition">
+                              <div className="bg-[#f3ece0]/80 p-3.5 rounded-xl border border-[#dccbb1] flex flex-col justify-between hover:border-gold-500 transition">
                                 <div>
-                                  <div className="flex items-center justify-between text-xs font-semibold text-silk-900 mb-1.5">
+                                  <div className="flex items-center justify-between text-xs font-semibold text-[#0b132b] mb-1.5">
                                     <span className="flex items-center gap-1.5">
-                                      <Hotel className="w-4 h-4 text-silk-600" />
+                                      <Hotel className="w-4 h-4 text-gold-600" />
                                       {t.hotelLabel}
                                     </span>
-                                    <span className="font-bold text-silk-900">
+                                    <span className="font-bold text-[#0b132b]">
                                       {formatUzs(day.accommodation.cost_uzs, lang)}
                                     </span>
                                   </div>
-                                  <p className="text-xs sm:text-sm font-medium text-slate-800">
+                                  <p className="text-xs sm:text-sm font-semibold text-[#0b132b]">
                                     {day.accommodation.name}
                                   </p>
                                 </div>
@@ -1433,15 +1433,15 @@ export default function SilkWayTravelPage() {
                     </div>
 
                     {/* Полезные советы (local_tips) */}
-                    <div className="rounded-2xl bg-amber-50/70 border border-amber-200 p-5">
-                      <h4 className="text-sm font-bold text-amber-950 flex items-center gap-2 mb-3">
-                        <Info className="w-4 h-4 text-amber-600" />
+                    <div className="rounded-2xl bg-[#f5efe4] border border-[#dfcfb6] p-5">
+                      <h4 className="text-sm font-bold text-[#0b132b] flex items-center gap-2 mb-3">
+                        <Info className="w-4 h-4 text-gold-600" />
                         {t.localTipsTitle}
                       </h4>
-                      <ul className="space-y-2 text-xs sm:text-sm text-amber-900">
+                      <ul className="space-y-2 text-xs sm:text-sm text-slate-800">
                         {currentPlan.local_tips.map((tip, idx) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <span className="text-amber-600 font-bold">•</span>
+                            <span className="text-gold-600 font-bold">✦</span>
                             <span>{tip}</span>
                           </li>
                         ))}
@@ -1449,12 +1449,12 @@ export default function SilkWayTravelPage() {
                     </div>
 
                     {/* Обязательная контактная плашка внизу карточки маршрута (Раздел 6) */}
-                    <div className="rounded-xl bg-slate-900 text-white p-4 flex flex-wrap items-center justify-between gap-3">
+                    <div className="rounded-xl bg-[#0b132b] text-[#faf7f2] border border-gold-400/35 p-4 flex flex-wrap items-center justify-between gap-3">
                       <div className="flex items-center gap-2.5">
                         <PhoneCall className="w-5 h-5 text-gold-400 shrink-0" />
-                        <span className="text-sm font-medium">{t.directorFixedNotice}</span>
+                        <span className="text-sm font-semibold text-gold-200">{t.directorFixedNotice}</span>
                       </div>
-                      <span className="text-xs text-slate-400">SilkWay Official Support</span>
+                      <span className="text-xs text-gold-400/80 font-mono">SilkWay VIP Concierge</span>
                     </div>
                   </div>
                 </div>
@@ -1467,25 +1467,25 @@ export default function SilkWayTravelPage() {
       {/* Модальное окно полноэкранного просмотра достопримечательности */}
       {activeModalLandmark && (
         <div
-          className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 no-print animate-fade-in-up"
+          className="fixed inset-0 z-50 bg-[#060c17]/85 backdrop-blur-md flex items-center justify-center p-4 no-print animate-fade-in-up"
           onClick={() => setActiveModalLandmark(null)}
         >
           <div
-            className="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-200"
+            className="bg-[#fcfbf8] rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-gold-400/40"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative h-72 sm:h-80 bg-slate-900">
+            <div className="relative h-72 sm:h-80 bg-[#0b132b]">
               <img
                 src={resolveAssetUrl(activeModalLandmark.image)}
                 onError={(e) => handleLandmarkImgError(e, activeModalLandmark.image)}
                 alt={activeModalLandmark.title[lang]}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/25 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#060c17]/95 via-[#060c17]/25 to-transparent" />
               <button
                 type="button"
                 onClick={() => setActiveModalLandmark(null)}
-                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-900/70 hover:bg-slate-900 text-white flex items-center justify-center transition"
+                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-[#060c17]/80 hover:bg-[#060c17] text-gold-300 border border-gold-400/35 flex items-center justify-center transition"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -1494,13 +1494,13 @@ export default function SilkWayTravelPage() {
                   <MapPin className="w-4 h-4" />
                   <span>{activeModalLandmark.city[lang]}</span>
                   <span>·</span>
-                  <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  <Star className="w-4 h-4 fill-gold-400 text-gold-400" />
                   <span>
                     {activeModalLandmark.rating} ({activeModalLandmark.reviewsCount}{' '}
                     {gt.reviewsLabel})
                   </span>
                 </div>
-                <h3 className="text-2xl font-extrabold">{activeModalLandmark.title[lang]}</h3>
+                <h3 className="text-2xl font-extrabold text-[#faf7f2]">{activeModalLandmark.title[lang]}</h3>
               </div>
             </div>
 
@@ -1509,16 +1509,16 @@ export default function SilkWayTravelPage() {
                 {activeModalLandmark.subtitle[lang]}
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-[#f5efe4] p-4 rounded-2xl border border-[#dfcfb6] text-xs">
                 <div>
-                  <span className="text-slate-500 block">{gt.bestTimeLabel}</span>
-                  <span className="font-bold text-slate-900 mt-0.5 block">
+                  <span className="text-slate-600 block">{gt.bestTimeLabel}</span>
+                  <span className="font-bold text-[#0b132b] mt-0.5 block">
                     {activeModalLandmark.bestTime[lang]}
                   </span>
                 </div>
                 <div>
-                  <span className="text-slate-500 block">{gt.highlightLabel}</span>
-                  <span className="font-bold text-slate-900 mt-0.5 block">
+                  <span className="text-slate-600 block">{gt.highlightLabel}</span>
+                  <span className="font-bold text-[#0b132b] mt-0.5 block">
                     {activeModalLandmark.highlight[lang]}
                   </span>
                 </div>
@@ -1527,7 +1527,7 @@ export default function SilkWayTravelPage() {
               <div className="flex flex-wrap items-center justify-between gap-4 pt-2">
                 <div>
                   <span className="text-xs text-slate-500 block">{gt.fromPrice}</span>
-                  <span className="text-xl font-extrabold text-silk-800">
+                  <span className="text-xl font-extrabold text-[#0b132b]">
                     {formatUzs(activeModalLandmark.priceFromUzs, lang)}
                   </span>
                 </div>
@@ -1535,7 +1535,7 @@ export default function SilkWayTravelPage() {
                 <button
                   type="button"
                   onClick={() => handleSelectLandmarkRoute(activeModalLandmark)}
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-silk-600 to-lapis-700 hover:from-silk-700 hover:to-lapis-800 text-white font-bold text-sm shadow-md flex items-center gap-2 transition"
+                  className="px-6 py-3 rounded-xl luxury-gold-btn font-bold text-sm shadow-md flex items-center gap-2 transition"
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>{gt.selectRouteBtn}</span>
@@ -1547,15 +1547,15 @@ export default function SilkWayTravelPage() {
       )}
 
       {/* Подвал с обязательным контактным блоком */}
-      <footer className="bg-white border-t border-slate-200 py-5 px-4 sm:px-6 mt-12 no-print">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 text-xs text-slate-600">
+      <footer className="bg-[#060c17] border-t border-gold-500/30 py-6 px-4 sm:px-6 mt-12 no-print text-[#e4d5b7]">
+        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 text-xs">
           <div className="flex items-center gap-2">
-            <span className="font-bold text-slate-900">SilkWay Travel AI</span>
+            <span className="font-bold text-gold-400">SilkWay Travel AI</span>
             <span>·</span>
             <span>{t.footerCurrencyNote}</span>
           </div>
-          <div className="font-semibold text-slate-900 flex items-center gap-2">
-            <ArrowRight className="w-3.5 h-3.5 text-silk-600" />
+          <div className="font-semibold text-[#faf7f2] flex items-center gap-2">
+            <ArrowRight className="w-3.5 h-3.5 text-gold-400" />
             <span>{t.directorFixedNotice}</span>
           </div>
         </div>

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 15, 23, 42;
-  --background-rgb: 248, 250, 252;
+  --foreground-rgb: 15, 20, 34;
+  --background-rgb: 250, 247, 242;
 }
 
 html {
@@ -13,15 +13,33 @@ html {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
+  background-color: #faf7f2;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 .silk-pattern {
-  background-image: radial-gradient(rgba(44, 158, 147, 0.14) 1px, transparent 1px),
-    radial-gradient(rgba(234, 179, 8, 0.1) 1px, transparent 1px);
-  background-size: 28px 28px;
-  background-position: 0 0, 14px 14px;
+  background-color: #faf7f2;
+  background-image:
+    radial-gradient(rgba(212, 175, 55, 0.16) 1px, transparent 1px),
+    radial-gradient(rgba(17, 81, 94, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+}
+
+.luxury-gold-btn {
+  background: linear-gradient(135deg, #d4af37 0%, #b88c21 50%, #997015 100%);
+  color: #09111e;
+  box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.luxury-gold-btn:hover {
+  background: linear-gradient(135deg, #e0bd47 0%, #c69a2a 50%, #a87c18 100%);
+  box-shadow: 0 14px 30px -5px rgba(212, 175, 55, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.luxury-dark-card {
+  background: linear-gradient(145deg, #0b132b 0%, #0d2233 55%, #07111e 100%);
+  border: 1px solid rgba(212, 175, 55, 0.28);
 }
 
 @keyframes fadeInUp {
@@ -32,15 +50,6 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(44, 158, 147, 0.35);
-  }
-  50% {
-    box-shadow: 0 0 24px 6px rgba(44, 158, 147, 0.18);
   }
 }
 
@@ -62,19 +71,20 @@ body {
 }
 
 .card-smooth {
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-    border-color 0.3s ease;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s ease;
 }
 
 .card-smooth:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.12),
-    0 8px 16px -6px rgba(44, 158, 147, 0.12);
+  transform: translateY(-6px);
+  border-color: rgba(212, 175, 55, 0.55);
+  box-shadow: 0 22px 42px -12px rgba(11, 19, 43, 0.16),
+    0 8px 20px -6px rgba(212, 175, 55, 0.18);
 }
 
 .img-zoom {
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .group:hover .img-zoom {
