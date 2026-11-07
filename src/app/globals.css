@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 248, 250, 252;
-  --background-rgb: 8, 11, 18;
+  --foreground-rgb: 240, 249, 255;
+  --background-rgb: 7, 19, 48;
 }
 
 html {
@@ -13,39 +13,38 @@ html {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background-color: #080b12;
+  background-color: #071330;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 .silk-pattern {
-  background-color: #080b12;
-  background-image:
-    radial-gradient(circle at 15% 15%, rgba(245, 158, 11, 0.08) 0%, transparent 45%),
-    radial-gradient(circle at 85% 25%, rgba(14, 165, 233, 0.08) 0%, transparent 45%),
-    radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 32px 32px;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(14, 165, 233, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 88% 22%, rgba(245, 158, 11, 0.11) 0%, transparent 42%),
+    radial-gradient(circle at 50% 85%, rgba(30, 64, 175, 0.22) 0%, transparent 55%),
+    linear-gradient(180deg, #061029 0%, #091a42 50%, #06112b 100%);
 }
 
 .gold-shimmer-text {
-  background: linear-gradient(90deg, #fde047 0%, #fb923c 50%, #38bdf8 100%);
+  background: linear-gradient(90deg, #fde047 0%, #38bdf8 52%, #fbbf24 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .luxury-gold-btn {
-  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 55%, #e11d48 100%);
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 55%, #0284c7 100%);
   color: #ffffff;
-  box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
 .luxury-gold-btn:hover {
-  background: linear-gradient(135deg, #fbbf24 0%, #f97316 55%, #f43f5e 100%);
-  box-shadow: 0 14px 30px -5px rgba(245, 158, 11, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  background: linear-gradient(135deg, #fbbf24 0%, #ea580c 55%, #0ea5e9 100%);
+  box-shadow: 0 14px 30px -5px rgba(56, 189, 248, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.45);
 }
 
 .luxury-dark-card {
-  background: linear-gradient(145deg, #121723 0%, #161d2d 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(145deg, #0d1f49 0%, #102759 100%);
+  border: 1px solid rgba(56, 189, 248, 0.22);
 }
 
 @keyframes fadeInUp {
@@ -81,10 +80,10 @@ body {
 }
 
 .card-smooth:hover {
-  border-color: rgba(251, 191, 36, 0.65);
-  box-shadow: 0 20px 42px -10px rgba(0, 0, 0, 0.7),
+  border-color: rgba(56, 189, 248, 0.65);
+  box-shadow: 0 20px 42px -10px rgba(3, 9, 26, 0.75),
     0 0 0 1px rgba(251, 191, 36, 0.35),
-    0 8px 25px -6px rgba(245, 158, 11, 0.25);
+    0 8px 25px -6px rgba(14, 165, 233, 0.28);
 }
 
 .img-zoom {
