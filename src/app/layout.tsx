@@ -1,10 +1,25 @@
 import type { Metadata } from 'next';
+import { Cormorant_Garamond, Manrope } from 'next/font/google';
 import './globals.css';
 
+const cormorant = Cormorant_Garamond({
+  subsets: ['cyrillic', 'latin'],
+  weight: ['500', '600', '700'],
+  variable: '--font-cormorant',
+  display: 'swap',
+});
+
+const manrope = Manrope({
+  subsets: ['cyrillic', 'latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-manrope',
+  display: 'swap',
+});
+
 export const metadata: Metadata = {
-  title: 'SilkWay Travel AI — Интеллектуальный планировщик туров по Узбекистану (UZS)',
+  title: 'SilkWay Travel — AI Luxury Journeys | Узбекистан. Путешествие вне времени',
   description:
-    'Генерация маршрутов по Самарканду, Бухаре, Хиве и Ташкенту через Gemini 3.8 / 3.5 Flash-Lite с расчетом в сумах (UZS) и оплатой через Payme, Click и Uzum Pay.',
+    'Эксклюзивная платформа путешествий по Узбекистану с персональным AI-консьержем. Авторские маршруты по Самарканду, Бухаре, Хиве и Ташкенту, расчет в UZS.',
 };
 
 export default function RootLayout({
@@ -13,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru">
-      <body className="min-h-screen bg-[#071330] text-sky-50 antialiased selection:bg-cyan-400 selection:text-[#071330]">
+    <html lang="ru" className={`${cormorant.variable} ${manrope.variable}`}>
+      <body className="min-h-screen bg-[#101C2D] text-white font-sans antialiased selection:bg-[#C7A46A] selection:text-[#101C2D]">
         {children}
       </body>
     </html>

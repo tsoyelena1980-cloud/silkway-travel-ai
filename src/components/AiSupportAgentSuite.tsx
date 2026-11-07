@@ -834,8 +834,8 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
         );
       case 'validating':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-cyan-400/20 text-cyan-300 border border-cyan-400/40">
-            <RefreshCw className="w-3.5 h-3.5 animate-spin text-cyan-400" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#C7A46A]/15 text-[#C7A46A] border border-[#C7A46A]/40">
+            <RefreshCw className="w-3.5 h-3.5 animate-spin text-[#C7A46A]" />
             VALIDATING...
           </span>
         );
@@ -848,15 +848,15 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
         );
       case 'quota_exceeded':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-sky-500/20 text-sky-300 border border-sky-400/40">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-sky-500/20 text-white/80 border border-[#C7A46A]/25">
             <AlertTriangle className="w-3.5 h-3.5 text-sky-400" />
             QUOTA EXCEEDED (429)
           </span>
         );
       case 'temporarily_unavailable':
         return (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-400/40">
-            <AlertTriangle className="w-3.5 h-3.5 text-cyan-400" />
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#C7A46A]/15 text-[#C7A46A] border border-[#C7A46A]/40">
+            <AlertTriangle className="w-3.5 h-3.5 text-[#C7A46A]" />
             PROVIDER OUTAGE (5xx)
           </span>
         );
@@ -875,33 +875,33 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
       {/* ОСНОВНАЯ СЕКЦИЯ AI-КОНСЬЕРЖА НА СТРАНИЦЕ */}
       <section
         id="ai-support-agent-section"
-        className="bg-[#0c1f4a] rounded-3xl border border-sky-400/30 shadow-2xl shadow-[#020817]/70 overflow-hidden no-print scroll-mt-24 animate-fade-in-up"
+        className="bg-[#16283F] rounded-3xl border border-[#C7A46A]/25 shadow-2xl shadow-[#020817]/70 overflow-hidden no-print scroll-mt-24 animate-fade-in-up"
       >
         {/* Шапка модуля AI-Консьержа */}
-        <div className="bg-gradient-to-r from-[#061330] via-[#0a1d48] to-[#061330] p-6 sm:p-8 border-b border-sky-400/25">
+        <div className="bg-gradient-to-r from-[#101C2D] via-[#16283F] to-[#101C2D] p-6 sm:p-8 border-b border-[#C7A46A]/25">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             <div className="space-y-2 max-w-3xl">
               <div className="flex flex-wrap items-center gap-2.5">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-cyan-400/20 text-cyan-300 border border-cyan-400/45">
-                  <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#C7A46A]/15 text-[#C7A46A] border border-[#C7A46A]/40">
+                  <Sparkles className="w-3.5 h-3.5 text-[#C7A46A]" />
                   SILKWAY AI CONCIERGE · 24/7
                 </span>
                 {renderStatusBadge(byokState.status)}
                 {byokState.selected_model_id && (
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/20 text-cyan-200 border border-cyan-400/40">
-                    <Cpu className="w-3.5 h-3.5 text-cyan-300" />
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#C7A46A]/15 text-[#C7A46A] border border-[#C7A46A]/40">
+                    <Cpu className="w-3.5 h-3.5 text-[#C7A46A]" />
                     {byokState.selected_model_id}
                   </span>
                 )}
               </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h2 className="font-serif-luxury text-3xl sm:text-4xl font-semibold text-white tracking-tight">
                 {lang === 'en'
-                  ? 'Autonomous AI Travel Concierge & Tour Calculator'
+                  ? 'Your Personal AI Concierge'
                   : lang === 'uz'
-                    ? 'Avtonom AI Sayohat Konsyerji va Tur Kalkulyatori'
-                    : 'Автономный AI-Консьерж и расчёт туров 24/7'}
+                    ? 'Sizning shaxsiy AI-konsyerjingiz'
+                    : 'Ваш персональный AI-консьерж'}
               </h2>
-              <p className="text-xs sm:text-sm text-sky-100/85 leading-relaxed">
+              <p className="text-xs sm:text-sm text-white/80 leading-relaxed">
                 {lang === 'en'
                   ? 'Instant answers on Afrosiyob trains, UNESCO landmarks, visas, and turnkey UZS tour quotes — resolved directly by AI without waiting for a manager.'
                   : lang === 'uz'
@@ -911,14 +911,14 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
             </div>
 
             {/* Лаконичные и удобные вкладки без лишнего шума */}
-            <div className="flex flex-wrap gap-1.5 bg-[#051029] p-1.5 rounded-2xl border border-sky-400/25 shrink-0">
+            <div className="flex flex-wrap gap-1.5 bg-[#101C2D] p-1.5 rounded-2xl border border-[#C7A46A]/25 shrink-0">
               <button
                 type="button"
                 onClick={() => setActiveConsoleTab('chat')}
                 className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
                   activeConsoleTab === 'chat'
                     ? 'luxury-gold-btn shadow-sm'
-                    : 'text-sky-200 hover:bg-sky-500/20 hover:text-white'
+                    : 'text-white/80 hover:bg-sky-500/20 hover:text-white'
                 }`}
               >
                 <MessageSquare className="w-3.5 h-3.5" />
@@ -930,7 +930,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                 className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
                   activeConsoleTab === 'copilot'
                     ? 'luxury-gold-btn shadow-sm'
-                    : 'text-sky-200 hover:bg-sky-500/20 hover:text-white'
+                    : 'text-white/80 hover:bg-sky-500/20 hover:text-white'
                 }`}
               >
                 <Calculator className="w-3.5 h-3.5" />
@@ -942,7 +942,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                 className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
                   activeConsoleTab === 'kb'
                     ? 'luxury-gold-btn shadow-sm'
-                    : 'text-sky-200 hover:bg-sky-500/20 hover:text-white'
+                    : 'text-white/80 hover:bg-sky-500/20 hover:text-white'
                 }`}
               >
                 <BookOpen className="w-3.5 h-3.5" />
@@ -956,7 +956,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                 className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold transition-all ${
                   activeConsoleTab === 'byok'
                     ? 'luxury-gold-btn shadow-sm'
-                    : 'text-sky-200 hover:bg-sky-500/20 hover:text-white'
+                    : 'text-white/80 hover:bg-sky-500/20 hover:text-white'
                 }`}
               >
                 <KeyRound className="w-3.5 h-3.5" />
@@ -973,27 +973,27 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
               {/* Левая половина: Подключение и проверка ключа (FR-KEY-01..03) */}
               <div className="lg:col-span-6 space-y-5">
-                <div className="bg-[#081738] rounded-2xl p-6 border border-sky-400/25 space-y-4">
+                <div className="bg-[#16283F] rounded-2xl p-6 border border-[#C7A46A]/25 space-y-4">
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
-                        <KeyRound className="w-5 h-5 text-cyan-400" />
+                        <KeyRound className="w-5 h-5 text-[#C7A46A]" />
                         {txt.byokHeading}
                       </h3>
-                      <p className="text-xs text-sky-200/80 mt-1 leading-relaxed">{txt.byokSub}</p>
+                      <p className="text-xs text-white/75 mt-1 leading-relaxed">{txt.byokSub}</p>
                     </div>
                   </div>
 
                   {/* Ссылка на официальную страницу получения ключа */}
-                  <div className="p-3.5 rounded-xl bg-[#06122e] border border-cyan-400/30 flex items-center justify-between gap-3">
-                    <div className="text-xs text-cyan-200">
+                  <div className="p-3.5 rounded-xl bg-[#101C2D] border border-[#C7A46A]/40 flex items-center justify-between gap-3">
+                    <div className="text-xs text-[#C7A46A]">
                       Официальный портал выпуска ключей Google AI Studio:
                     </div>
                     <a
                       href="https://aistudio.google.com/apikey"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-xs font-bold border border-cyan-400/40 transition shrink-0"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#C7A46A]/15 hover:bg-cyan-500/30 text-[#C7A46A] text-xs font-bold border border-[#C7A46A]/40 transition shrink-0"
                     >
                       <span>aistudio.google.com/apikey</span>
                       <ExternalLink className="w-3.5 h-3.5" />
@@ -1008,7 +1008,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                           Ключ проверен и зашифрован (AES-256-GCM)
                         </span>
-                        <span className="text-[11px] font-mono text-sky-200">
+                        <span className="text-[11px] font-mono text-white/80">
                           Проверен:{' '}
                           {byokState.validated_at
                             ? new Date(byokState.validated_at).toLocaleTimeString()
@@ -1016,9 +1016,9 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                         </span>
                       </div>
 
-                      <div className="p-3 rounded-xl bg-[#051029] border border-sky-400/25 flex items-center justify-between">
-                        <span className="text-xs text-sky-300">Маскированный ключ (AC-02):</span>
-                        <code className="text-sm font-mono font-bold text-cyan-300">
+                      <div className="p-3 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 flex items-center justify-between">
+                        <span className="text-xs text-white/80">Маскированный ключ (AC-02):</span>
+                        <code className="text-sm font-mono font-bold text-[#C7A46A]">
                           {byokState.masked_key}
                         </code>
                       </div>
@@ -1027,9 +1027,9 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                         <button
                           type="button"
                           onClick={() => setShowKeyReplaceForm(true)}
-                          className="px-3.5 py-2 rounded-xl bg-[#0c1f4a] hover:bg-sky-500/25 text-sky-100 border border-sky-400/30 text-xs font-bold flex items-center gap-1.5 transition"
+                          className="px-3.5 py-2 rounded-xl bg-[#16283F] hover:bg-sky-500/25 text-white/80 border border-[#C7A46A]/25 text-xs font-bold flex items-center gap-1.5 transition"
                         >
-                          <RefreshCw className="w-3.5 h-3.5 text-cyan-300" />
+                          <RefreshCw className="w-3.5 h-3.5 text-[#C7A46A]" />
                           {txt.replaceKeyBtn}
                         </button>
                         <button
@@ -1053,7 +1053,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   ) : (
                     <form onSubmit={handleValidateAndConnectKey} className="space-y-3">
                       <div>
-                        <label className="block text-xs font-bold uppercase tracking-wider text-sky-200 mb-1.5">
+                        <label className="block text-xs font-bold uppercase tracking-wider text-white/80 mb-1.5">
                           Google AI Studio API Key (Password Input)
                         </label>
                         <input
@@ -1062,7 +1062,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           onChange={(e) => setApiKeyInput(e.target.value)}
                           placeholder={txt.apiKeyPlaceholder}
                           autoComplete="off"
-                          className="w-full px-4 py-2.5 rounded-xl bg-[#051029] border border-sky-400/35 text-sm font-mono text-white placeholder:text-sky-300/40 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                          className="w-full px-4 py-2.5 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 text-sm font-mono text-white placeholder:text-white/75 focus:outline-none focus:ring-2 focus:ring-[#C7A46A]"
                           required
                         />
                       </div>
@@ -1097,7 +1097,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           <button
                             type="button"
                             onClick={() => setShowKeyReplaceForm(false)}
-                            className="px-3.5 py-2.5 rounded-xl bg-[#051029] text-sky-200 border border-sky-400/25 text-xs font-semibold"
+                            className="px-3.5 py-2.5 rounded-xl bg-[#101C2D] text-white/80 border border-[#C7A46A]/25 text-xs font-semibold"
                           >
                             Отмена
                           </button>
@@ -1107,20 +1107,20 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   )}
 
                   {/* Предупреждение о тарификации и безопасности */}
-                  <div className="p-3.5 rounded-xl bg-[#06122e] border border-cyan-400/30 space-y-1.5 text-[11px] text-sky-200/90">
-                    <div className="font-bold text-cyan-300 flex items-center gap-1.5">
-                      <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
+                  <div className="p-3.5 rounded-xl bg-[#101C2D] border border-[#C7A46A]/40 space-y-1.5 text-[11px] text-white/75">
+                    <div className="font-bold text-[#C7A46A] flex items-center gap-1.5">
+                      <ShieldCheck className="w-3.5 h-3.5 text-[#C7A46A]" />
                       {txt.billingWarning}
                     </div>
-                    <p className="text-sky-200/75 leading-relaxed">{txt.securityNote}</p>
+                    <p className="text-white/75 leading-relaxed">{txt.securityNote}</p>
                   </div>
                 </div>
 
                 {/* Конструктор AI-Агента (FR-AGENT) */}
-                <div className="bg-[#081738] rounded-2xl p-6 border border-sky-400/25 space-y-4">
+                <div className="bg-[#16283F] rounded-2xl p-6 border border-[#C7A46A]/25 space-y-4">
                   <div className="flex items-center justify-between">
                     <h3 className="text-base font-bold text-white flex items-center gap-2">
-                      <Bot className="w-5 h-5 text-cyan-400" />
+                      <Bot className="w-5 h-5 text-[#C7A46A]" />
                       Конструктор AI-Агента (FR-AGENT · v{agentConfig.version})
                     </h3>
                     {agentSavedToast && (
@@ -1130,18 +1130,18 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs text-sky-200 mb-1">Имя агента</label>
+                      <label className="block text-xs text-white/80 mb-1">Имя агента</label>
                       <input
                         type="text"
                         value={agentConfig.name}
                         onChange={(e) =>
                           setAgentConfig((p) => ({ ...p, name: e.target.value, version: p.version + 1 }))
                         }
-                        className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 text-xs text-white"
+                        className="w-full px-3 py-2 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 text-xs text-white"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs text-sky-200 mb-1">Тон ответов</label>
+                      <label className="block text-xs text-white/80 mb-1">Тон ответов</label>
                       <select
                         value={agentConfig.tone}
                         onChange={(e) =>
@@ -1151,7 +1151,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                             version: p.version + 1,
                           }))
                         }
-                        className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 text-xs text-white"
+                        className="w-full px-3 py-2 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 text-xs text-white"
                       >
                         <option value="professional">Профессиональный (Консьерж)</option>
                         <option value="friendly">Дружелюбный (Гостеприимный)</option>
@@ -1161,7 +1161,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   </div>
 
                   <div>
-                    <label className="block text-xs text-sky-200 mb-1">
+                    <label className="block text-xs text-white/80 mb-1">
                       Системные инструкции и ограничения
                     </label>
                     <textarea
@@ -1174,19 +1174,19 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           version: p.version + 1,
                         }))
                       }
-                      className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 text-xs text-white"
+                      className="w-full px-3 py-2 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 text-xs text-white"
                     />
                   </div>
 
                   <div className="flex items-center justify-between pt-1">
-                    <label className="flex items-center gap-2 text-xs text-sky-100 cursor-pointer">
+                    <label className="flex items-center gap-2 text-xs text-white/80 cursor-pointer">
                       <input
                         type="checkbox"
                         checked={agentConfig.strict_rag_only}
                         onChange={(e) =>
                           setAgentConfig((p) => ({ ...p, strict_rag_only: e.target.checked }))
                         }
-                        className="accent-cyan-400 rounded"
+                        className="accent-[#C7A46A] rounded"
                       />
                       <span>Strict RAG Mode: отвечать строго по базе знаний (AC-07, AC-08)</span>
                     </label>
@@ -1196,7 +1196,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                         setAgentSavedToast(true);
                         setTimeout(() => setAgentSavedToast(false), 2000);
                       }}
-                      className="px-3 py-1.5 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-200 border border-cyan-400/35 text-xs font-bold"
+                      className="px-3 py-1.5 rounded-lg bg-[#C7A46A]/15 hover:bg-cyan-500/30 text-[#C7A46A] border border-[#C7A46A]/40 text-xs font-bold"
                     >
                       Применить
                     </button>
@@ -1206,21 +1206,21 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
 
               {/* Правая половина: Динамический каталог моделей Gemini (FR-MODEL-01..02, AC-04, AC-05, AC-12) */}
               <div className="lg:col-span-6 space-y-5">
-                <div className="bg-[#081738] rounded-2xl p-6 border border-sky-400/25 space-y-4 h-full flex flex-col justify-between">
+                <div className="bg-[#16283F] rounded-2xl p-6 border border-[#C7A46A]/25 space-y-4 h-full flex flex-col justify-between">
                   <div className="space-y-4">
                     <div className="flex items-center justify-between gap-2">
                       <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
-                        <Cpu className="w-5 h-5 text-cyan-400" />
+                        <Cpu className="w-5 h-5 text-[#C7A46A]" />
                         {txt.modelsCatalogTitle}
                       </h3>
-                      <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-400/35">
+                      <span className="text-xs font-mono px-2.5 py-0.5 rounded-full bg-[#C7A46A]/15 text-[#C7A46A] border border-[#C7A46A]/40">
                         {byokState.available_models.length} models
                       </span>
                     </div>
 
                     {/* Статус проверки целевых продуктовых версий Gemini 3.5 / 3.6 / 3.8 (Раздел 5 PRD, AC-05) */}
-                    <div className="p-4 rounded-2xl bg-[#06122e] border border-cyan-400/35 space-y-2.5">
-                      <div className="text-xs font-bold text-cyan-300 uppercase tracking-wider">
+                    <div className="p-4 rounded-2xl bg-[#101C2D] border border-[#C7A46A]/40 space-y-2.5">
+                      <div className="text-xs font-bold text-[#C7A46A] uppercase tracking-wider">
                         {txt.targetModelsLabel}
                       </div>
                       <div className="grid grid-cols-3 gap-2 text-xs">
@@ -1236,7 +1236,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                             className={`p-2.5 rounded-xl border flex items-center justify-between ${
                               tItem.found
                                 ? 'bg-emerald-500/15 border-emerald-400/40 text-emerald-200'
-                                : 'bg-[#081738] border-sky-400/20 text-sky-300/75'
+                                : 'bg-[#16283F] border-[#C7A46A]/25 text-white/75'
                             }`}
                           >
                             <span className="font-bold">{tItem.label}</span>
@@ -1246,19 +1246,19 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           </div>
                         ))}
                       </div>
-                      <p className="text-xs text-sky-200/85 leading-relaxed">
+                      <p className="text-xs text-white/75 leading-relaxed">
                         {byokState.target_models_status.message}
                       </p>
                     </div>
 
                     {/* Список моделей из официального ответа Google AI Studio */}
                     {byokState.available_models.length === 0 ? (
-                      <div className="p-8 rounded-2xl bg-[#06122e] border border-dashed border-sky-400/30 text-center space-y-2">
-                        <Lock className="w-8 h-8 text-cyan-400 mx-auto" />
+                      <div className="p-8 rounded-2xl bg-[#101C2D] border border-dashed border-[#C7A46A]/25 text-center space-y-2">
+                        <Lock className="w-8 h-8 text-[#C7A46A] mx-auto" />
                         <div className="text-sm font-bold text-white">
                           Каталог моделей загружается после проверки ключа
                         </div>
-                        <p className="text-xs text-sky-200/75 max-w-md mx-auto">
+                        <p className="text-xs text-white/75 max-w-md mx-auto">
                           Согласно FR-MODEL-01 и AC-04, система не использует зашитые или выдуманные идентификаторы моделей, а запрашивает реальный список `GET /v1beta/models` с вашим ключом.
                         </p>
                       </div>
@@ -1272,8 +1272,8 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                               onClick={() => handleSelectModel(m.model_id)}
                               className={`p-3.5 rounded-xl border cursor-pointer transition-all flex items-start justify-between gap-3 ${
                                 isSelected
-                                  ? 'bg-cyan-400/15 border-cyan-400 ring-1 ring-cyan-400/40'
-                                  : 'bg-[#06122e] border-sky-400/20 hover:border-sky-400/50'
+                                  ? 'bg-[#C7A46A]/15 border-[#C7A46A] ring-1 ring-cyan-400/40'
+                                  : 'bg-[#101C2D] border-[#C7A46A]/25 hover:border-[#C7A46A]/25'
                               }`}
                             >
                               <div className="space-y-1">
@@ -1281,7 +1281,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                                   <span className="text-sm font-bold text-white">
                                     {m.display_name}
                                   </span>
-                                  <code className="text-xs font-mono px-2 py-0.5 rounded bg-[#0c1f4a] text-cyan-300 border border-cyan-400/30">
+                                  <code className="text-xs font-mono px-2 py-0.5 rounded bg-[#16283F] text-[#C7A46A] border border-[#C7A46A]/40">
                                     {m.model_id}
                                   </code>
                                   {m.is_target_35_36_38 && (
@@ -1290,10 +1290,10 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                                     </span>
                                   )}
                                 </div>
-                                <p className="text-xs text-sky-200/75 line-clamp-1">
+                                <p className="text-xs text-white/75 line-clamp-1">
                                   {m.description}
                                 </p>
-                                <div className="flex flex-wrap gap-3 text-[11px] text-cyan-300/80 font-mono">
+                                <div className="flex flex-wrap gap-3 text-[11px] text-[#C7A46A]/80 font-mono">
                                   {m.input_token_limit && (
                                     <span>In: {m.input_token_limit.toLocaleString()} tok</span>
                                   )}
@@ -1312,7 +1312,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                                 className={`px-3 py-1.5 rounded-lg text-xs font-bold shrink-0 ${
                                   isSelected
                                     ? 'luxury-gold-btn'
-                                    : 'bg-[#0c1f4a] text-sky-200 border border-sky-400/30 hover:text-white'
+                                    : 'bg-[#16283F] text-white/80 border border-[#C7A46A]/25 hover:text-white'
                                 }`}
                               >
                                 {isSelected ? '✓ Выбрана' : 'Выбрать'}
@@ -1324,9 +1324,9 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                     )}
                   </div>
 
-                  <div className="pt-3 border-t border-sky-400/20 flex items-center justify-between text-xs text-sky-200/80">
+                  <div className="pt-3 border-t border-[#C7A46A]/25 flex items-center justify-between text-xs text-white/75">
                     <span>Активная модель для новых сообщений (AC-12):</span>
-                    <code className="font-mono font-bold text-cyan-300">
+                    <code className="font-mono font-bold text-[#C7A46A]">
                       {byokState.selected_model_id || 'не выбрана'}
                     </code>
                   </div>
@@ -1340,9 +1340,9 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Левая колонка: Быстрые вопросы в 1 клик */}
               <div className="lg:col-span-4 space-y-4">
-                <div className="bg-[#081738] rounded-2xl p-5 border border-sky-400/25 space-y-3">
+                <div className="bg-[#16283F] rounded-2xl p-5 border border-[#C7A46A]/25 space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold uppercase tracking-wider text-cyan-300">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#C7A46A]">
                       Быстрые вопросы (1 клик)
                     </span>
                     <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-300">
@@ -1358,7 +1358,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                         type="button"
                         onClick={() => handleSendCustomerMessage(q)}
                         disabled={isSendingChat}
-                        className="w-full text-left p-3 rounded-xl bg-[#06122e] hover:bg-[#0c1f4a] border border-sky-400/20 hover:border-cyan-400/50 text-xs text-sky-100 transition leading-relaxed"
+                        className="w-full text-left p-3 rounded-xl bg-[#101C2D] hover:bg-[#16283F] border border-[#C7A46A]/25 hover:border-[#C7A46A]/40 text-xs text-white/80 transition leading-relaxed"
                       >
                         «{q}»
                       </button>
@@ -1368,9 +1368,9 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
               </div>
 
               {/* Правая колонка: Окно диалога с цитированием источников */}
-              <div className="lg:col-span-8 bg-[#081738] rounded-2xl border border-sky-400/25 flex flex-col h-[520px] overflow-hidden">
+              <div className="lg:col-span-8 bg-[#16283F] rounded-2xl border border-[#C7A46A]/25 flex flex-col h-[520px] overflow-hidden">
                 {/* Верхняя панель чата */}
-                <div className="px-5 py-3.5 bg-[#06122e] border-b border-sky-400/20 flex flex-wrap items-center justify-between gap-2">
+                <div className="px-5 py-3.5 bg-[#101C2D] border-b border-[#C7A46A]/25 flex flex-wrap items-center justify-between gap-2">
                   <div className="flex items-center gap-2.5">
                     <div className="w-9 h-9 rounded-xl luxury-gold-btn flex items-center justify-center font-extrabold">
                       <Bot className="w-5 h-5" />
@@ -1382,7 +1382,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           ● Автономный режим
                         </span>
                       </div>
-                      <div className="text-[11px] text-sky-300/80">{agentConfig.working_hours}</div>
+                      <div className="text-[11px] text-white/75">{agentConfig.working_hours}</div>
                     </div>
                   </div>
 
@@ -1413,12 +1413,12 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                         <div
                           className={`max-w-xl rounded-2xl p-4 space-y-2.5 ${
                             isCustomer
-                              ? 'bg-gradient-to-r from-cyan-400 to-cyan-500 text-[#051029] font-medium'
+                              ? 'bg-gradient-to-r from-[#C7A46A] to-[#B38E53] text-[#101C2D] font-medium'
                               : isSystem
                                 ? 'bg-rose-950/60 border border-rose-400/40 text-rose-100'
                                 : isHumanOp
                                   ? 'bg-emerald-950/60 border border-emerald-400/45 text-emerald-50'
-                                  : 'bg-[#0c1f4a] border border-sky-400/30 text-sky-50'
+                                  : 'bg-[#16283F] border border-[#C7A46A]/25 text-white/80'
                           }`}
                         >
                           <div className="flex items-center justify-between gap-4 text-[11px] opacity-80">
@@ -1428,7 +1428,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                               ) : isHumanOp ? (
                                 <Headphones className="w-3 h-3 text-emerald-300" />
                               ) : (
-                                <Bot className="w-3 h-3 text-cyan-300" />
+                                <Bot className="w-3 h-3 text-[#C7A46A]" />
                               )}
                               {msg.sender_name}
                             </span>
@@ -1441,8 +1441,8 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
 
                           {/* Ссылки на источники RAG (FR-CHAT, AC-07) */}
                           {msg.citations && msg.citations.length > 0 && (
-                            <div className="pt-2 border-t border-sky-400/25 space-y-1.5">
-                              <div className="text-[11px] font-bold text-cyan-300 flex items-center gap-1">
+                            <div className="pt-2 border-t border-[#C7A46A]/25 space-y-1.5">
+                              <div className="text-[11px] font-bold text-[#C7A46A] flex items-center gap-1">
                                 <FileText className="w-3 h-3" />
                                 {txt.sourcesLabel}
                               </div>
@@ -1450,7 +1450,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                                 {msg.citations.map((cit) => (
                                   <span
                                     key={cit.source_id}
-                                    className="px-2 py-0.5 rounded-md bg-[#06122e] border border-cyan-400/35 text-[11px] text-cyan-200 font-mono"
+                                    className="px-2 py-0.5 rounded-md bg-[#101C2D] border border-[#C7A46A]/40 text-[11px] text-[#C7A46A] font-mono"
                                   >
                                     [{cit.source_id}] {cit.source_title}
                                   </span>
@@ -1461,7 +1461,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
 
                           {/* Метрики ответа и кнопки 👍/👎 */}
                           {msg.sender_type === 'ai_agent' && (
-                            <div className="pt-2 border-t border-sky-400/20 flex flex-wrap items-center justify-between gap-2 text-[11px] text-sky-300/80">
+                            <div className="pt-2 border-t border-[#C7A46A]/25 flex flex-wrap items-center justify-between gap-2 text-[11px] text-white/75">
                               <div className="flex items-center gap-3 font-mono">
                                 {msg.latency_ms !== undefined && (
                                   <span>⏱ {msg.latency_ms} ms</span>
@@ -1475,7 +1475,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                                   type="button"
                                   onClick={() => handleFeedback(msg.id, 'up')}
                                   className={`p-1 rounded hover:bg-sky-500/20 ${
-                                    msg.feedback === 'up' ? 'text-emerald-400' : 'text-sky-300'
+                                    msg.feedback === 'up' ? 'text-emerald-400' : 'text-white/80'
                                   }`}
                                   title="Полезный ответ"
                                 >
@@ -1485,7 +1485,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                                   type="button"
                                   onClick={() => handleFeedback(msg.id, 'down')}
                                   className={`p-1 rounded hover:bg-sky-500/20 ${
-                                    msg.feedback === 'down' ? 'text-rose-400' : 'text-sky-300'
+                                    msg.feedback === 'down' ? 'text-rose-400' : 'text-white/80'
                                   }`}
                                   title="Нужна помощь оператора"
                                 >
@@ -1506,14 +1506,14 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                     e.preventDefault();
                     handleSendCustomerMessage();
                   }}
-                  className="p-3.5 bg-[#06122e] border-t border-sky-400/25 flex items-center gap-2.5"
+                  className="p-3.5 bg-[#101C2D] border-t border-[#C7A46A]/25 flex items-center gap-2.5"
                 >
                   <input
                     type="text"
                     value={chatInput}
                     onChange={(e) => setChatInput(e.target.value)}
                     placeholder={txt.chatInputPlaceholder}
-                    className="flex-1 px-4 py-2.5 rounded-xl bg-[#081738] border border-sky-400/30 text-xs sm:text-sm text-white placeholder:text-sky-300/45 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                    className="flex-1 px-4 py-2.5 rounded-xl bg-[#16283F] border border-[#C7A46A]/25 text-xs sm:text-sm text-white placeholder:text-white/75 focus:outline-none focus:ring-2 focus:ring-[#C7A46A]"
                   />
                   <button
                     type="submit"
@@ -1536,18 +1536,18 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
           {activeConsoleTab === 'kb' && (
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
               {/* Форма добавления нового источника */}
-              <div className="lg:col-span-5 bg-[#081738] rounded-2xl p-6 border border-sky-400/25 space-y-4">
+              <div className="lg:col-span-5 bg-[#16283F] rounded-2xl p-6 border border-[#C7A46A]/25 space-y-4">
                 <h3 className="text-base font-bold text-white flex items-center gap-2">
-                  <Plus className="w-5 h-5 text-cyan-400" />
+                  <Plus className="w-5 h-5 text-[#C7A46A]" />
                   {txt.kbAddTitle}
                 </h3>
                 <form onSubmit={handleAddKnowledgeSource} className="space-y-3.5">
                   <div>
-                    <label className="block text-xs text-sky-200 mb-1">Тип источника</label>
+                    <label className="block text-xs text-white/80 mb-1">Тип источника</label>
                     <select
                       value={newKbType}
                       onChange={(e) => setNewKbType(e.target.value as KnowledgeSourceType)}
-                      className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 text-xs text-white"
+                      className="w-full px-3 py-2 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 text-xs text-white"
                     >
                       <option value="faq">FAQ (Вопрос — Ответ)</option>
                       <option value="text">Текстовый регламент / памятка</option>
@@ -1556,18 +1556,18 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs text-sky-200 mb-1">Заголовок источника</label>
+                    <label className="block text-xs text-white/80 mb-1">Заголовок источника</label>
                     <input
                       type="text"
                       value={newKbTitle}
                       onChange={(e) => setNewKbTitle(e.target.value)}
                       placeholder={txt.kbTitlePlaceholder}
-                      className="w-full px-3.5 py-2 rounded-xl bg-[#051029] border border-sky-400/30 text-xs text-white"
+                      className="w-full px-3.5 py-2 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 text-xs text-white"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-xs text-sky-200 mb-1">
+                    <label className="block text-xs text-white/80 mb-1">
                       Содержимое для RAG-индексации
                     </label>
                     <textarea
@@ -1575,7 +1575,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                       value={newKbContent}
                       onChange={(e) => setNewKbContent(e.target.value)}
                       placeholder={txt.kbContentPlaceholder}
-                      className="w-full px-3.5 py-2 rounded-xl bg-[#051029] border border-sky-400/30 text-xs text-white"
+                      className="w-full px-3.5 py-2 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 text-xs text-white"
                       required
                     />
                   </div>
@@ -1594,14 +1594,14 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                 {knowledgeSources.map((src) => (
                   <div
                     key={src.id}
-                    className="bg-[#081738] rounded-2xl p-4 border border-sky-400/25 space-y-2"
+                    className="bg-[#16283F] rounded-2xl p-4 border border-[#C7A46A]/25 space-y-2"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="px-2 py-0.5 rounded bg-cyan-400/20 text-cyan-300 font-mono text-xs font-bold border border-cyan-400/35">
+                        <span className="px-2 py-0.5 rounded bg-[#C7A46A]/15 text-[#C7A46A] font-mono text-xs font-bold border border-[#C7A46A]/40">
                           {src.id}
                         </span>
-                        <span className="text-xs font-mono uppercase px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300">
+                        <span className="text-xs font-mono uppercase px-2 py-0.5 rounded bg-[#C7A46A]/15 text-[#C7A46A]">
                           {src.type}
                         </span>
                         <h4 className="text-sm font-bold text-white">{src.title}</h4>
@@ -1615,8 +1615,8 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                         <Trash2 className="w-3.5 h-3.5" />
                       </button>
                     </div>
-                    <p className="text-xs text-sky-100/85 leading-relaxed">{src.content}</p>
-                    <div className="flex items-center justify-between text-[11px] text-sky-300/70 pt-1 border-t border-sky-400/15 font-mono">
+                    <p className="text-xs text-white/75 leading-relaxed">{src.content}</p>
+                    <div className="flex items-center justify-between text-[11px] text-white/75 pt-1 border-t border-[#C7A46A]/25 font-mono">
                       <span>URI: {src.uri_or_ref}</span>
                       <span>
                         Chunks: {src.chunks_count} · Status: {src.status.toUpperCase()}
@@ -1633,55 +1633,55 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
             <div className="space-y-6">
               {/* Верхняя панель KPI-метрик из Раздела 2 PRD */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div className="bg-[#081738] p-4 rounded-2xl border border-sky-400/25">
-                  <span className="text-xs text-sky-300/80 block">
+                <div className="bg-[#16283F] p-4 rounded-2xl border border-[#C7A46A]/25">
+                  <span className="text-xs text-white/75 block">
                     Время первого AI-ответа (p95)
                   </span>
-                  <span className="text-xl font-extrabold text-cyan-300 font-mono mt-1 block">
+                  <span className="text-xl font-extrabold text-[#C7A46A] font-mono mt-1 block">
                     {(p95Latency / 1000).toFixed(2)} сек
                   </span>
                   <span className="text-[11px] text-emerald-300">Цель MVP: ≤ 10 сек</span>
                 </div>
-                <div className="bg-[#081738] p-4 rounded-2xl border border-sky-400/25">
-                  <span className="text-xs text-sky-300/80 block">
+                <div className="bg-[#16283F] p-4 rounded-2xl border border-[#C7A46A]/25">
+                  <span className="text-xs text-white/75 block">
                     Ответы с источниками RAG
                   </span>
-                  <span className="text-xl font-extrabold text-cyan-300 font-mono mt-1 block">
+                  <span className="text-xl font-extrabold text-[#C7A46A] font-mono mt-1 block">
                     {ragCitationRate}%
                   </span>
                   <span className="text-[11px] text-emerald-300">Цель MVP: ≥ 90%</span>
                 </div>
-                <div className="bg-[#081738] p-4 rounded-2xl border border-sky-400/25">
-                  <span className="text-xs text-sky-300/80 block">
+                <div className="bg-[#16283F] p-4 rounded-2xl border border-[#C7A46A]/25">
+                  <span className="text-xs text-white/75 block">
                     Успешность проверки ключей
                   </span>
                   <span className="text-xl font-extrabold text-emerald-300 font-mono mt-1 block">
                     {Math.round((keyValidAttempts.success / Math.max(1, keyValidAttempts.total)) * 100)}%
                   </span>
-                  <span className="text-[11px] text-sky-200/75">Расход: {totalTokens} tok</span>
+                  <span className="text-[11px] text-white/75">Расход: {totalTokens} tok</span>
                 </div>
-                <div className="bg-[#081738] p-4 rounded-2xl border border-sky-400/25">
-                  <span className="text-xs text-sky-300/80 block">Статус текущего обращения</span>
+                <div className="bg-[#16283F] p-4 rounded-2xl border border-[#C7A46A]/25">
+                  <span className="text-xs text-white/75 block">Статус текущего обращения</span>
                   <span className="text-base font-extrabold text-white font-mono mt-1 block uppercase">
                     {activeConversation.status}
                   </span>
-                  <span className="text-[11px] text-cyan-300">
+                  <span className="text-[11px] text-[#C7A46A]">
                     {activeConversation.escalation_reason || 'Очередь в норме'}
                   </span>
                 </div>
               </div>
 
               {/* Панель оператора для ручного ответа и закрытия обращения */}
-              <div className="bg-[#081738] rounded-2xl p-6 border border-sky-400/25 space-y-4">
+              <div className="bg-[#16283F] rounded-2xl p-6 border border-[#C7A46A]/25 space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <div>
                     <h3 className="text-base font-bold text-white flex items-center gap-2">
-                      <Headphones className="w-5 h-5 text-cyan-400" />
+                      <Headphones className="w-5 h-5 text-[#C7A46A]" />
                       {txt.inboxHeading}
                     </h3>
-                    <p className="text-xs text-sky-200/80 mt-0.5">
+                    <p className="text-xs text-white/75 mt-0.5">
                       Диалог #{activeConversation.id} · Ответственный:{' '}
-                      <strong className="text-cyan-300">
+                      <strong className="text-[#C7A46A]">
                         {activeConversation.assignee_name || 'AI-Агент / Дежурный оператор'}
                       </strong>
                     </p>
@@ -1701,7 +1701,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                       <button
                         type="button"
                         onClick={() => handleToggleResolveConversation('open')}
-                        className="px-3.5 py-2 rounded-xl bg-cyan-400/20 hover:bg-cyan-400/30 text-cyan-300 border border-cyan-400/40 text-xs font-bold flex items-center gap-1.5"
+                        className="px-3.5 py-2 rounded-xl bg-[#C7A46A]/15 hover:bg-[#C7A46A]/30 text-[#C7A46A] border border-[#C7A46A]/40 text-xs font-bold flex items-center gap-1.5"
                       >
                         <RefreshCw className="w-3.5 h-3.5" />
                         {txt.reopenBtn}
@@ -1716,7 +1716,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                     value={operatorReplyInput}
                     onChange={(e) => setOperatorReplyInput(e.target.value)}
                     placeholder={txt.operatorReplyPlaceholder}
-                    className="flex-1 px-4 py-2.5 rounded-xl bg-[#051029] border border-sky-400/30 text-xs sm:text-sm text-white"
+                    className="flex-1 px-4 py-2.5 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 text-xs sm:text-sm text-white"
                   />
                   <button
                     type="submit"
@@ -1727,12 +1727,12 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   </button>
                 </form>
 
-                <div className="p-3.5 rounded-xl bg-[#06122e] border border-cyan-400/35 flex items-center justify-between gap-2 text-xs text-cyan-300 font-semibold">
+                <div className="p-3.5 rounded-xl bg-[#101C2D] border border-[#C7A46A]/40 flex items-center justify-between gap-2 text-xs text-[#C7A46A] font-semibold">
                   <span className="flex items-center gap-2">
-                    <PhoneCall className="w-4 h-4 text-cyan-400" />
+                    <PhoneCall className="w-4 h-4 text-[#C7A46A]" />
                     {directorNotice}
                   </span>
-                  <span className="font-mono text-cyan-300">RBAC Verified</span>
+                  <span className="font-mono text-[#C7A46A]">RBAC Verified</span>
                 </div>
               </div>
             </div>
@@ -1742,21 +1742,21 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
           {activeConsoleTab === 'copilot' && (
             <div className="space-y-6">
               {/* Верхняя полоса выбора стиля вывода из SKILL.md: Client-facing / Manager-facing / Owner-facing */}
-              <div className="bg-[#081738] rounded-2xl p-5 border border-sky-400/25 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+              <div className="bg-[#16283F] rounded-2xl p-5 border border-[#C7A46A]/25 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                 <div className="space-y-1">
-                  <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-cyan-300">
-                    <Sparkles className="w-4 h-4 text-cyan-400" />
+                  <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#C7A46A]">
+                    <Sparkles className="w-4 h-4 text-[#C7A46A]" />
                     <span>SKILL: travel-agency-ai · Operational Copilot (UZS Integer)</span>
                   </div>
                   <h3 className="text-base sm:text-lg font-bold text-white">
                     Режимы вывода (Output Styles), расчёт квот и маржи, операционный чек-лист
                   </h3>
-                  <p className="text-xs text-sky-200/80">
+                  <p className="text-xs text-white/75">
                     Разделяет подтверждённые данные и допущения (**ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ**), исключает раскрытие внутренней маржи клиенту и проверяет готовность бронирования.
                   </p>
                 </div>
 
-                <div className="flex flex-wrap gap-1.5 bg-[#051029] p-1.5 rounded-xl border border-sky-400/30 shrink-0">
+                <div className="flex flex-wrap gap-1.5 bg-[#101C2D] p-1.5 rounded-xl border border-[#C7A46A]/25 shrink-0">
                   {(
                     [
                       {
@@ -1783,7 +1783,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                       className={`px-3 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-1.5 ${
                         outputStyle === st.id
                           ? 'luxury-gold-btn shadow-sm'
-                          : 'text-sky-200 hover:bg-sky-500/20 hover:text-white'
+                          : 'text-white/80 hover:bg-sky-500/20 hover:text-white'
                       }`}
                     >
                       <span>{st.label}</span>
@@ -1797,70 +1797,70 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
 
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                 {/* Левая колонка: Воспроизводимый калькулятор квот и маржи (scripts/quote_calculator.py) */}
-                <div className="lg:col-span-5 bg-[#081738] rounded-2xl p-6 border border-sky-400/25 space-y-4">
-                  <div className="flex items-center justify-between border-b border-sky-400/20 pb-3">
+                <div className="lg:col-span-5 bg-[#16283F] rounded-2xl p-6 border border-[#C7A46A]/25 space-y-4">
+                  <div className="flex items-center justify-between border-b border-[#C7A46A]/25 pb-3">
                     <h4 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-                      <Calculator className="w-5 h-5 text-cyan-400" />
+                      <Calculator className="w-5 h-5 text-[#C7A46A]" />
                       Калькулятор квоты и маржи (UZS)
                     </h4>
-                    <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-400/35">
+                    <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[#C7A46A]/15 text-[#C7A46A] border border-[#C7A46A]/40">
                       quote_calculator.py
                     </span>
                   </div>
 
                   <div className="space-y-3 text-xs">
                     <div>
-                      <label className="block text-sky-200 font-semibold mb-1">
+                      <label className="block text-white/80 font-semibold mb-1">
                         Маршрут и длительность тура
                       </label>
                       <input
                         type="text"
                         value={quoteRouteTitle}
                         onChange={(e) => setQuoteRouteTitle(e.target.value)}
-                        className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 text-white"
+                        className="w-full px-3 py-2 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 text-white"
                       />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-sky-200 font-semibold mb-1">
+                        <label className="block text-white/80 font-semibold mb-1">
                           Город отправления
                         </label>
                         <input
                           type="text"
                           value={quoteDepartureCity}
                           onChange={(e) => setQuoteDepartureCity(e.target.value)}
-                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 text-white"
+                          className="w-full px-3 py-2 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 text-white"
                         />
                       </div>
                       <div>
-                        <label className="block text-cyan-300 font-semibold mb-1">
+                        <label className="block text-[#C7A46A] font-semibold mb-1">
                           Гражданство туристов (уточнять!)
                         </label>
                         <input
                           type="text"
                           value={quoteCitizenship}
                           onChange={(e) => setQuoteCitizenship(e.target.value)}
-                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-cyan-400/40 text-cyan-200"
+                          className="w-full px-3 py-2 rounded-xl bg-[#101C2D] border border-[#C7A46A]/40 text-[#C7A46A]"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-sky-200 font-semibold mb-1">
+                      <label className="block text-white/80 font-semibold mb-1">
                         Состав группы (включая возраст детей)
                       </label>
                       <input
                         type="text"
                         value={quotePartyText}
                         onChange={(e) => setQuotePartyText(e.target.value)}
-                        className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 text-white"
+                        className="w-full px-3 py-2 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 text-white"
                       />
                     </div>
 
                     <div className="grid grid-cols-2 gap-3 pt-1">
                       <div>
-                        <label className="block text-sky-200 font-semibold mb-1">
+                        <label className="block text-white/80 font-semibold mb-1">
                           Себестоимость нетто (UZS)
                         </label>
                         <input
@@ -1869,11 +1869,11 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           min={0}
                           value={supplierCostUzs}
                           onChange={(e) => setSupplierCostUzs(Math.max(0, Number(e.target.value)))}
-                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 font-mono font-bold text-white"
+                          className="w-full px-3 py-2 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 font-mono font-bold text-white"
                         />
                       </div>
                       <div>
-                        <label className="block text-sky-200 font-semibold mb-1">
+                        <label className="block text-white/80 font-semibold mb-1">
                           Наценка агентства (%)
                         </label>
                         <input
@@ -1883,14 +1883,14 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           max={100}
                           value={markupPercent}
                           onChange={(e) => setMarkupPercent(Math.max(0, Number(e.target.value)))}
-                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 font-mono font-bold text-cyan-300"
+                          className="w-full px-3 py-2 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 font-mono font-bold text-[#C7A46A]"
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-sky-200 font-semibold mb-1">
+                        <label className="block text-white/80 font-semibold mb-1">
                           Скидка клиенту (UZS)
                         </label>
                         <input
@@ -1899,11 +1899,11 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           min={0}
                           value={discountUzs}
                           onChange={(e) => setDiscountUzs(Math.max(0, Number(e.target.value)))}
-                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 font-mono text-cyan-300"
+                          className="w-full px-3 py-2 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 font-mono text-[#C7A46A]"
                         />
                       </div>
                       <div>
-                        <label className="block text-sky-200 font-semibold mb-1">
+                        <label className="block text-white/80 font-semibold mb-1">
                           Комиссия Payme/Click/Uzum (%)
                         </label>
                         <input
@@ -1913,23 +1913,23 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           max={10}
                           value={gatewayFeePercent}
                           onChange={(e) => setGatewayFeePercent(Math.max(0, Number(e.target.value)))}
-                          className="w-full px-3 py-2 rounded-xl bg-[#051029] border border-sky-400/30 font-mono text-sky-200"
+                          className="w-full px-3 py-2 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 font-mono text-white/80"
                         />
                       </div>
                     </div>
                   </div>
 
                   {/* Операционный чек-лист (references/operations.md & guardrails.md) */}
-                  <div className="pt-3 border-t border-sky-400/20 space-y-2.5">
-                    <div className="text-xs font-bold text-cyan-300 flex items-center gap-1.5 uppercase tracking-wider">
-                      <ClipboardCheck className="w-4 h-4 text-cyan-400" />
+                  <div className="pt-3 border-t border-[#C7A46A]/25 space-y-2.5">
+                    <div className="text-xs font-bold text-[#C7A46A] flex items-center gap-1.5 uppercase tracking-wider">
+                      <ClipboardCheck className="w-4 h-4 text-[#C7A46A]" />
                       Чек-лист бронирования и Guardrails
                     </div>
                     <div className="space-y-2">
                       {opsChecklist.map((item) => (
                         <label
                           key={item.id}
-                          className="flex items-start gap-2.5 p-2 rounded-xl bg-[#06122e] border border-sky-400/20 text-xs text-sky-100 cursor-pointer hover:border-cyan-400/40"
+                          className="flex items-start gap-2.5 p-2 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25 text-xs text-white/80 cursor-pointer hover:border-[#C7A46A]/40"
                         >
                           <input
                             type="checkbox"
@@ -1939,9 +1939,9 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                                 prev.map((c) => (c.id === item.id ? { ...c, done: !c.done } : c))
                               )
                             }
-                            className="mt-0.5 accent-cyan-400 rounded"
+                            className="mt-0.5 accent-[#C7A46A] rounded"
                           />
-                          <span className={item.done ? 'text-sky-100' : 'text-cyan-300 font-semibold'}>
+                          <span className={item.done ? 'text-white/80' : 'text-[#C7A46A] font-semibold'}>
                             {item.label}
                           </span>
                         </label>
@@ -1951,11 +1951,11 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                 </div>
 
                 {/* Правая колонка: Динамический вывод по выбранному стилю (Client-facing / Manager-facing / Owner-facing) */}
-                <div className="lg:col-span-7 bg-[#081738] rounded-2xl p-6 border border-sky-400/25 flex flex-col justify-between space-y-5">
+                <div className="lg:col-span-7 bg-[#16283F] rounded-2xl p-6 border border-[#C7A46A]/25 flex flex-col justify-between space-y-5">
                   <div className="space-y-4">
-                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-sky-400/20 pb-3">
+                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#C7A46A]/25 pb-3">
                       <div>
-                        <span className="text-xs font-mono uppercase text-cyan-300 block">
+                        <span className="text-xs font-mono uppercase text-[#C7A46A] block">
                           АКТИВНЫЙ РЕЖИМ СКИЛЛА TRAVEL-AGENCY-AI:
                         </span>
                         <h4 className="text-lg font-extrabold text-white">
@@ -1966,17 +1966,17 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                               : 'Owner-facing: Финансовая сводка Директора, маржинальность и сверка'}
                         </h4>
                       </div>
-                      <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-400/20 text-cyan-300 border border-cyan-400/40">
+                      <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#C7A46A]/15 text-[#C7A46A] border border-[#C7A46A]/40">
                         ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ
                       </span>
                     </div>
 
                     {/* Вариант 1: CLIENT-FACING (строго без раскрытия себестоимости и маржи!) */}
                     {outputStyle === 'client_facing' && (
-                      <div className="p-5 rounded-2xl bg-[#06122e] border border-sky-400/30 space-y-4 text-xs sm:text-sm text-sky-50">
-                        <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-sky-400/20">
+                      <div className="p-5 rounded-2xl bg-[#101C2D] border border-[#C7A46A]/25 space-y-4 text-xs sm:text-sm text-white/80">
+                        <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-[#C7A46A]/25">
                           <div>
-                            <div className="text-xs text-cyan-300 font-bold uppercase">
+                            <div className="text-xs text-[#C7A46A] font-bold uppercase">
                               Персональное предложение SilkWay Travel
                             </div>
                             <div className="text-base font-extrabold text-white mt-0.5">
@@ -1984,10 +1984,10 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                             </div>
                           </div>
                           <div className="text-right">
-                            <span className="text-[11px] text-sky-300 block">
+                            <span className="text-[11px] text-white/80 block">
                               Итоговая стоимость за группу:
                             </span>
-                            <span className="text-xl font-mono font-extrabold text-cyan-300">
+                            <span className="text-xl font-mono font-extrabold text-[#C7A46A]">
                               {quoteBreakdown.final_client_price_uzs.toLocaleString('ru-RU')} UZS
                             </span>
                             {quoteBreakdown.discount_uzs > 0 && (
@@ -2000,15 +2000,15 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                          <div className="p-3 rounded-xl bg-[#081738] border border-sky-400/20">
-                            <span className="text-sky-300 block">Отправление и состав группы:</span>
+                          <div className="p-3 rounded-xl bg-[#16283F] border border-[#C7A46A]/25">
+                            <span className="text-white/80 block">Отправление и состав группы:</span>
                             <strong className="text-white">
                               {quoteDepartureCity} · {quotePartyText}
                             </strong>
                           </div>
-                          <div className="p-3 rounded-xl bg-[#081738] border border-sky-400/20">
-                            <span className="text-sky-300 block">Гражданство (для визы и E-Mehmon):</span>
-                            <strong className="text-cyan-300">{quoteCitizenship}</strong>
+                          <div className="p-3 rounded-xl bg-[#16283F] border border-[#C7A46A]/25">
+                            <span className="text-white/80 block">Гражданство (для визы и E-Mehmon):</span>
+                            <strong className="text-[#C7A46A]">{quoteCitizenship}</strong>
                           </div>
                         </div>
 
@@ -2016,18 +2016,18 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           <div className="font-bold text-emerald-300">
                             ✓ Что включено в предложение:
                           </div>
-                          <p className="text-sky-100/90 leading-relaxed">
+                          <p className="text-white/75 leading-relaxed">
                             Проживание в проверенных отелях 4* с завтраками (BB), ж/д переезды на скоростном поезде Afrosiyob (Ташкент — Самарканд — Бухара), индивидуальные трансферы, лицензированные гиды ЮНЕСКО и регистрация E-Mehmon.
                           </p>
-                          <div className="font-bold text-cyan-300 pt-1">
+                          <div className="font-bold text-[#C7A46A] pt-1">
                             ⚠️ Статус наличия и тарифа: ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ
                           </div>
-                          <p className="text-sky-200/80">
+                          <p className="text-white/75">
                             Бронирование считается подтверждённым после фиксации мест у поставщика. Пожалуйста, не отправляйте в чат сканы паспортов или реквизиты банковских карт до открытия защищённой сессии оплаты.
                           </p>
                         </div>
 
-                        <div className="p-3 rounded-xl bg-cyan-400/15 border border-cyan-400/40 text-xs text-cyan-200 font-semibold flex items-center justify-between">
+                        <div className="p-3 rounded-xl bg-[#C7A46A]/15 border border-[#C7A46A]/40 text-xs text-[#C7A46A] font-semibold flex items-center justify-between">
                           <span>👉 Следующий шаг: Согласовать даты выезда и подтвердить бронь</span>
                           <span>{directorNotice}</span>
                         </div>
@@ -2037,19 +2037,19 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                     {/* Вариант 2: MANAGER-FACING (таблица сверки, источники, риски и Next Action) */}
                     {outputStyle === 'manager_facing' && (
                       <div className="space-y-4 text-xs">
-                        <div className="overflow-x-auto rounded-2xl border border-sky-400/30 bg-[#06122e]">
+                        <div className="overflow-x-auto rounded-2xl border border-[#C7A46A]/25 bg-[#101C2D]">
                           <table className="w-full text-left border-collapse">
                             <thead>
-                              <tr className="border-b border-sky-400/25 text-cyan-300 bg-[#051029]">
+                              <tr className="border-b border-[#C7A46A]/25 text-[#C7A46A] bg-[#101C2D]">
                                 <th className="p-3">Компонент операции</th>
                                 <th className="p-3">Источник / Статус</th>
                                 <th className="p-3">Операционный риск</th>
                               </tr>
                             </thead>
-                            <tbody className="divide-y divide-sky-400/15 text-sky-100">
+                            <tbody className="divide-y divide-sky-400/15 text-white/80">
                               <tr>
                                 <td className="p-3 font-bold">Ж/д билеты Afrosiyob</td>
-                                <td className="p-3 font-mono text-cyan-300">
+                                <td className="p-3 font-mono text-[#C7A46A]">
                                   KB-01 · ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ
                                 </td>
                                 <td className="p-3">
@@ -2058,7 +2058,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                               </tr>
                               <tr>
                                 <td className="p-3 font-bold">Виза и E-Mehmon ({quoteCitizenship})</td>
-                                <td className="p-3 font-mono text-cyan-300">
+                                <td className="p-3 font-mono text-[#C7A46A]">
                                   KB-04 · ТРЕБУЕТ ПОДТВЕРЖДЕНИЯ
                                 </td>
                                 <td className="p-3">
@@ -2078,11 +2078,11 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           </table>
                         </div>
 
-                        <div className="p-4 rounded-xl bg-[#06122e] border border-cyan-400/35 space-y-1.5">
-                          <div className="font-bold text-cyan-300">
+                        <div className="p-4 rounded-xl bg-[#101C2D] border border-[#C7A46A]/40 space-y-1.5">
+                          <div className="font-bold text-[#C7A46A]">
                             Next Action для менеджера:
                           </div>
-                          <p className="text-sky-100">
+                          <p className="text-white/80">
                             1. Запросить подтверждение наличия мест на поезд Afrosiyob на даты группы ({quotePartyText}). 2. Проверить отметки в операционном чек-листе слева ({opsChecklist.filter((c) => c.done).length} из {opsChecklist.length} выполнено).
                           </p>
                         </div>
@@ -2093,21 +2093,21 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                     {outputStyle === 'owner_facing' && (
                       <div className="space-y-4">
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-                          <div className="p-3.5 rounded-xl bg-[#06122e] border border-sky-400/25">
-                            <span className="text-sky-300 block">Себестоимость (Cost)</span>
+                          <div className="p-3.5 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25">
+                            <span className="text-white/80 block">Себестоимость (Cost)</span>
                             <span className="text-base font-mono font-extrabold text-white mt-1 block">
                               {quoteBreakdown.supplier_cost_uzs.toLocaleString('ru-RU')} UZS
                             </span>
                           </div>
-                          <div className="p-3.5 rounded-xl bg-[#06122e] border border-sky-400/25">
-                            <span className="text-sky-300 block">
+                          <div className="p-3.5 rounded-xl bg-[#101C2D] border border-[#C7A46A]/25">
+                            <span className="text-white/80 block">
                               Наценка ({quoteBreakdown.markup_percent}%)
                             </span>
-                            <span className="text-base font-mono font-extrabold text-cyan-300 mt-1 block">
+                            <span className="text-base font-mono font-extrabold text-[#C7A46A] mt-1 block">
                               +{quoteBreakdown.markup_uzs.toLocaleString('ru-RU')} UZS
                             </span>
                           </div>
-                          <div className="p-3.5 rounded-xl bg-[#06122e] border border-emerald-400/35">
+                          <div className="p-3.5 rounded-xl bg-[#101C2D] border border-emerald-400/35">
                             <span className="text-emerald-300 block">
                               Валовая прибыль (Margin {quoteBreakdown.gross_margin_percent}%)
                             </span>
@@ -2115,22 +2115,22 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                               {quoteBreakdown.gross_profit_uzs.toLocaleString('ru-RU')} UZS
                             </span>
                           </div>
-                          <div className="p-3.5 rounded-xl bg-[#06122e] border border-cyan-400/45">
-                            <span className="text-cyan-300 block">
+                          <div className="p-3.5 rounded-xl bg-[#101C2D] border border-[#C7A46A]/40">
+                            <span className="text-[#C7A46A] block">
                               Чистая прибыль (Net Profit)
                             </span>
-                            <span className="text-base font-mono font-extrabold text-cyan-300 mt-1 block">
+                            <span className="text-base font-mono font-extrabold text-[#C7A46A] mt-1 block">
                               {quoteBreakdown.net_profit_uzs.toLocaleString('ru-RU')} UZS
                             </span>
                           </div>
                         </div>
 
-                        <div className="p-4 rounded-2xl bg-[#06122e] border border-sky-400/25 text-xs space-y-2">
+                        <div className="p-4 rounded-2xl bg-[#101C2D] border border-[#C7A46A]/25 text-xs space-y-2">
                           <div className="font-bold text-white flex items-center justify-between">
                             <span>Сверка комиссии эквайринга и скидок (references/finance.md):</span>
-                            <span className="font-mono text-cyan-300">UZS BIGINT VERIFIED</span>
+                            <span className="font-mono text-[#C7A46A]">UZS BIGINT VERIFIED</span>
                           </div>
-                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-sky-200 font-mono">
+                          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-white/80 font-mono">
                             <div>
                               Gross Price: {quoteBreakdown.gross_selling_price_uzs.toLocaleString('ru-RU')} UZS
                             </div>
@@ -2142,7 +2142,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                               {quoteBreakdown.payment_fee_uzs.toLocaleString('ru-RU')} UZS
                             </div>
                           </div>
-                          <div className="pt-2 border-t border-sky-400/20 text-cyan-300">
+                          <div className="pt-2 border-t border-[#C7A46A]/25 text-[#C7A46A]">
                             Флаги сверки для Директора: открытых пунктов чек-листа —{' '}
                             {opsChecklist.filter((c) => !c.done).length}. {directorNotice}
                           </div>
@@ -2152,10 +2152,10 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   </div>
 
                   {/* Кнопки действий с расчётом */}
-                  <div className="pt-3 border-t border-sky-400/20 flex flex-wrap items-center justify-between gap-3">
-                    <div className="text-xs text-sky-200">
+                  <div className="pt-3 border-t border-[#C7A46A]/25 flex flex-wrap items-center justify-between gap-3">
+                    <div className="text-xs text-white/80">
                       Выбранный стиль вывода также применяется в{' '}
-                      <strong className="text-cyan-300">AI-Чате (RAG)</strong>.
+                      <strong className="text-[#C7A46A]">AI-Чате (RAG)</strong>.
                     </div>
                     <div className="flex flex-wrap gap-2.5">
                       <button
@@ -2169,7 +2169,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                           setCopiedOfferToast(true);
                           setTimeout(() => setCopiedOfferToast(false), 2200);
                         }}
-                        className="px-4 py-2 rounded-xl bg-[#0c1f4a] hover:bg-sky-500/25 text-sky-100 border border-sky-400/35 text-xs font-bold transition"
+                        className="px-4 py-2 rounded-xl bg-[#16283F] hover:bg-sky-500/25 text-white/80 border border-[#C7A46A]/25 text-xs font-bold transition"
                       >
                         {copiedOfferToast ? '✓ Скопировано в буфер' : 'Скопировать сводку'}
                       </button>
@@ -2208,9 +2208,9 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
           </button>
         ) : (
-          <div className="w-[350px] sm:w-[400px] h-[510px] bg-[#071536] rounded-3xl border border-sky-400/40 shadow-2xl flex flex-col overflow-hidden animate-fade-in-up">
+          <div className="w-[350px] sm:w-[400px] h-[510px] bg-[#101C2D] rounded-3xl border border-[#C7A46A]/25 shadow-2xl flex flex-col overflow-hidden animate-fade-in-up">
             {/* Шапка виджета */}
-            <div className="p-4 bg-gradient-to-r from-[#051029] to-[#0c1f4a] border-b border-sky-400/25 flex items-center justify-between text-white">
+            <div className="p-4 bg-gradient-to-r from-[#101C2D] to-[#16283F] border-b border-[#C7A46A]/25 flex items-center justify-between text-white">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-xl luxury-gold-btn flex items-center justify-center font-bold">
                   <Bot className="w-4 h-4" />
@@ -2228,7 +2228,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                 <button
                   type="button"
                   onClick={() => setIsWidgetOpen(false)}
-                  className="p-1.5 rounded-lg hover:bg-white/10 text-sky-200"
+                  className="p-1.5 rounded-lg hover:bg-white/10 text-white/80"
                   aria-label="Close widget"
                 >
                   <X className="w-4 h-4" />
@@ -2237,7 +2237,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
             </div>
 
             {/* Сообщения в виджете */}
-            <div className="flex-1 p-3.5 overflow-y-auto space-y-3 bg-[#081738]">
+            <div className="flex-1 p-3.5 overflow-y-auto space-y-3 bg-[#16283F]">
 
               {activeConversation.messages.map((m) => (
                 <div
@@ -2249,15 +2249,15 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   <div
                     className={`max-w-[88%] rounded-2xl p-3 text-xs space-y-1.5 ${
                       m.sender_type === 'customer'
-                        ? 'bg-cyan-400 text-[#051029] font-semibold'
+                        ? 'bg-[#C7A46A] text-[#101C2D] font-semibold'
                         : m.sender_type === 'system'
                           ? 'bg-rose-950/70 border border-rose-400/40 text-rose-100'
-                          : 'bg-[#0c1f4a] border border-sky-400/30 text-sky-50'
+                          : 'bg-[#16283F] border border-[#C7A46A]/25 text-white/80'
                     }`}
                   >
                     <p className="leading-relaxed">{m.content}</p>
                     {m.citations && m.citations.length > 0 && (
-                      <div className="pt-1 border-t border-sky-400/20 text-[10px] text-cyan-300 font-mono">
+                      <div className="pt-1 border-t border-[#C7A46A]/25 text-[10px] text-[#C7A46A] font-mono">
                         📚 {m.citations.map((c) => c.source_id).join(', ')}
                       </div>
                     )}
@@ -2267,7 +2267,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
             </div>
 
             {/* Нижняя панель виджета */}
-            <div className="p-3 bg-[#051029] border-t border-sky-400/25 space-y-2">
+            <div className="p-3 bg-[#101C2D] border-t border-[#C7A46A]/25 space-y-2">
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -2280,7 +2280,7 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
                   placeholder={txt.chatInputPlaceholder}
-                  className="flex-1 px-3 py-2 rounded-xl bg-[#081738] border border-sky-400/30 text-xs text-white"
+                  className="flex-1 px-3 py-2 rounded-xl bg-[#16283F] border border-[#C7A46A]/25 text-xs text-white"
                 />
                 <button
                   type="submit"
@@ -2290,11 +2290,11 @@ export default function AiSupportAgentSuite({ lang, directorNotice }: AiSupportA
                   <Send className="w-4 h-4" />
                 </button>
               </form>
-              <div className="flex items-center justify-between text-[10px] text-cyan-300/90">
+              <div className="flex items-center justify-between text-[10px] text-[#C7A46A]/90">
                 <button
                   type="button"
                   onClick={() => handleEscalateToOperator()}
-                  className="underline hover:text-cyan-200"
+                  className="underline hover:text-[#C7A46A]"
                 >
                   {txt.escalateToHumanBtn}
                 </button>

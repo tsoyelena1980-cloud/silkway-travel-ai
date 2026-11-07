@@ -3,8 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 240, 249, 255;
-  --background-rgb: 7, 19, 48;
+  /* Design Tokens: ROYAL SILK ROAD × MODERN LUXURY × AI */
+  --color-midnight-navy: #101C2D;
+  --color-deep-royal: #16283F;
+  --color-champagne-gold: #C7A46A;
+  --color-warm-ivory: #F5F1E9;
+  --color-silk-blue: #357B91;
+  --color-pure-white: #FFFFFF;
+
+  --foreground-rgb: 255, 255, 255;
+  --background-rgb: 16, 28, 45;
 }
 
 html {
@@ -12,47 +20,79 @@ html {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background-color: #071330;
+  color: var(--color-pure-white);
+  background-color: var(--color-midnight-navy);
+  font-family: var(--font-manrope), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+.font-serif-luxury {
+  font-family: var(--font-cormorant), "Playfair Display", Georgia, serif;
+  letter-spacing: -0.01em;
 }
 
 .silk-pattern {
   background:
-    radial-gradient(circle at 12% 18%, rgba(14, 165, 233, 0.18) 0%, transparent 45%),
-    radial-gradient(circle at 88% 22%, rgba(6, 182, 212, 0.14) 0%, transparent 42%),
-    radial-gradient(circle at 50% 85%, rgba(37, 99, 235, 0.24) 0%, transparent 55%),
-    linear-gradient(180deg, #061029 0%, #091a42 50%, #06112b 100%);
+    radial-gradient(circle at 18% 12%, rgba(53, 123, 145, 0.14) 0%, transparent 48%),
+    radial-gradient(circle at 82% 20%, rgba(199, 164, 106, 0.08) 0%, transparent 45%),
+    linear-gradient(180deg, #101C2D 0%, #132236 52%, #101C2D 100%);
 }
 
 .gold-shimmer-text {
-  background: linear-gradient(90deg, #67e8f9 0%, #38bdf8 50%, #a5f3fc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #C7A46A;
+}
+
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(199, 164, 106, 0.5) 50%,
+    transparent 100%
+  );
 }
 
 .luxury-gold-btn {
-  background: linear-gradient(135deg, #0284c7 0%, #06b6d4 50%, #2563eb 100%);
-  color: #ffffff;
-  border: 1px solid rgba(103, 232, 249, 0.45);
-  box-shadow: 0 10px 25px -5px rgba(6, 182, 212, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  background: linear-gradient(135deg, #C7A46A 0%, #B38E53 100%);
+  color: #101C2D;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 10px 26px -8px rgba(16, 28, 45, 0.65);
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
 .luxury-gold-btn:hover {
-  background: linear-gradient(135deg, #0ea5e9 0%, #22d3ee 50%, #3b82f6 100%);
-  border-color: rgba(165, 243, 252, 0.75);
-  box-shadow: 0 14px 30px -5px rgba(34, 211, 238, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  background: linear-gradient(135deg, #D3B27A 0%, #BE9A5F 100%);
+  border-color: rgba(255, 255, 255, 0.42);
+  box-shadow: 0 14px 30px -6px rgba(199, 164, 106, 0.32);
+}
+
+.luxury-silk-btn {
+  background-color: #357B91;
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 22px -6px rgba(16, 28, 45, 0.6);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.luxury-silk-btn:hover {
+  background-color: #3E8BA3;
+  border-color: rgba(199, 164, 106, 0.55);
 }
 
 .luxury-dark-card {
-  background: linear-gradient(145deg, #0d1f49 0%, #102759 100%);
-  border: 1px solid rgba(56, 189, 248, 0.25);
+  background-color: #16283F;
+  border: 1px solid rgba(199, 164, 106, 0.22);
+}
+
+.luxury-ivory-section {
+  background-color: #F5F1E9;
+  color: #101C2D;
 }
 
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
@@ -60,8 +100,24 @@ body {
   }
 }
 
+@keyframes subtleHeroDrift {
+  0% {
+    opacity: 0.94;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.94;
+  }
+}
+
 .animate-fade-in-up {
-  animation: fadeInUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: fadeInUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-bg-motion {
+  animation: subtleHeroDrift 10s ease-in-out infinite;
 }
 
 .delay-75 {
@@ -78,25 +134,41 @@ body {
 }
 
 .card-smooth {
-  transition: box-shadow 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+  transition: box-shadow 0.4s ease, border-color 0.4s ease, background-color 0.4s ease;
 }
 
 .card-smooth:hover {
-  border-color: rgba(34, 211, 238, 0.7);
-  box-shadow: 0 20px 42px -10px rgba(3, 9, 26, 0.75),
-    0 0 0 1px rgba(103, 232, 249, 0.4),
-    0 8px 25px -6px rgba(6, 182, 212, 0.35);
+  border-color: rgba(199, 164, 106, 0.55);
+  box-shadow: 0 22px 44px -12px rgba(8, 15, 26, 0.72),
+    0 0 0 1px rgba(199, 164, 106, 0.28);
 }
 
+/* Яркие фотографии без ряби (anti-moiré) при наведении */
 .img-zoom {
   backface-visibility: hidden;
   transform: translateZ(0);
-  filter: saturate(1.32) contrast(1.07) brightness(1.06);
-  transition: filter 0.35s ease;
+  filter: saturate(1.18) contrast(1.05) brightness(1.03);
+  transition: filter 0.45s ease;
 }
 
 .group:hover .img-zoom {
-  filter: saturate(1.42) contrast(1.1) brightness(1.12);
+  filter: saturate(1.26) contrast(1.08) brightness(1.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-fade-in-up,
+  .hero-bg-motion {
+    animation: none !important;
+  }
+  .card-smooth,
+  .img-zoom,
+  .luxury-gold-btn,
+  .luxury-silk-btn {
+    transition: none !important;
+  }
 }
 
 @media print {
@@ -105,5 +177,6 @@ body {
   }
   body {
     background: #ffffff !important;
+    color: #101C2D !important;
   }
 }
